@@ -2801,55 +2801,6 @@
 					"description": "Credit/Debit Balance"
 				},
 				{
-					"name": "Enhanced Services",
-					"item": [
-						{
-							"name": "Enhanced Services",
-							"id": "fb0dc837-bac0-4b53-9139-faa15c75f50a",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.es.callerid.configuration&server={{Srv/Tenant-ID}}&id={{ExtensionIDs}}",
-									"protocol": "http",
-									"host": [
-										"{{IP}}"
-									],
-									"path": [
-										"index.php"
-									],
-									"query": [
-										{
-											"key": "apikey",
-											"value": "{{API_Key}}"
-										},
-										{
-											"key": "action",
-											"value": "pbxware.ext.es.callerid.configuration"
-										},
-										{
-											"key": "server",
-											"value": "{{Srv/Tenant-ID}}",
-											"type": "text"
-										},
-										{
-											"key": "id",
-											"value": "{{ExtensionIDs}}",
-											"type": "text"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"id": "0c350656-718c-40bc-8e89-282253870537",
-					"description": "Extension Enhanced Services"
-				},
-				{
 					"name": "Reset Inclusive Minutes",
 					"item": [
 						{
