@@ -1694,6 +1694,13 @@
 											"value": "",
 											"description": "(Yes=1, No=0, Not Set=2)",
 											"disabled": true
+										},
+										{
+											"key": "rating_info_osc",
+											"value": null,
+											"description": "Show Call Rating Info in OSC. (Yes=1, No=0).",
+											"type": "text",
+											"disabled": true
 										}
 									]
 								}
@@ -2594,6 +2601,13 @@
 											"key": "vmailskippin",
 											"value": "",
 											"description": "(Yes=1, No=0, Not Set=2)",
+											"disabled": true
+										},
+										{
+											"key": "rating_info_osc",
+											"value": null,
+											"description": "Show Call Rating Info in OSC. (Yes=1, No=0).",
+											"type": "text",
 											"disabled": true
 										}
 									]
