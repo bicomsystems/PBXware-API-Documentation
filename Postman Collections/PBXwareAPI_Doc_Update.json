@@ -15600,8 +15600,15 @@
 								},
 								{
 									"key": "prefix_emerg",
-									"value": null,
+									"value": "",
 									"description": "Set Prefix for Emergency Calls. Regex: /^(yes|no)$/",
+									"disabled": true
+								},
+								{
+									"key": "emerg_location_header",
+									"value": null,
+									"description": "Emergency Location Header. (Regex: /^[\\\\w\\\\-,]{1,100}$/)",
+									"type": "text",
 									"disabled": true
 								}
 							]
@@ -16056,8 +16063,15 @@
 								},
 								{
 									"key": "prefix_emerg",
-									"value": null,
+									"value": "",
 									"description": "Set Prefix for Emergency Calls. Regex: /^(yes|no)$/",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "emerg_location_header",
+									"value": null,
+									"description": "Emergency Location Header. (Regex: /^[\\\\w\\\\-,]{1,100}$/)",
 									"type": "text",
 									"disabled": true
 								}
@@ -23932,8 +23946,15 @@
 								},
 								{
 									"key": "appasword",
-									"value": null,
+									"value": "",
 									"description": "(Regex: /^\\\\S.+\\\\S$/)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "emerg_location_header",
+									"value": null,
+									"description": "Emergency Location Header. (Regex: /^[\\\\w\\\\-,]{1,100}$/)",
 									"type": "text",
 									"disabled": true
 								}
@@ -24659,6 +24680,13 @@
 									"key": "appasword",
 									"value": "",
 									"description": "(Regex: /^\\\\S.+\\\\S$/)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "emerg_location_header",
+									"value": null,
+									"description": "Emergency Location Header. (Regex: /^[\\\\w\\\\-,]{1,100}$/)",
 									"type": "text",
 									"disabled": true
 								}
