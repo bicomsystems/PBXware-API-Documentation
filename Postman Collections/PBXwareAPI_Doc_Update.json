@@ -18569,7 +18569,7 @@
 								},
 								{
 									"key": "name",
-									"value": null,
+									"value": "",
 									"disabled": true
 								},
 								{
@@ -18718,6 +18718,13 @@
 									"key": "sms_enabled",
 									"value": "",
 									"description": "Use DID as SMS number. (Regex: /^(1|0)$/)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "preserve_callerid",
+									"value": "",
+									"description": "Preserve Orginal Caller ID. (Regex: /^(1|0)$/)",
 									"type": "text",
 									"disabled": true
 								}
@@ -18967,6 +18974,13 @@
 									"key": "sms_enabled",
 									"value": "",
 									"description": "Use DID as SMS number. (Regex: /^(1|0)$/)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "preserve_callerid",
+									"value": null,
+									"description": "Preserve Orginal Caller ID. (Regex: /^(1|0)$/)",
 									"type": "text",
 									"disabled": true
 								}
