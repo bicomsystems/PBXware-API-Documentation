@@ -19520,7 +19520,7 @@
 									"            pm.expect(ivrData).to.have.property('ext').that.is.a('string');",
 									"            pm.expect(ivrData).to.have.property('keymap').that.is.an('object');",
 									"            pm.expect(ivrData).to.have.property('status').that.is.oneOf(['enabled', 'disabled']);",
-									"            pm.expect(ivrData).to.have.property('operator').hat.is.oneOf([null, 'string']);",
+									"            pm.expect(ivrData).to.have.property('operator').that.is.oneOf([null, 'string']);",
 									"            ",
 									"            // Print the result for each IVR",
 									"            console.log('IVR ID:', ivrID);",
