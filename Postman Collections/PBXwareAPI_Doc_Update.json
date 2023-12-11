@@ -18555,7 +18555,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://10.1.165.94/index.php?apikey=Test123456789&action=pbxware.did.add&server={{Srv/Tenant-ID}}&trunk={{TrunkIDs}}&did={{DID}}&dest_type={{DestType}}&destination={{Destination}}&disabled={{DID-Disabled}}&e164={{DID}}",
+							"raw": "http://10.1.165.94/index.php?apikey={{API_Key}}&action=pbxware.did.add&server={{Srv/Tenant-ID}}&trunk={{TrunkIDs}}&did={{DID}}&dest_type={{DestType}}&destination={{Destination}}&disabled={{DID-Disabled}}&e164={{DID}}",
 							"protocol": "http",
 							"host": [
 								"10",
@@ -18569,7 +18569,7 @@
 							"query": [
 								{
 									"key": "apikey",
-									"value": "Test123456789"
+									"value": "{{API_Key}}"
 								},
 								{
 									"key": "action",
