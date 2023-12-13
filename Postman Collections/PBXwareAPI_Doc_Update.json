@@ -16388,6 +16388,80 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete Trunks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "db9bc4a5-dfc8-4bef-9020-058c0489851b",
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseJson = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseJson) {",
+									"    console.error(\"Test Failed: \" + responseJson.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseJson.error);",
+									"    });",
+									"} else {",
+									"    // Validate the success response structure",
+									"    pm.test('Success Response Validation', function () {",
+									"        pm.expect(responseJson).to.be.an('object');",
+									"",
+									"        // Check if success is a string",
+									"        pm.expect(responseJson.success).to.be.a('string');",
+									"",
+									"        // Check if id is a string",
+									"        pm.expect(responseJson.id).to.be.a('string');",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "0e48be3f-7cc6-4110-93dd-942eaa531ea2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/?action=pbxware.trunk.delete&apikey={{API_Key}}&id={{TrunkIDs}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "pbxware.trunk.delete"
+								},
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "id",
+									"value": "{{TrunkIDs}}"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"id": "78e2c8b9-6cf3-4ce2-aef0-5a1347231f88",
