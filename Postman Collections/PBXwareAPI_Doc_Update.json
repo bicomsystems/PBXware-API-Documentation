@@ -19976,6 +19976,13 @@
 									"key": "keymap[\\*][destination]",
 									"value": "{{Key*Dest}}",
 									"disabled": true
+								},
+								{
+									"key": "skip_invalid_selection",
+									"value": null,
+									"description": "1 - Enabled, 0 - Disabled",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						}
@@ -20336,6 +20343,13 @@
 								{
 									"key": "keymap[/*][destination]",
 									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "skip_invalid_selection",
+									"value": null,
+									"description": "1 - Enabled, 0 - Disabled",
 									"type": "text",
 									"disabled": true
 								}
