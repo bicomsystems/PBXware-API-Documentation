@@ -1742,7 +1742,7 @@
 											"        pm.expect(responseBody).to.be.an('object');",
 											"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
 											"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
-											"        pm.expect(responseBody).to.have.property('ext').that.is.a('number');",
+											"        pm.expect(responseBody).to.have.property('ext').that.is.a('string');",
 											"    });",
 											"",
 											"    // Print the success message and extension ID from the response",
