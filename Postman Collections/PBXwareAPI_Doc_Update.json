@@ -21986,6 +21986,967 @@
 			"description": "# Enhanced Ring Groups\n\nSupported Methods\n\n`add` \\- Add/Creat a new ERG\n\n`edit` - Edit existing ERG\n\n`list` - List Enhanced Ring Groups\n\n`members` - Adding members to an Enhanced Ring Group"
 		},
 		{
+			"name": "Enhanced Ring Groups Copy",
+			"item": [
+				{
+					"name": "Add ERGs",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "47fa4b56-99f4-412f-bbb1-6a2c07b6fbb7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "405b6c8a-3d6f-491a-833d-5c6bcec12fa8",
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure",
+									"    pm.test('ERG Created Successfully', function () {",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('id').that.is.a('number');",
+									"",
+									"        // Extract ERG ID and set it as a collection variable for later use",
+									"        pm.collectionVariables.set(\"ERGsID\", responseBody.id);",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "c2602400-4255-4ca6-bfd1-d522f6a4ca94",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.erg.add&server={{Srv/Tenant-ID}}&name={{ERG_Name}}&ext={{ERG_Number}}&max_wait_callers=10&rings_answer=0",
+							"protocol": "https",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}",
+									"description": "API Key."
+								},
+								{
+									"key": "action",
+									"value": "pbxware.erg.add",
+									"description": "Add a new ERG."
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Tenant/Server ID (Required)"
+								},
+								{
+									"key": "name",
+									"value": "{{ERG_Name}}",
+									"description": "Name of a new ERG. (Required). (Regex: /^[a-zA-Z0-9-_]+$/)"
+								},
+								{
+									"key": "ext",
+									"value": "{{ERG_Number}}",
+									"description": "Extension number that will be used for ERG. (Required). (Regex: /^\\\\d{3}$/)"
+								},
+								{
+									"key": "max_wait_callers",
+									"value": "10",
+									"description": "Maximum number of callers allowed to wait in a ERG at the same time. (Required). (Regex: /^\\\\d{1,5}$/)"
+								},
+								{
+									"key": "rings_answer",
+									"value": "0",
+									"description": "Number of rings that will be played to a caller before call enters the ERG. (Required). (Regex: /^\\\\d{1}$/)."
+								},
+								{
+									"key": "record",
+									"value": "no",
+									"description": "Set whether to record ERG calls or not. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "wake_mobile",
+									"value": "no",
+									"description": "Select whether ERG should wake up mobile devices that are asleep. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "replace_cid",
+									"value": "Neki CID_Bezveze123",
+									"description": "Replace the caller id with the custom value. (Regex: /^[\\\\w\\\\s]+$/)",
+									"disabled": true
+								},
+								{
+									"key": "queue_url",
+									"value": "http://domain-name.com",
+									"description": "Send the following URL to Member's softphone, if it supports that option, and the softphone can open that URL so the Member can see callers additional info if available. (Regex: /^[\\\\w\\\\s]+$/)",
+									"disabled": true
+								},
+								{
+									"key": "redirect_dest",
+									"value": "888",
+									"description": "ERG full redirect extension number. (Regex: /^\\\\d{3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "redirect_vm",
+									"value": "yes",
+									"description": "Choose whether the redirect extension is a voicemail. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "prioritize_timeout",
+									"value": "yes",
+									"description": "Set whether to prioritize ERG timeout or not. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "max_wait_seconds",
+									"value": "10",
+									"description": "Maximum time a caller can wait in an ERG. (Regex: /^\\\\d{1,4}$/)",
+									"disabled": true
+								},
+								{
+									"key": "max_wait_dest",
+									"value": "999",
+									"description": "Set the extension to which caller will be redirected once time set under 'Max Wait Seconds' exceeds. (Regex: /^\\\\d{3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "max_wait_dest_vm",
+									"value": "yes",
+									"description": "Set whether the max wait destination is pointing to voicemail. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "leave_when_empty",
+									"value": "yes",
+									"description": "When there are no members inside a queue, callers will leave it depending on the setting. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "empty_dest",
+									"value": "666",
+									"description": "When queue doesn\"t have any agent logged in, redirect callers to following destination. (Regex: /^\\\\d{3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "empty_dest_vm",
+									"value": "yes",
+									"description": "Set whether the empty destination extension is pointing to voicemail. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "greeting",
+									"value": "queue-greeting-praznoime",
+									"description": "Select a greeting file that will be played to all callers waiting in this ERG. (Regex: /^queue-greeting\\\\-([\\\\w\\\\-]+)$/)",
+									"disabled": true
+								},
+								{
+									"key": "announce_holdtime",
+									"value": "yes",
+									"description": "Enable callers waiting in an ERG to hear the hold-time announcements. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "announce_position",
+									"value": "yes",
+									"description": "Enable callers waiting in an ERG to hear the position announcements. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "announce_frequency",
+									"value": "30",
+									"description": "How often to play the hold-time announcement message (time in seconds). (Regex: /^\\\\d{1,2}$/)",
+									"disabled": true
+								},
+								{
+									"key": "min_announce_frequency",
+									"value": "5",
+									"description": "Specifies the minimum amount of time that must pass before we announce the caller’s position in an ERG again. (Regex: /^\\\\d{1,2}$/)",
+									"disabled": true
+								},
+								{
+									"key": "announce_r_seconds",
+									"value": "20",
+									"description": "Rounding level for hold-time announcements. (Regex: /^(0|5|10|15|20|30)$/)",
+									"disabled": true
+								},
+								{
+									"key": "static_login",
+									"value": "yes",
+									"description": "Select whether to enable Static Members Login. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "member_es_disable",
+									"value": "yes",
+									"description": "If set to 'Yes', Enhanced Enhanced that are enabled on the Extension (that are ERG members) will possibly not be applied if an ERG call is passed to them. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "ring_strategy",
+									"value": "ringall",
+									"description": "Set the way calls are transferred to ERG members answering the calls. (Regex: /^(ringall|linear|leastrecent|fewestcalls|random|rrmemory|rrordered|wrandom)$/)",
+									"disabled": true
+								},
+								{
+									"key": "member_ring_timeout",
+									"value": "1234",
+									"description": "Set the Member's ring timeout. (Regex: /^\\\\d{1,4}$/)",
+									"disabled": true
+								},
+								{
+									"key": "autofill",
+									"value": "no",
+									"description": "Should callers be served one by one or in parallel fashion. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "ring_inuse",
+									"value": "yes",
+									"description": "Set whether Members in use should be called when a new caller comes into the ERG. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "retry_timeout",
+									"value": "123",
+									"description": "Time interval in seconds, for how long to wait before trying the ERG member again. (Regex: /^\\\\d{1,3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "timeout_restart",
+									"value": "yes",
+									"description": "If this option is set to yes and a BUSY or CONGESTION signal is received on the line, the Member's timeout for answering will be reset. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "wrapup_time",
+									"value": "321",
+									"description": "After a successful call, this will determine how long to wait (time interval in seconds) before sending a new call to a potentially free member. (Regex: /^\\\\d{1,3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "periodic_announce",
+									"value": "default",
+									"description": "Select the sound file that is played periodically to callers waiting in an ERG (has to be in the following format 'periodic-announce-$NAME.gsm' or 'default')\n(Regex: /^(default|periodic-announce\\\\-([\\\\w\\\\-]+))$/)",
+									"disabled": true
+								},
+								{
+									"key": "periodic_announce_frequency",
+									"value": "69",
+									"description": "Time interval in seconds at which the periodic message is to be played. (Regex: /^\\\\d{1,2}$/)",
+									"disabled": true
+								},
+								{
+									"key": "first_periodic_announce",
+									"value": "456",
+									"description": "The minimum number of seconds between position announcements. (Regex: /^\\\\d{1,3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "incoming_options",
+									"value": "tT",
+									"description": "Set the advanced ERG call options. \nt \tallow the called user transfer the calling user\nT \tto allow the calling user to transfer the call.\nH \tallow caller to hang up by hitting *.\nn \tno retries on the timeout will exit this application and go to the next step.\nr \tring instead of playing MOH\nC \tavoid missed calls in ringall strategy",
+									"disabled": true
+								},
+								{
+									"key": "ring_timeout",
+									"value": "4321",
+									"description": "When 'r' is selected as Incoming Options and this timeout is used, ERG will first ring entered number of seconds after which MOH will start. (Regex: /^\\\\d{1,4}$/)",
+									"disabled": true
+								},
+								{
+									"key": "use_exit_digit",
+									"value": "yes",
+									"description": "Should users be able to exit the ERG by dialing a single digit and be automatically redirected to a preset PBXware destination. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "exit_digit",
+									"value": "9",
+									"description": "Define the exit digit. (Regex: /^\\\\d{1}$/)",
+									"disabled": true
+								},
+								{
+									"key": "exit_dest",
+									"value": "777",
+									"description": "Local PBXware destination number that is dialed once the 'Exit Digit' is dialed. (Regex: /^\\\\d{3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "exit_vm",
+									"value": "yes",
+									"description": "Set whether the exit digit destination is pointing to voicemail. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "enable_notification",
+									"value": "yes",
+									"description": "Enable or disable Abandoned Calls Notification feature. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "notification_email",
+									"value": "pakas123!%23@mali.com",
+									"description": "The e-mail address which will receive notifications of abandoned calls, where an abandoned call is one where the caller hangs up the call while waiting to be answered. (Regex: /^[^@]+@[^@]+\\\\.[^@]+$/)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit ERGs",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "47fa4b56-99f4-412f-bbb1-6a2c07b6fbb7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "405b6c8a-3d6f-491a-833d-5c6bcec12fa8",
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure",
+									"    pm.test('ERG Created Successfully', function () {",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
+									"",
+									"        // Extract ERG ID and set it as a collection variable for later use",
+									"        pm.collectionVariables.set(\"ERGsID\", responseBody.id);",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "9eae025c-06e9-4076-8ff3-085915c3adf4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.erg.edit&server={{Srv/Tenant-ID}}&id={{ERGsID}}",
+							"protocol": "https",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}",
+									"description": "API Key."
+								},
+								{
+									"key": "action",
+									"value": "pbxware.erg.edit",
+									"description": "Edit already created ERGs."
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Tenant/Server ID (Required)"
+								},
+								{
+									"key": "id",
+									"value": "{{ERGsID}}",
+									"description": "Enhanced Ring Group ID"
+								},
+								{
+									"key": "name",
+									"value": "Novo-Ime123",
+									"description": "Name of a new ERG. (Required). (Regex: /^[a-zA-Z0-9-_]+$/)",
+									"disabled": true
+								},
+								{
+									"key": "ext",
+									"value": "999",
+									"description": "Extension number that will be used for ERG. (Required). (Regex: /^\\\\d{3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "max_wait_callers",
+									"value": "10",
+									"description": "Maximum number of callers allowed to wait in a ERG at the same time. (Required). (Regex: /^\\\\d{1,5}$/)",
+									"disabled": true
+								},
+								{
+									"key": "rings_answer",
+									"value": "0",
+									"description": "Number of rings that will be played to a caller before call enters the ERG. (Required). (Regex: /^\\\\d{1}$/).",
+									"disabled": true
+								},
+								{
+									"key": "record",
+									"value": "yes",
+									"description": "Set whether to record ERG calls or not. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "wake_mobile",
+									"value": "yes",
+									"description": "Select whether ERG should wake up mobile devices that are asleep. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "replace_cid",
+									"value": "CID_ Novi Neki",
+									"description": "Replace the caller id with the custom value. (Regex: /^[\\\\w\\\\s]+$/)",
+									"disabled": true
+								},
+								{
+									"key": "queue_url",
+									"value": "http://test name.com",
+									"description": "Send the following URL to Member's softphone, if it supports that option, and the softphone can open that URL so the Member can see callers additional info if available. (Regex: /^[\\\\w\\\\s]+$/)",
+									"disabled": true
+								},
+								{
+									"key": "redirect_dest",
+									"value": "425",
+									"description": "ERG full redirect extension number. (Regex: /^\\\\d{3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "redirect_vm",
+									"value": "no",
+									"description": "Choose whether the redirect extension is a voicemail. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "prioritize_timeout",
+									"value": "no",
+									"description": "Set whether to prioritize ERG timeout or not. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "max_wait_seconds",
+									"value": "2233",
+									"description": "Maximum time a caller can wait in an ERG. (Regex: /^\\\\d{1,4}$/)",
+									"disabled": true
+								},
+								{
+									"key": "max_wait_dest",
+									"value": "425",
+									"description": "Set the extension to which caller will be redirected once time set under 'Max Wait Seconds' exceeds. (Regex: /^\\\\d{3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "max_wait_dest_vm",
+									"value": "no",
+									"description": "Set whether the max wait destination is pointing to voicemail. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "leave_when_empty",
+									"value": "no",
+									"description": "When there are no members inside a queue, callers will leave it depending on the setting. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "empty_dest",
+									"value": "425",
+									"description": "When queue doesn\"t have any agent logged in, redirect callers to following destination. (Regex: /^\\\\d{3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "empty_dest_vm",
+									"value": "no",
+									"description": "Set whether the empty destination extension is pointing to voicemail. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "greeting",
+									"value": "queue-greeting-erg",
+									"description": "Select a greeting file that will be played to all callers waiting in this ERG. (Regex: /^queue-greeting\\\\-([\\\\w\\\\-]+)$/)",
+									"disabled": true
+								},
+								{
+									"key": "announce_holdtime",
+									"value": "no",
+									"description": "Enable callers waiting in an ERG to hear the hold-time announcements. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "announce_position",
+									"value": "no",
+									"description": "Enable callers waiting in an ERG to hear the position announcements. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "announce_frequency",
+									"value": "60",
+									"description": "How often to play the hold-time announcement message (time in seconds). (Regex: /^\\\\d{1,2}$/)",
+									"disabled": true
+								},
+								{
+									"key": "min_announce_frequency",
+									"value": "2",
+									"description": "Specifies the minimum amount of time that must pass before we announce the caller’s position in an ERG again. (Regex: /^\\\\d{1,2}$/)",
+									"disabled": true
+								},
+								{
+									"key": "announce_r_seconds",
+									"value": "10",
+									"description": "Rounding level for hold-time announcements. (Regex: /^(0|5|10|15|20|30)$/)",
+									"disabled": true
+								},
+								{
+									"key": "static_login",
+									"value": "no",
+									"description": "Select whether to enable Static Members Login. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "member_es_disable",
+									"value": "no",
+									"description": "If set to 'Yes', Enhanced Enhanced that are enabled on the Extension (that are ERG members) will possibly not be applied if an ERG call is passed to them. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "ring_strategy",
+									"value": "linear",
+									"description": "Set the way calls are transferred to ERG members answering the calls. (Regex: /^(ringall|linear|leastrecent|fewestcalls|random|rrmemory|rrordered|wrandom)$/)",
+									"disabled": true
+								},
+								{
+									"key": "member_ring_timeout",
+									"value": "20",
+									"description": "Set the Member's ring timeout. (Regex: /^\\\\d{1,4}$/)",
+									"disabled": true
+								},
+								{
+									"key": "autofill",
+									"value": "yes",
+									"description": "Should callers be served one by one or in parallel fashion. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "ring_inuse",
+									"value": "no",
+									"description": "Set whether Members in use should be called when a new caller comes into the ERG. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "retry_timeout",
+									"value": "30",
+									"description": "Time interval in seconds, for how long to wait before trying the ERG member again. (Regex: /^\\\\d{1,3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "timeout_restart",
+									"value": "no",
+									"description": "If this option is set to yes and a BUSY or CONGESTION signal is received on the line, the Member's timeout for answering will be reset. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "wrapup_time",
+									"value": "15",
+									"description": "After a successful call, this will determine how long to wait (time interval in seconds) before sending a new call to a potentially free member. (Regex: /^\\\\d{1,3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "periodic_announce",
+									"value": "periodic-announce-erg",
+									"description": "Select the sound file that is played periodically to callers waiting in an ERG (has to be in the following format 'periodic-announce-$NAME.gsm' or 'default')\n(Regex: /^(default|periodic-announce\\\\-([\\\\w\\\\-]+))$/)",
+									"disabled": true
+								},
+								{
+									"key": "periodic_announce_frequency",
+									"value": "30",
+									"description": "Time interval in seconds at which the periodic message is to be played. (Regex: /^\\\\d{1,2}$/)",
+									"disabled": true
+								},
+								{
+									"key": "first_periodic_announce",
+									"value": "15",
+									"description": "The minimum number of seconds between position announcements. (Regex: /^\\\\d{1,3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "incoming_options",
+									"value": "r",
+									"description": "Set the advanced ERG call options. \nt \tallow the called user transfer the calling user\nT \tto allow the calling user to transfer the call.\nH \tallow caller to hang up by hitting *.\nn \tno retries on the timeout will exit this application and go to the next step.\nr \tring instead of playing MOH\nC \tavoid missed calls in ringall strategy",
+									"disabled": true
+								},
+								{
+									"key": "ring_timeout",
+									"value": "30",
+									"description": "When 'r' is selected as Incoming Options and this timeout is used, ERG will first ring entered number of seconds after which MOH will start. (Regex: /^\\\\d{1,4}$/)",
+									"disabled": true
+								},
+								{
+									"key": "use_exit_digit",
+									"value": "no",
+									"description": "Should users be able to exit the ERG by dialing a single digit and be automatically redirected to a preset PBXware destination. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "exit_digit",
+									"value": "6",
+									"description": "Define the exit digit. (Regex: /^\\\\d{1}$/)",
+									"disabled": true
+								},
+								{
+									"key": "exit_dest",
+									"value": "425",
+									"description": "Local PBXware destination number that is dialed once the 'Exit Digit' is dialed. (Regex: /^\\\\d{3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "exit_vm",
+									"value": "no",
+									"description": "Set whether the exit digit destination is pointing to voicemail. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "enable_notification",
+									"value": "no",
+									"description": "Enable or disable Abandoned Calls Notification feature. (Regex: /^(yes|no)$/)",
+									"disabled": true
+								},
+								{
+									"key": "notification_email",
+									"value": "nema@emaila.com",
+									"description": "The e-mail address which will receive notifications of abandoned calls, where an abandoned call is one where the caller hangs up the call while waiting to be answered. (Regex: /^[^@]+@[^@]+\\\\.[^@]+$/)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List ERGs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "05d0b128-7f9c-43fa-93d7-8e913ee4950e",
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Check if response is empty array",
+									"    if (Object.keys(responseBody).length === 0) {",
+									"        console.log(\"No created Enhanced Ring Groups for this Server/Tenant!\");",
+									"        pm.test('No ERG Error', function () {",
+									"            pm.expect.fail(\"No ERG created\");",
+									"        });",
+									"    } else {",
+									"        // Validate the response structure",
+									"        pm.test('Response Validation', function () {",
+									"            pm.expect(responseBody).to.be.an('object');",
+									"",
+									"            // Loop through ERG data",
+									"            for (var ergID in responseBody) {",
+									"                var ergData = responseBody[ergID];",
+									"",
+									"                // Validate specific properties for each ERG",
+									"                pm.test('ERG ' + ergID + ' Data Validation', function () {",
+									"                    pm.expect(ergData).to.be.an('object');",
+									"                    pm.expect(ergData).to.have.property('name').that.is.a('string');",
+									"                    pm.expect(ergData).to.have.property('number').that.is.a('string');",
+									"                    pm.expect(ergData).to.have.property('strategy').that.is.a('string');",
+									"                    pm.expect(ergData).to.have.property('members').that.is.an('array');",
+									"",
+									"                    // Print the result for each ERG",
+									"                    console.log('ERG ID:', ergID);",
+									"                    console.log('ERG Name:', ergData.name);",
+									"                    console.log('ERG Number:', ergData.number);",
+									"                    console.log('ERG Strategy:', ergData.strategy);",
+									"                    console.log('ERG Members:', ergData.members);",
+									"                });",
+									"            }",
+									"        });",
+									"        ",
+									"        // Save ERG IDs to variable",
+									"        var ergIDs = Object.keys(responseBody);",
+									"        pm.collectionVariables.set('ERGsID', ergIDs);",
+									"        pm.environment.set('ERGsID', ergIDs);",
+									"    }",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "6a082288-6656-482a-857f-27098c2b58f7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.erg.list&server={{Srv/Tenant-ID}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.erg.list"
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adding Members",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2dff645a-6579-40ed-8741-2bf98af538fe",
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the success response structure",
+									"    pm.test('Success Response Validation', function () {",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
+									"",
+									"        // Print the success message and ID",
+									"        console.log('Success:', responseBody.success);",
+									"        console.log('ERG ID:', responseBody.id);",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "2f0187ec-922e-4db4-bb0f-dacba625b2bb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.erg.members&server={{Srv/Tenant-ID}}&id={{ERGsID}}&numbers={{RGExt}}&penalties={{ERGPenal}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.erg.members",
+									"description": "Adding members to an Enhanced Ring Group. If need to add members in multiple ERGs use ERGs.csv file."
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Tenant/Server ID (Required)"
+								},
+								{
+									"key": "id",
+									"value": "{{ERGsID}}",
+									"description": "ID of an Enhanced Ring Group (Required)"
+								},
+								{
+									"key": "numbers",
+									"value": "{{RGExt}}",
+									"description": "List of extension numbers separated with , (Required)"
+								},
+								{
+									"key": "penalties",
+									"value": "{{ERGPenal}}",
+									"description": "List of penalties separated with , (Required)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete ERGs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "519038cd-f6d3-47d4-b85b-6a3cd857bafe",
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure",
+									"    pm.test('Deleted ERG successfully!', function () {",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "787b9327-f6ed-4d42-9b49-a3c7649a130b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.erg.delete&server={{Srv/Tenant-ID}}&id={{ERGsID}}",
+							"protocol": "https",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.erg.delete",
+									"description": "Deleting Enhanced Ring Groups"
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Tenant/Server ID"
+								},
+								{
+									"key": "id",
+									"value": "{{ERGsID}}",
+									"description": "Enhanced Ring Group IDs"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "7ca7aae6-e02a-4f17-8140-5e82e96552ba",
+			"description": "# Enhanced Ring Groups\n\nSupported Methods\n\n`add` \\- Add/Creat a new ERG\n\n`edit` - Edit existing ERG\n\n`list` - List Enhanced Ring Groups\n\n`members` - Adding members to an Enhanced Ring Group"
+		},
+		{
 			"name": "CDRs",
 			"item": [
 				{
@@ -27486,7 +28447,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "53ace4ba-cb0e-4220-ae96-0cb00ea7c019",
+				"id": "6e40958f-aa05-4b81-92ad-d561302b7384",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -27496,7 +28457,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "3c787c2e-906f-42be-afbe-7d238d3d0d8f",
+				"id": "bd9997bc-e716-462d-94e3-ef55d55824cf",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -28122,6 +29083,16 @@
 		},
 		{
 			"key": "ERG_Number",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "ERGMaxCallers",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "ERGRingToAnswer",
 			"value": "",
 			"type": "string"
 		}
