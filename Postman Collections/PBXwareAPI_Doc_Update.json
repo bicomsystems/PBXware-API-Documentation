@@ -21140,7 +21140,7 @@
 								},
 								{
 									"key": "replace_cid",
-									"value": "Neki CID_Bezveze123",
+									"value": "ERG_CID",
 									"description": "Replace the caller id with the custom value. (Regex: /^[\\\\w\\\\s]+$/)",
 									"disabled": true
 								},
@@ -21206,7 +21206,7 @@
 								},
 								{
 									"key": "greeting",
-									"value": "queue-greeting-praznoime",
+									"value": "queue-greeting-empty",
 									"description": "Select a greeting file that will be played to all callers waiting in this ERG. (Regex: /^queue-greeting\\\\-([\\\\w\\\\-]+)$/)",
 									"disabled": true
 								},
@@ -21356,7 +21356,7 @@
 								},
 								{
 									"key": "notification_email",
-									"value": "pakas123!%23@mali.com",
+									"value": "not_email@mali.com",
 									"description": "The e-mail address which will receive notifications of abandoned calls, where an abandoned call is one where the caller hangs up the call while waiting to be answered. (Regex: /^[^@]+@[^@]+\\\\.[^@]+$/)",
 									"disabled": true
 								}
@@ -21451,7 +21451,7 @@
 								},
 								{
 									"key": "name",
-									"value": "Novo-Ime123",
+									"value": "NewName",
 									"description": "Name of a new ERG. (Required). (Regex: /^[a-zA-Z0-9-_]+$/)",
 									"disabled": true
 								},
@@ -21487,7 +21487,7 @@
 								},
 								{
 									"key": "replace_cid",
-									"value": "CID_ Novi Neki",
+									"value": "NewERG-CID",
 									"description": "Replace the caller id with the custom value. (Regex: /^[\\\\w\\\\s]+$/)",
 									"disabled": true
 								},
@@ -21703,7 +21703,7 @@
 								},
 								{
 									"key": "notification_email",
-									"value": "nema@emaila.com",
+									"value": "new_not@email.com",
 									"description": "The e-mail address which will receive notifications of abandoned calls, where an abandoned call is one where the caller hangs up the call while waiting to be answered. (Regex: /^[^@]+@[^@]+\\\\.[^@]+$/)",
 									"disabled": true
 								}
@@ -22035,7 +22035,7 @@
 							}
 						}
 					],
-					"id": "c2602400-4255-4ca6-bfd1-d522f6a4ca94",
+					"id": "4cc0def4-d081-48d6-b236-9cac22458337",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -22101,7 +22101,7 @@
 								},
 								{
 									"key": "replace_cid",
-									"value": "Neki CID_Bezveze123",
+									"value": "ERG_CID",
 									"description": "Replace the caller id with the custom value. (Regex: /^[\\\\w\\\\s]+$/)",
 									"disabled": true
 								},
@@ -22167,7 +22167,7 @@
 								},
 								{
 									"key": "greeting",
-									"value": "queue-greeting-praznoime",
+									"value": "queue-greeting-empty",
 									"description": "Select a greeting file that will be played to all callers waiting in this ERG. (Regex: /^queue-greeting\\\\-([\\\\w\\\\-]+)$/)",
 									"disabled": true
 								},
@@ -22317,7 +22317,7 @@
 								},
 								{
 									"key": "notification_email",
-									"value": "pakas123!%23@mali.com",
+									"value": "not_email@mali.com",
 									"description": "The e-mail address which will receive notifications of abandoned calls, where an abandoned call is one where the caller hangs up the call while waiting to be answered. (Regex: /^[^@]+@[^@]+\\\\.[^@]+$/)",
 									"disabled": true
 								}
@@ -22373,7 +22373,7 @@
 							}
 						}
 					],
-					"id": "9eae025c-06e9-4076-8ff3-085915c3adf4",
+					"id": "33014220-aef7-490c-88ca-488aed3bb1dc",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -22412,7 +22412,7 @@
 								},
 								{
 									"key": "name",
-									"value": "Novo-Ime123",
+									"value": "NewName",
 									"description": "Name of a new ERG. (Required). (Regex: /^[a-zA-Z0-9-_]+$/)",
 									"disabled": true
 								},
@@ -22448,7 +22448,7 @@
 								},
 								{
 									"key": "replace_cid",
-									"value": "CID_ Novi Neki",
+									"value": "NewERG-CID",
 									"description": "Replace the caller id with the custom value. (Regex: /^[\\\\w\\\\s]+$/)",
 									"disabled": true
 								},
@@ -22664,7 +22664,7 @@
 								},
 								{
 									"key": "notification_email",
-									"value": "nema@emaila.com",
+									"value": "new_not@email.com",
 									"description": "The e-mail address which will receive notifications of abandoned calls, where an abandoned call is one where the caller hangs up the call while waiting to be answered. (Regex: /^[^@]+@[^@]+\\\\.[^@]+$/)",
 									"disabled": true
 								}
@@ -22741,7 +22741,7 @@
 							}
 						}
 					],
-					"id": "6a082288-6656-482a-857f-27098c2b58f7",
+					"id": "ea9aeb42-2ff4-4910-ac06-5358671f3895",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -22814,7 +22814,7 @@
 							}
 						}
 					],
-					"id": "2f0187ec-922e-4db4-bb0f-dacba625b2bb",
+					"id": "c9ee2068-0bba-460c-a0dc-28ddd9a17bb5",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -22901,7 +22901,7 @@
 							}
 						}
 					],
-					"id": "787b9327-f6ed-4d42-9b49-a3c7649a130b",
+					"id": "5a8cee5d-a530-4da6-a937-ff26f31030e7",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -22943,7 +22943,7 @@
 					"response": []
 				}
 			],
-			"id": "7ca7aae6-e02a-4f17-8140-5e82e96552ba",
+			"id": "1a4a7704-5c61-41c0-8900-c72512829c79",
 			"description": "# Enhanced Ring Groups\n\nSupported Methods\n\n`add` \\- Add/Creat a new ERG\n\n`edit` - Edit existing ERG\n\n`list` - List Enhanced Ring Groups\n\n`members` - Adding members to an Enhanced Ring Group"
 		},
 		{
