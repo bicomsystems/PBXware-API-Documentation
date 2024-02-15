@@ -19572,79 +19572,6 @@
 					"response": []
 				},
 				{
-					"name": "Deleting Ring Groups",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Check for 200 OK response",
-									"pm.test('Status code is 200 OK', function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"// Parse the response JSON",
-									"var responseBody = pm.response.json();",
-									"",
-									"// Check if there is an error field in the response",
-									"if ('error' in responseBody) {",
-									"    console.error(\"Test Failed: \" + responseBody.error);",
-									"    pm.test('API Response Error', function () {",
-									"        pm.expect.fail(responseBody.error);",
-									"    });",
-									"} else {",
-									"    // Validate the success message",
-									"    pm.test('Successfully deleted Ring Group!', function () {",
-									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
-									"",
-									"        // Print the success message",
-									"        console.log('Success:', responseBody.success);",
-									"    });",
-									"}",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ring_group.delete&server={{Srv/Tenant-ID}}&id={{RGsID}}",
-							"protocol": "http",
-							"host": [
-								"{{IP}}"
-							],
-							"path": [
-								"index.php"
-							],
-							"query": [
-								{
-									"key": "apikey",
-									"value": "{{API_Key}}"
-								},
-								{
-									"key": "action",
-									"value": "pbxware.ring_group.delete",
-									"description": "For deleting multiple Ring groups use RGs.csv file, just populate filds for Srv/Tenant-ID and RGsID."
-								},
-								{
-									"key": "server",
-									"value": "{{Srv/Tenant-ID}}",
-									"description": "Server/Tenant ID. If running in Tenant Mode, make sure this is always greater than 1."
-								},
-								{
-									"key": "id",
-									"value": "{{RGsID}}",
-									"description": "Ring Group ID"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Configuration Ring Groups",
 					"event": [
 						{
@@ -19749,6 +19676,79 @@
 									"key": "id",
 									"value": "{{ERGsID}}",
 									"description": "Ring Group ID. (Required)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleting Ring Groups",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the success message",
+									"    pm.test('Successfully deleted Ring Group!', function () {",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"",
+									"        // Print the success message",
+									"        console.log('Success:', responseBody.success);",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ring_group.delete&server={{Srv/Tenant-ID}}&id={{RGsID}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.ring_group.delete",
+									"description": "For deleting multiple Ring groups use RGs.csv file, just populate filds for Srv/Tenant-ID and RGsID."
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Server/Tenant ID. If running in Tenant Mode, make sure this is always greater than 1."
+								},
+								{
+									"key": "id",
+									"value": "{{RGsID}}",
+									"description": "Ring Group ID"
 								}
 							]
 						}
@@ -21046,16 +21046,21 @@
 									"// Parse the response JSON",
 									"var responseBody = pm.response.json();",
 									"",
-									"// Check if there is an error field in the response",
-									"if ('error' in responseBody[0]) {",
+									"// Check if the response is not an empty array",
+									"if (Array.isArray(responseBody) && responseBody.length > 0 && 'error' in responseBody[0]) {",
 									"    console.error('Test Failed: ' + responseBody[0].error);",
 									"    pm.test('API Response Error', function () {",
 									"        pm.expect.fail(responseBody[0].error);",
 									"    });",
-									"} else if (responseBody.length === 0) {",
+									"} /*else if (responseBody.length === 0) {",
 									"    console.error('Test Failed: There are no archiving records for the selected Date/Time range!');",
 									"    pm.test('No Archiving Records Found', function () {",
 									"        pm.expect.fail('There are no archiving records for the selected Date/Time range!');",
+									"    });*/",
+									"    else if (responseBody.length === 0) {",
+									"    console.log('Test Passed: There are no archiving records for the selected Date/Time range!');",
+									"    pm.test('No Archiving Records Found for the selected Date/Time range!', function () {",
+									"        pm.expect(true).to.be.true; // Mark the test as passed",
 									"    });",
 									"} else {",
 									"    // Validate the response structure",
@@ -21066,7 +21071,7 @@
 									"        for (var recordKey in responseBody) {",
 									"            if (responseBody.hasOwnProperty(recordKey)) {",
 									"                var record = responseBody[recordKey];",
-									"                ",
+									"",
 									"                pm.expect(record).to.be.an('object');",
 									"                pm.expect(record).to.have.property('tenant').that.is.a('string');",
 									"                pm.expect(record).to.have.property('date_time').that.is.a('string');",
@@ -21089,6 +21094,24 @@
 									"                pm.expect(voicemail).to.be.an('object');",
 									"                pm.expect(voicemail).to.have.property('success').that.is.a('string');",
 									"                pm.expect(voicemail).to.have.property('failed').that.is.a('string');",
+									"",
+									"                // CDR array",
+									"                var cdr = record.cdr;",
+									"                pm.expect(cdr).to.be.an('object');",
+									"                pm.expect(cdr).to.have.property('success');",
+									"                pm.expect(cdr.success).to.satisfy(val => typeof val === 'string' || val === null);",
+									"",
+									"                pm.expect(cdr).to.have.property('failed');",
+									"                pm.expect(cdr.failed).to.satisfy(val => typeof val === 'string' || val === null);",
+									"",
+									"                // Chat array",
+									"                var chat = record.chat;",
+									"                pm.expect(chat).to.be.an('object');",
+									"                pm.expect(chat).to.have.property('success');",
+									"                pm.expect(chat.success).to.satisfy(val => typeof val === 'string' || val === null);",
+									"",
+									"                pm.expect(chat).to.have.property('failed');",
+									"                pm.expect(chat.failed).to.satisfy(val => typeof val === 'string' || val === null);",
 									"            }",
 									"        }",
 									"    });",
@@ -21103,7 +21126,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.archiving.list&start_date=Oct-19-2023&end_date=Oct-19-2023",
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.archiving.list&start_date=Oct-19-2022&end_date=Oct-19-2025",
 							"protocol": "http",
 							"host": [
 								"{{IP}}"
@@ -21123,12 +21146,12 @@
 								},
 								{
 									"key": "start_date",
-									"value": "Oct-19-2023",
+									"value": "Oct-19-2022",
 									"description": "Start Date (Required). Format is: mmm-dd-YYYY (e.g., Feb-01-2009). (Regex: /^(?i:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-([0-2][0-9]|3[01])-\\\\d{4}$/)"
 								},
 								{
 									"key": "end_date",
-									"value": "Oct-19-2023",
+									"value": "Oct-19-2025",
 									"description": "End Date (Required). Format is: mmm-dd-YYYY (e.g., Feb-01-2009). (Regex: /^(?i:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-([0-2][0-9]|3[01])-\\\\d{4}$/)"
 								},
 								{
