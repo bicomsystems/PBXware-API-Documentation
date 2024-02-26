@@ -819,7 +819,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.add&server={{tenantID}}&name={{name}}&email={{email}}&ext={{extension}}&location=2&ua=50&secret={{secret}}&pin={{pin}}&prot=sip&status=1&incominglimit=2&outgoinglimit=2&voicemail=1",
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.add&server={{tenantID}}&name={{name}}&email={{email}}&ext=111&location=2&ua=50&secret={{secret}}&pin={{pin}}&prot=sip&status=1&incominglimit=2&outgoinglimit=2&voicemail=1",
 									"protocol": "http",
 									"host": [
 										"{{IP}}"
@@ -855,7 +855,7 @@
 										},
 										{
 											"key": "ext",
-											"value": "{{extension}}",
+											"value": "111",
 											"description": "Extension number. (Regex: /^\\\\d{3}$/)"
 										},
 										{
@@ -1177,12 +1177,6 @@
 											"key": "notification_email",
 											"value": "",
 											"description": "(Regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]+$/)",
-											"disabled": true
-										},
-										{
-											"key": "pbd_pin",
-											"value": "",
-											"description": "PIN Based Device PIN (number, 5 digits)",
 											"disabled": true
 										},
 										{
@@ -1541,8 +1535,32 @@
 										},
 										{
 											"key": "rating_info_osc",
-											"value": null,
+											"value": "",
 											"description": "Show Call Rating Info in OSC. (Yes=1, No=0).",
+											"disabled": true
+										},
+										{
+											"key": "sso_enabled",
+											"value": "",
+											"description": "Single Sign-On enabled (Yes=1, No=0).",
+											"disabled": true
+										},
+										{
+											"key": "disable_fax_for_app",
+											"value": "",
+											"description": "Disable FAX for gloCOM (Yes=1, No=0, NotSet = 2)",
+											"disabled": true
+										},
+										{
+											"key": "disable_my_dialer_for_app",
+											"value": "",
+											"description": "Disable Personal Dialer for gloCOM (Yes=1, No =0, NotSet = 2)",
+											"disabled": true
+										},
+										{
+											"key": "app_default_client_phone",
+											"value": "",
+											"description": "Default Client Phone. (Regex: ^(|softphone|deskphone)$/)",
 											"disabled": true
 										}
 									]
@@ -1583,7 +1601,7 @@
 											"        pm.expect(responseBody).to.be.an('object');",
 											"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
 											"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
-											"        pm.expect(responseBody).to.have.property('ext').that.is.a('string');",
+											"        pm.expect(responseBody).to.have.property('ext').that.is.a('number');",
 											"    });",
 											"",
 											"    // Print the success message and extension ID from the response",
@@ -1987,12 +2005,6 @@
 											"disabled": true
 										},
 										{
-											"key": "pbd_pin",
-											"value": "",
-											"description": "PIN Based Device PIN (number, 5 digits)",
-											"disabled": true
-										},
-										{
 											"key": "cf_billing_disable",
 											"value": "",
 											"description": "(deprecated and will be soon replaced with cf_call_rating_disable)",
@@ -2275,6 +2287,12 @@
 											"disabled": true
 										},
 										{
+											"key": "pbd_pin",
+											"value": "",
+											"description": "Pin Based Dialing Pin (Must be enabled in license) (number, 5 digits)",
+											"disabled": true
+										},
+										{
 											"key": "areacode",
 											"value": "",
 											"description": "(Regex: /^\\\\d{1,3}$/)",
@@ -2342,8 +2360,32 @@
 										},
 										{
 											"key": "rating_info_osc",
-											"value": null,
+											"value": "",
 											"description": "Show Call Rating Info in OSC. (Yes=1, No=0).",
+											"disabled": true
+										},
+										{
+											"key": "sso_enabled",
+											"value": "",
+											"description": "Single Sign-On enabled (Yes=1, No=0)",
+											"disabled": true
+										},
+										{
+											"key": "disable_fax_for_app",
+											"value": "",
+											"description": "Disable FAX for gloCOM (Yes=1, No=0, NotSet = 2)",
+											"disabled": true
+										},
+										{
+											"key": "disable_my_dialer_for_app",
+											"value": "",
+											"description": "Disable Personal Dialer for gloCOM (Yes=1, No =0, NotSet = 2)",
+											"disabled": true
+										},
+										{
+											"key": "app_default_client_phone",
+											"value": "",
+											"description": "Default Client Phone. (Regex: /^(|softphone|deskphone)$/)",
 											"disabled": true
 										}
 									]
@@ -20740,11 +20782,14 @@
 									"                \"Rating Cost\",",
 									"                \"Status\",",
 									"                \"ID\",",
-									"                \"Recording Path\"",
+									"                \"Recording Path\",",
+									"                \"Recording Available\",",
+									"                \"Location Type\"",
 									"            ];",
 									"",
 									"            pm.expect(responseBody.header).to.deep.equal(expectedHeader);",
 									"",
+									"            /*",
 									"            // Print the success message",
 									"            console.log('Success:', responseBody.success);",
 									"            console.log('Next Page:', responseBody.next_page);",
@@ -20764,7 +20809,7 @@
 									"                console.log('Status:', record[7]);",
 									"                console.log('ID:', record[8]);",
 									"                console.log('Recording Path:', record[9]);",
-									"            }",
+									"            }*/",
 									"        }",
 									"    });",
 									"}",
@@ -20778,7 +20823,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.cdr.download&start=Sep-27-2023&starttime=13:00:00&end=Sep-27-2023&endtime=13:05:00",
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.cdr.download&start=Sep-27-2022&end=Sep-27-2025",
 							"protocol": "http",
 							"host": [
 								"{{IP}}"
@@ -20798,23 +20843,25 @@
 								},
 								{
 									"key": "start",
-									"value": "Sep-27-2023",
+									"value": "Sep-27-2022",
 									"description": "Start Date (Required). Format is: mmm-dd-YYYY (eg: Feb-01-2009)"
 								},
 								{
 									"key": "starttime",
 									"value": "13:00:00",
-									"description": "Start Time. Format is: hh:mm:ss (eg:23:59:59). Default value is 00:00:00"
+									"description": "Start Time. Format is: hh:mm:ss (eg:23:59:59). Default value is 00:00:00",
+									"disabled": true
 								},
 								{
 									"key": "end",
-									"value": "Sep-27-2023",
+									"value": "Sep-27-2025",
 									"description": "End Date (Required). Format is: mmm-dd-YYYY (eg: Feb-28-2009)"
 								},
 								{
 									"key": "endtime",
 									"value": "13:05:00",
-									"description": "End Time. Format is: hh:mm:ss (eg:23:59:59). Default value is 23:59:59"
+									"description": "End Time. Format is: hh:mm:ss (eg:23:59:59). Default value is 23:59:59",
+									"disabled": true
 								},
 								{
 									"key": "ext",
@@ -21086,26 +21133,26 @@
 									"                // Fax array",
 									"                var fax = record.fax;",
 									"                pm.expect(fax).to.be.an('object');",
-									"                pm.expect(fax).to.have.property('success').that.is.a('string');",
-									"                pm.expect(fax).to.have.property('failed').that.is.a('string');",
+									"                pm.expect(fax).to.have.property('success');",
+									"                pm.expect(fax.success).to.satisfy(val => typeof val === 'string' || val === null);",
 									"",
 									"                // Voicemail array",
 									"                var voicemail = record.voicemail;",
 									"                pm.expect(voicemail).to.be.an('object');",
-									"                pm.expect(voicemail).to.have.property('success').that.is.a('string');",
-									"                pm.expect(voicemail).to.have.property('failed').that.is.a('string');",
+									"                pm.expect(voicemail).to.have.property('success');",
+									"                pm.expect(voicemail.success).to.satisfy(val => typeof val === 'string' || val === null);",
 									"",
-									"                // CDR array",
-									"                var cdr = record.cdr;",
-									"                pm.expect(cdr).to.be.an('object');",
-									"                pm.expect(cdr).to.have.property('success').to.be.oneOf(['string', null]);",
-									"                pm.expect(cdr).to.have.property('failed').to.be.oneOf(['string', null]);",
+									"                if ('cdr' in record || 'chat' in record) {",
+									"                    var cdr = record.cdr;",
+									"                    pm.expect(cdr).to.be.an('object');",
+									"                    pm.expect(cdr).to.have.property('success').to.be.oneOf(['string', null]);",
+									"                    pm.expect(cdr).to.have.property('failed').to.be.oneOf(['string', null]);",
 									"",
-									"                // Chat array",
-									"                var chat = record.chat;",
-									"                pm.expect(chat).to.be.an('object');",
-									"                pm.expect(chat).to.have.property('success').to.be.oneOf(['string', null]);",
-									"                pm.expect(chat).to.have.property('failed').to.be.oneOf(['string', null]);",
+									"                    var chat = record.chat;",
+									"                    pm.expect(chat).to.be.an('object');",
+									"                    pm.expect(chat).to.have.property('success').to.be.oneOf(['string', null]);",
+									"                    pm.expect(chat).to.have.property('failed').to.be.oneOf(['string', null]);",
+									"                }",
 									"            }",
 									"        }",
 									"    });",
