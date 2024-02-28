@@ -819,7 +819,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.add&server={{tenantID}}&name={{name}}&email={{email}}&ext=111&location=2&ua=50&secret={{secret}}&pin={{pin}}&prot=sip&status=1&incominglimit=2&outgoinglimit=2&voicemail=1",
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.add&server={{tenantID}}&name={{name}}&email={{email}}&ext={{extension}}&location=2&ua=50&secret={{secret}}&pin={{pin}}&prot=sip&status=1&incominglimit=2&outgoinglimit=2&voicemail=1",
 									"protocol": "http",
 									"host": [
 										"{{IP}}"
@@ -855,7 +855,7 @@
 										},
 										{
 											"key": "ext",
-											"value": "111",
+											"value": "{{extension}}",
 											"description": "Extension number. (Regex: /^\\\\d{3}$/)"
 										},
 										{
@@ -872,6 +872,12 @@
 											"key": "secret",
 											"value": "{{secret}}",
 											"description": "Password (Required). (Regex: /^[a-zA-Z0-9%\\\\$\\\\*!@\\\\_\\\\-]+$/)"
+										},
+										{
+											"key": "password",
+											"value": "",
+											"description": "User Password. (Regex: /^[a-zA-Z0-9%\\\\$\\\\*!@\\\\_\\\\-]+$/)",
+											"disabled": true
 										},
 										{
 											"key": "pin",
@@ -1690,6 +1696,12 @@
 											"key": "secret",
 											"value": "{{secret}}",
 											"description": "Password. (Regex: /^[a-zA-Z0-9%\\\\$\\\\*!@\\\\_\\\\-]+$/)",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "",
+											"description": "User Password. (Regex: /^[a-zA-Z0-9%\\\\$\\\\*!@\\\\_\\\\-]+$/)",
 											"disabled": true
 										},
 										{
