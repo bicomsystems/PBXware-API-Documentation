@@ -17896,6 +17896,355 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Adding CLI Routing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the success message",
+									"    pm.test('Response Validation', function () {",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.did.clirouting.add&id={{DID-IDs}}&server={{Srv/Tenant-ID}}&callerid={{CallerID}}&dest_type={{DestType}}&destination={{Destination}}&matchexplicitly={{MatchEx}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.did.clirouting.add",
+									"description": "If need to add multiple CLI Routings on multiple Tenants, you can use Add/Edit/Delete-CLI_Routing.csv file."
+								},
+								{
+									"key": "id",
+									"value": "{{DID-IDs}}",
+									"description": "DID ID (Required). (Regex: /^\\\\d+$/)"
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Server/Tenant ID. (Required) If PBXware is running in Tenant Mode this is a required field and must contain a valid Tenant ID. Server ID 1 is always assigned to Master tenant and cannot be used."
+								},
+								{
+									"key": "callerid",
+									"value": "{{CallerID}}",
+									"description": "Caller ID (Required). (Regex: /^\\\\d+$/)."
+								},
+								{
+									"key": "dest_type",
+									"value": "{{DestType}}",
+									"description": "Destination type (Required)\n0: Extension\n1: Multi User\n2: Ring Group\n3: IVR\n4: Queues\n5: Voicemail\n6: Remote Access\n7: Conferences\n8: Trunk\n9: Fax to E-mail\n10: Deny Access (No value)\n11: CRM Routing\n"
+								},
+								{
+									"key": "destination",
+									"value": "{{Destination}}",
+									"description": "Destination value (Required)\nIf Destination type is Trunk, enter ID of Trunk for Destination value\nIf Destination type is CRM Routing, enter ID of CRM Routing rule for Destination value"
+								},
+								{
+									"key": "matchexplicitly",
+									"value": "{{MatchEx}}",
+									"description": "Match explicitly (0 or 1) (Required)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editing CLI Routing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the success message",
+									"    pm.test('Response Validation', function () {",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.did.clirouting.edit&id={{DID-IDs}}&server={{Srv/Tenant-ID}}&cliroutingid={{CLIRoutingID}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.did.clirouting.edit",
+									"description": "Editing CLI Routing. Arguments are identical to the ones in Adding CLI Routing section. If need to edit multiple CLI Routings on multiple Tenants, you can use Add/Edit/Delete-CLI_Routing.csv file."
+								},
+								{
+									"key": "id",
+									"value": "{{DID-IDs}}",
+									"description": "DID ID (Required). (Regex: /^\\\\d+$/)"
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Server/Tenant ID. (Required) If PBXware is running in Tenant Mode this is a required field and must contain a valid Tenant ID. Server ID 1 is always assigned to Master tenant and cannot be used."
+								},
+								{
+									"key": "cliroutingid",
+									"value": "{{CLIRoutingID}}",
+									"description": "CLI Routing ID. (Required) (Regex: /^\\\\d+$/)"
+								},
+								{
+									"key": "callerid",
+									"value": "{{CallerID}}",
+									"description": "Caller ID. (Regex: /^\\\\d+$/).",
+									"disabled": true
+								},
+								{
+									"key": "dest_type",
+									"value": "{{DestType}}",
+									"description": "Destination type\n0: Extension\n1: Multi User\n2: Ring Group\n3: IVR\n4: Queues\n5: Voicemail\n6: Remote Access\n7: Conferences\n8: Trunk\n9: Fax to E-mail\n10: Deny Access (No value)\n11: CRM Routing\n",
+									"disabled": true
+								},
+								{
+									"key": "destination",
+									"value": "{{Destination}}",
+									"description": "Destination value\nIf Destination type is Trunk, enter ID of Trunk for Destination value\nIf Destination type is CRM Routing, enter ID of CRM Routing rule for Destination value",
+									"disabled": true
+								},
+								{
+									"key": "matchexplicitly",
+									"value": "{{MatchEx}}",
+									"description": "Match explicitly (0 or 1)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listing CLI Routing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if \"success\" field is an empty array",
+									"if (Array.isArray(responseBody.success) && responseBody.success.length === 0) {",
+									"    console.error(\"Test Failed: There is no CLI routing created for selected DID!\");",
+									"    pm.test('No CLI Routing Found', function () {",
+									"        pm.expect.fail(\"There is no CLI routing created for selected DID!\");",
+									"    });",
+									"} else {",
+									"    // Validate the response structure",
+									"    pm.test('Response Validation', function () {",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"",
+									"        // Iterate through each CLI routing entry",
+									"        for (var cliroutingId in responseBody.success) {",
+									"            var clirouting = responseBody.success[cliroutingId];",
+									"            pm.expect(clirouting).to.be.an('object');",
+									"",
+									"            pm.test(`CLI Routing ${cliroutingId} Validation`, function () {",
+									"                pm.expect(clirouting).to.have.property('callerid').that.is.a('string');",
+									"                pm.expect(clirouting).to.have.property('ext').that.is.a('string');",
+									"                pm.expect(clirouting).to.have.property('type').that.is.a('string');",
+									"                pm.expect(clirouting).to.have.property('matchtype').that.is.a('string');",
+									"            });",
+									"        }",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.did.clirouting.list&id={{DID-IDs}}&server={{Srv/Tenant-ID}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.did.clirouting.list"
+								},
+								{
+									"key": "id",
+									"value": "{{DID-IDs}}",
+									"description": "DID ID (Required). (Regex: /^\\\\d+$/)"
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Server/Tenant ID. (Required) If PBXware is running in Tenant Mode this is a required field and must contain a valid Tenant ID. Server ID 1 is always assigned to Master tenant and cannot be used."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletenig CLI Routing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the success message",
+									"    pm.test('CLI Routing Deletion Success', function () {",
+									"        pm.expect(responseBody.success).to.be.a('string');",
+									"        pm.expect(responseBody.success).to.include('CLI Routing successfully deleted!');",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.did.clirouting.delete&id={{DID-IDs}}&server={{Srv/Tenant-ID}}&cliroutingid={{CLIRoutingID}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.did.clirouting.delete",
+									"description": "If need to delete more CLI routings from multiple Tenants, you can use Add/Edit/Delete-CLI_Routing.csv file."
+								},
+								{
+									"key": "id",
+									"value": "{{DID-IDs}}",
+									"description": "DID ID (Required). (Regex: /^\\\\d+$/)"
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Server/Tenant ID. (Required) If PBXware is running in Tenant Mode this is a required field and must contain a valid Tenant ID. Server ID 1 is always assigned to Master tenant and cannot be used."
+								},
+								{
+									"key": "cliroutingid",
+									"value": "{{CLIRoutingID}}",
+									"description": "CLI Routing ID (Required)"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"description": "# DIDs\n\nSupported Methods:\n\n`list` - List DIDs\n\n`add` - Add new DID\n\n`edit` - Edit existing DID\n\n`delete` - Delete existing DID"
