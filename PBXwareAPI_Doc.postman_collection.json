@@ -18247,7 +18247,7 @@
 					"response": []
 				}
 			],
-			"description": "# DIDs\n\nSupported Methods:\n\n`list` - List DIDs\n\n`add` - Add new DID\n\n`edit` - Edit existing DID\n\n`delete` - Delete existing DID"
+			"description": "# DIDs\n\nSupported Methods:\n\n`list` - List DIDs\n\n`add` - Add new DID\n\n`edit` - Edit existing DID\n\n`delete` - Delete existing DID\n\n`clirouting.add` - Add CLI Routing\n\n`clirouting.edit` - Edit CLI Routing\n\n`clirouting.list` - List CLI Routing\n\n`clirouting.delete` - Delete CLI Routing"
 		},
 		{
 			"name": "DID Groups",
@@ -18915,7 +18915,7 @@
 								{
 									"key": "keymap[0][type]",
 									"value": "{{Key0Type}}",
-									"description": "Array of IVR keymaps (At least one keymap is required)\nThis argument is to be sent as keymap[key][field]=value\nSupported keys:\n   0-9\n   \\*\nSupported fields:\n   type: Destination Type\n   destination: Destination (can be any valid extension)\nSupported Destination Types:\n   aa: IVR\n   qu: Queue\n   cf: Conference\n   ex: Extension\n   vm: Voicemail\n   rg: Dial Groups and ERGs\nExample:  keymap[\\*][type]=aa&keymap[\\*][destination]=103\n",
+									"description": "An array of IVR keymaps (At least one keymap is required)\nThis argument is to be sent as keymap[key][field]=value\nSupported keys:\n   0-9\n   \\*\nSupported fields:\n   type: Destination Type\n   destination: Destination (can be any valid extension)\nSupported Destination Types:\n   aa: IVR\n   qu: Queue\n   cf: Conference\n   ex: Extension\n   vm: Voicemail\n   rg: Dial Groups and ERGs\n   aatree: IVR tree\nExample:  keymap[\\*][type]=aa&keymap[\\*][destination]=103\n",
 									"disabled": true
 								},
 								{
@@ -19633,7 +19633,7 @@
 								},
 								{
 									"key": "timeout_msg",
-									"value": null,
+									"value": "",
 									"description": "Timeout message. All timeout messages begin with announce-. (Regex: /^announce\\\\-([\\\\w\\\\-]+)$/)",
 									"disabled": true
 								},
@@ -19743,6 +19743,30 @@
 									"key": "call_rating_ext",
 									"value": "",
 									"description": "Call Rating Extension. (Regex: /^\\\\d{3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "looping_mode",
+									"value": "",
+									"description": "Looping Mode. List of available modes: per_ext (Default), circular",
+									"disabled": true
+								},
+								{
+									"key": "skip_pbd_local",
+									"value": "",
+									"description": "Local destinations PBD skip (Specify yes or no)",
+									"disabled": true
+								},
+								{
+									"key": "preserve_callerid",
+									"value": "",
+									"description": "Use original Caller ID for external calls (Specify yes or no)",
+									"disabled": true
+								},
+								{
+									"key": "member_es_disable",
+									"value": "",
+									"description": "Disable Member Enhanced Services (Specify yes or no)",
 									"disabled": true
 								}
 							]
@@ -19967,6 +19991,30 @@
 									"key": "call_rating_ext",
 									"value": "",
 									"description": "Call Rating Extension. (Regex: /^\\\\d{3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "looping_mode",
+									"value": "",
+									"description": "Looping Mode. List of available modes: per_ext (Default), circular.",
+									"disabled": true
+								},
+								{
+									"key": "skip_pbd_local",
+									"value": "",
+									"description": "Local destinations PBD skip (Specify yes or no)",
+									"disabled": true
+								},
+								{
+									"key": "preserve_callerid",
+									"value": "",
+									"description": "Use original Caller ID for external calls (Specify yes or no)",
+									"disabled": true
+								},
+								{
+									"key": "member_es_disable",
+									"value": "",
+									"description": "Disable Member Enhanced Services (Specify yes or no)",
 									"disabled": true
 								}
 							]
@@ -21329,7 +21377,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&start=Sep-01-2023&end=Sep-31-2023&action=pbxware.cdr.billamount",
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.cdr.billamount&start=Sep-01-2023&end=Sep-31-2023",
 							"protocol": "http",
 							"host": [
 								"{{IP}}"
@@ -21341,6 +21389,10 @@
 								{
 									"key": "apikey",
 									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.cdr.billamount"
 								},
 								{
 									"key": "start",
@@ -21423,10 +21475,6 @@
 									"value": "",
 									"description": "Time Zone to apply when searching CDRs. Ex: \"America/New_York\"",
 									"disabled": true
-								},
-								{
-									"key": "action",
-									"value": "pbxware.cdr.billamount"
 								}
 							]
 						}
@@ -21586,7 +21634,7 @@
 					"response": []
 				}
 			],
-			"description": "# Archiving\n\nSupported Methods\n\n`list`\n\nList Archivings"
+			"description": "# Archiving\n\nSupported Methods\n\n`list` Listing Archivings"
 		},
 		{
 			"name": "Routes",
@@ -21764,7 +21812,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.did.list&server=2&id=1",
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.did.list&server={{Srv/Tenant-ID}}&id={{DID-IDs}}",
 									"protocol": "http",
 									"host": [
 										"{{IP}}"
@@ -21783,12 +21831,12 @@
 										},
 										{
 											"key": "server",
-											"value": "2",
+											"value": "{{Srv/Tenant-ID}}",
 											"description": "Request the Operation Times state by destination server ID (used with MT systems in combination with other fields)"
 										},
 										{
 											"key": "id",
-											"value": "1",
+											"value": "{{DID-IDs}}",
 											"description": "Request the Operation Times state by destination ID (most of destionation supports this)"
 										},
 										{
@@ -21998,7 +22046,7 @@
 					"name": "IVR OT",
 					"item": [
 						{
-							"name": "Listing Operation Times Copy",
+							"name": "Listing Operation Times",
 							"event": [
 								{
 									"listen": "test",
@@ -22086,7 +22134,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.ivr.list&server=2&id=26",
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.ivr.list&server={{Srv/Tenant-ID}}&id={{IVR-ID}}",
 									"protocol": "http",
 									"host": [
 										"{{IP}}"
@@ -22105,12 +22153,12 @@
 										},
 										{
 											"key": "server",
-											"value": "2",
+											"value": "{{Srv/Tenant-ID}}",
 											"description": "Request the Operation Times state by destination server ID (used with MT systems in combination with other fields)"
 										},
 										{
 											"key": "id",
-											"value": "26",
+											"value": "{{IVR-ID}}",
 											"description": "Request the Operation Times state by destination ID (most of destionation supports this)"
 										},
 										{
@@ -22359,7 +22407,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.package.configuration&id=1",
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.package.configuration&id={{TenantPackageID}}",
 							"protocol": "http",
 							"host": [
 								"{{IP}}"
@@ -22379,7 +22427,8 @@
 								},
 								{
 									"key": "id",
-									"value": "1"
+									"value": "{{TenantPackageID}}",
+									"description": "Tenant Package ID (Required)"
 								}
 							]
 						}
@@ -23665,14 +23714,8 @@
 									"disabled": true
 								},
 								{
-									"key": "appasword",
-									"value": "",
-									"description": "(Regex: /^\\\\S.+\\\\S$/)",
-									"disabled": true
-								},
-								{
 									"key": "emerg_location_header",
-									"value": null,
+									"value": "",
 									"description": "Emergency Location Header. (Regex: /^[\\\\w\\\\-,]{1,100}$/)",
 									"disabled": true
 								}
@@ -24310,14 +24353,8 @@
 									"disabled": true
 								},
 								{
-									"key": "appasword",
-									"value": "",
-									"description": "(Regex: /^\\\\S.+\\\\S$/)",
-									"disabled": true
-								},
-								{
 									"key": "emerg_location_header",
-									"value": null,
+									"value": "",
 									"description": "Emergency Location Header. (Regex: /^[\\\\w\\\\-,]{1,100}$/)",
 									"disabled": true
 								}
