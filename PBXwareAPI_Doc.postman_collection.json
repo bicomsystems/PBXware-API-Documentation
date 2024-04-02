@@ -940,6 +940,18 @@
 											"disabled": true
 										},
 										{
+											"key": "department",
+											"value": "",
+											"description": "Department ID. (Regex: /^[\\\\d,]+$/)",
+											"disabled": true
+										},
+										{
+											"key": "dtmfmode",
+											"value": "",
+											"description": "DTMF Mode (auto, inband, rfc2833, info).",
+											"disabled": true
+										},
+										{
 											"key": "authname",
 											"value": "",
 											"description": "Authentification name. (Regex: /^\\\\w+$/)",
@@ -948,7 +960,7 @@
 										{
 											"key": "auth",
 											"value": "",
-											"description": "(Regex: /^(\\\\S+)(:\\\\S+)?@\\\\S+$/)",
+											"description": "Auth. (Regex: /^(\\\\S+)(:\\\\S+)?@\\\\S+$/)",
 											"disabled": true
 										},
 										{
@@ -1345,6 +1357,12 @@
 											"key": "tertiary_emerg_trunk",
 											"value": "",
 											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+											"disabled": true
+										},
+										{
+											"key": "override_lcr",
+											"value": "",
+											"description": "Override LCR (Yes/No/NotSet). (Regex: /^(1|0|2)$/).",
 											"disabled": true
 										},
 										{
@@ -1771,6 +1789,18 @@
 											"disabled": true
 										},
 										{
+											"key": "department",
+											"value": "",
+											"description": "Department ID. (Regex: /^[\\\\d,]+$/).",
+											"disabled": true
+										},
+										{
+											"key": "dtmfmode",
+											"value": "",
+											"description": "DTMF Mode (auto, inband, rfc2833, info).",
+											"disabled": true
+										},
+										{
 											"key": "authname",
 											"value": "",
 											"description": "Authentification name. (Regex: /^\\\\w+$/)",
@@ -2176,6 +2206,12 @@
 											"key": "tertiary_emerg_trunk",
 											"value": "",
 											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+											"disabled": true
+										},
+										{
+											"key": "override_lcr",
+											"value": "",
+											"description": "Override LCR (Yes/No/NotSet). (Regex: /^(1|0|2)$/).",
 											"disabled": true
 										},
 										{
@@ -22937,8 +22973,8 @@
 									"        pm.expect(responseBody).to.have.property('es_notification_email').that.is.a('string');",
 									"        pm.expect(responseBody).to.have.property('emergency_callerid_tenant').to.be.oneOf(['string', null]);",
 									"        pm.expect(responseBody).to.have.property('audiolang').to.be.oneOf(['string', null]);",
-									"        pm.expect(responseBody).to.have.property('apusername').to.be.oneOf(['string', null]);",
-									"        pm.expect(responseBody).to.have.property('appassword').to.be.oneOf(['string', null]);",
+									"        pm.expect(responseBody).to.have.property('apusername').that.satisfies(value => typeof value === 'string' || value === null);",
+									"        pm.expect(responseBody).to.have.property('appassword').that.satisfies(value => typeof value === 'string' || value === null);",
 									"        pm.expect(responseBody).to.have.property('incominglimit').that.is.a('string');",
 									"        pm.expect(responseBody).to.have.property('outgoinglimit').that.is.a('string');",
 									"        pm.expect(responseBody).to.have.property('conch').that.is.a('string');",
@@ -22989,7 +23025,8 @@
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
