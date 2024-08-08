@@ -186,8 +186,8 @@ The requests are organized into the following folders with supported methods:
 - Apps:
     - list - List Apps
     - Templates:
-          - set - Set Templates for a specific department
-          - list - List Templates for all departments
+        - set - Set Templates for a specific department
+        - list - List Templates for all departments
 
 - Licence:
     - refresh - Refresh license
