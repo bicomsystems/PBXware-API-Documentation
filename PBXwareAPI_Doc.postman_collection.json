@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "986f4828-ac75-423e-b4dc-753e82fa75dd",
 		"name": "PBXwareAPI_Doc",
-		"description": "# Abstract\n\nThis document can be used as a reference guide when using PBXware API.  \nIt’s purpose is to help developers write 3rd party software to interact with PBXware.\n\n# Protocol\n\nPBXware API works by sending and receiving either _POST_ or _GET_  \nrequests via [HTTP](http://en.wikipedia.org/wiki/HTTP) protocol.\n\n# Authentication\n\nFor authentication purposes an unique _API key_ is used.\n\n_API key_, by default, is not set. You can set one in _Admin Settings_: _API key_.  \nMinimum key size is **10** random characters. One can also generate random key  \nin the interface itself.\n\nImportant\n\nYou must make sure _API key_ is kept secret as it expose rather critical  \nfunctionalities to 3rd parties (e.g. Delete functionality).\n\n# Requests\n\nBoth the _API key_ and all other necessary arguments are sent as part of _HTTP GET_ or  \n_HTTP POST_ request. Sample request follows:\n\n```\nGET /?apikey=my.secret.apikey&action=pbxware.did.list HTTP/1.0\nHost: pbxware.local\nUser-Agent: Mozilla/5.0\n\n ```\n\n# Responses\n\nResponse from above sample request, by default, comes in [JSON](http://www.json.org/) format.  \nClicking on the _JSON URL_ will give you more information on _JSON_ and how to use it as part of  \nyour application.\n\nOne can customize response by sending `apiformat` argument as part of the request.\n\n# Supported response formats\n\nFollowing response formats are supported by the PBXware API:\n\nResponse formats`json`\n\nJSON\n\n`php`\n\nPHP (serialized)\n\n# Testing\n\nTo test API, you can use some of the CLI tools such as:\n\n- [curl](http://curl.haxx.se)\n- [httpie](https://github.com/jkbr/httpie)\n- [curlish](http://packages.python.org/curlish/)\n    \n\nExample for httpie:\n\n``` html\nhttp -b \"http://pbx.local/?apikey=my.secret.key&action=pbxware.ext.list\"\n\n ```\n\n# Handling errors\n\nIn case response message contains `error` key, all further  \noperations **must** be aborted on the application side. Example:\n\n```\n{\n    \"error\": \"Invalid API key.\"\n}\n\n ```",
+		"description": "# Abstract\n\nThis document can be used as a reference guide when using PBXware API.  \nIt’s purpose is to help developers write 3rd party software to interact with PBXware.\n\n# Protocol\n\nPBXware API works by sending and receiving either _POST_ or _GET_  \nrequests via [HTTP](http://en.wikipedia.org/wiki/HTTP) protocol.\n\n# Authentication\n\nFor authentication purposes an unique _API key_ is used.\n\n_API key_, by default, is not set. You can set one in _Admin Settings_: _API key_.  \nMinimum key size is **10** random characters. One can also generate random key  \nin the interface itself.\n\nImportant\n\nYou must make sure _API key_ is kept secret as it expose rather critical  \nfunctionalities to 3rd parties (e.g. Delete functionality).\n\n# Requests\n\nBoth the _API key_ and all other necessary arguments are sent as part of _HTTP GET_ or  \n_HTTP POST_ request. Sample request follows:\n\n```\nGET /?apikey=my.secret.apikey&action=pbxware.did.list HTTP/1.0\nHost: pbxware.local\nUser-Agent: Mozilla/5.0\n\n ```\n\n# Responses\n\nResponse from above sample request, by default, comes in [JSON](http://www.json.org/) format.  \nClicking on the _JSON URL_ will give you more information on _JSON_ and how to use it as part of  \nyour application.\n\nOne can customize response by sending `apiformat` argument as part of the request.\n\n# Supported response formats\n\nFollowing response formats are supported by the PBXware API:\n\nResponse formats:\n\n`json` - JSON\n\n`php` - PHP (serialized)\n\n# Testing\n\nTo test API, you can use some of the CLI tools such as:\n\n- [curl](http://curl.haxx.se)\n    \n- [httpie](https://github.com/jkbr/httpie)\n    \n- [curlish](http://packages.python.org/curlish/)\n    \n\nExample for httpie:\n\n``` html\nhttp -b \"http://pbx.local/?apikey=my.secret.key&action=pbxware.ext.list\"\n\n ```\n\n# Handling errors\n\nIn case response message contains `error` key, all further  \noperations **must** be aborted on the application side. Example:\n\n```\n{\n    \"error\": \"Invalid API key.\"\n}\n\n ```",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "26165058"
 	},
@@ -964,6 +964,12 @@
 											"disabled": true
 										},
 										{
+											"key": "sso_enabled",
+											"value": "",
+											"description": "Single Sign-On enabled (Yes=1, No=0).",
+											"disabled": true
+										},
+										{
 											"key": "billing",
 											"value": "",
 											"description": "Call Rating (Yes=1, No=0) (deprecated and will be soon replaced with call_rating)",
@@ -1408,6 +1414,12 @@
 											"disabled": true
 										},
 										{
+											"key": "vmailskippin",
+											"value": "",
+											"description": "(Yes=1, No=0, Not Set=2)",
+											"disabled": true
+										},
+										{
 											"key": "vmailsaycid",
 											"value": "",
 											"description": "Say CallerID: Yes=1, No=0, Not Set=2",
@@ -1540,6 +1552,12 @@
 											"disabled": true
 										},
 										{
+											"key": "app_default_client_phone",
+											"value": "",
+											"description": "Default Client Phone. (Regex: ^(|softphone|deskphone)$/)",
+											"disabled": true
+										},
+										{
 											"key": "additional_config",
 											"value": "",
 											"description": "Additional config. (Regex: /[\\\\s\\\\S]/)",
@@ -1552,21 +1570,9 @@
 											"disabled": true
 										},
 										{
-											"key": "vmailskippin",
-											"value": "",
-											"description": "(Yes=1, No=0, Not Set=2)",
-											"disabled": true
-										},
-										{
 											"key": "rating_info_osc",
 											"value": "",
 											"description": "Show Call Rating Info in OSC. (Yes=1, No=0).",
-											"disabled": true
-										},
-										{
-											"key": "sso_enabled",
-											"value": "",
-											"description": "Single Sign-On enabled (Yes=1, No=0).",
 											"disabled": true
 										},
 										{
@@ -1579,12 +1585,6 @@
 											"key": "disable_my_dialer_for_app",
 											"value": "",
 											"description": "Disable Personal Dialer for gloCOM (Yes=1, No =0, NotSet = 2)",
-											"disabled": true
-										},
-										{
-											"key": "app_default_client_phone",
-											"value": "",
-											"description": "Default Client Phone. (Regex: ^(|softphone|deskphone)$/)",
 											"disabled": true
 										}
 									]
@@ -1810,6 +1810,12 @@
 											"key": "auth",
 											"value": "",
 											"description": "(Regex: /^(\\\\S+)(:\\\\S+)?@\\\\S+$/)",
+											"disabled": true
+										},
+										{
+											"key": "sso_enabled",
+											"value": "",
+											"description": "Single Sign-On enabled (Yes=1, No=0)",
 											"disabled": true
 										},
 										{
@@ -2257,6 +2263,12 @@
 											"disabled": true
 										},
 										{
+											"key": "vmailskippin",
+											"value": "",
+											"description": "(Yes=1, No=0, Not Set=2)",
+											"disabled": true
+										},
+										{
 											"key": "vmailsaycid",
 											"value": "",
 											"description": "Say CallerID: Yes=1, No=0, Not Set=2",
@@ -2389,6 +2401,12 @@
 											"disabled": true
 										},
 										{
+											"key": "app_default_client_phone",
+											"value": "",
+											"description": "Default Client Phone. (Regex: /^(|softphone|deskphone)$/)",
+											"disabled": true
+										},
+										{
 											"key": "additional_config",
 											"value": "",
 											"description": "Additional config. (Regex: /[\\\\s\\\\S]/)",
@@ -2401,21 +2419,9 @@
 											"disabled": true
 										},
 										{
-											"key": "vmailskippin",
-											"value": "",
-											"description": "(Yes=1, No=0, Not Set=2)",
-											"disabled": true
-										},
-										{
 											"key": "rating_info_osc",
 											"value": "",
 											"description": "Show Call Rating Info in OSC. (Yes=1, No=0).",
-											"disabled": true
-										},
-										{
-											"key": "sso_enabled",
-											"value": "",
-											"description": "Single Sign-On enabled (Yes=1, No=0)",
 											"disabled": true
 										},
 										{
@@ -2428,12 +2434,6 @@
 											"key": "disable_my_dialer_for_app",
 											"value": "",
 											"description": "Disable Personal Dialer for gloCOM (Yes=1, No =0, NotSet = 2)",
-											"disabled": true
-										},
-										{
-											"key": "app_default_client_phone",
-											"value": "",
-											"description": "Default Client Phone. (Regex: /^(|softphone|deskphone)$/)",
 											"disabled": true
 										}
 									]
@@ -14196,9 +14196,287 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Additional MAC Addresses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        // Check if the response is an object",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"",
+									"        // Validate specific properties",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.additional_macs&server={{tenantID}}&id={{ExtensionIDs}}&values&devices&locations&device_addresses",
+							"protocol": "https",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.ext.additional_macs"
+								},
+								{
+									"key": "server",
+									"value": "{{tenantID}}",
+									"description": "Tenant/Server ID (Required)"
+								},
+								{
+									"key": "id",
+									"value": "{{ExtensionIDs}}",
+									"description": "Extension ID (Required)"
+								},
+								{
+									"key": "values",
+									"value": "",
+									"description": "List of MAC Addresses separated with , (Required) (Regex: /^\\\\b(?:[0-9A-Fa-f]{12},?)+\\\\b$/)"
+								},
+								{
+									"key": "devices",
+									"value": "",
+									"description": "List of UAD IDs separated with , (Required) (Regex: /^(,|\\\\d+)+$/)"
+								},
+								{
+									"key": "locations",
+									"value": "",
+									"description": "List of Locations separated with , (Local=1, Remote=2) (Required)"
+								},
+								{
+									"key": "device_addresses",
+									"value": "",
+									"description": "List of Device Location IDs separated with ,"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editions&Modules set",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        // Check if the response is an object",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"",
+									"        // Validate specific properties",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.editions_modules.set&server={{tenantID}}&id={{ExtensionIDs}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.ext.editions_modules.set"
+								},
+								{
+									"key": "server",
+									"value": "{{tenantID}}",
+									"description": "Tenant/Server ID (Required)"
+								},
+								{
+									"key": "id",
+									"value": "{{ExtensionIDs}}",
+									"description": "Extension ID (Required)"
+								},
+								{
+									"key": "editions",
+									"value": "",
+									"description": "List of Editions separated with ,. The following values are accepted: all|none|agent|office|business|operator|supervisor|mobile|web",
+									"disabled": true
+								},
+								{
+									"key": "modules",
+									"value": "",
+									"description": "List of Modules separated with ,. The following values are accepted: all|none|crm|call popup|skype|omni channel|customer survey",
+									"disabled": true
+								},
+								{
+									"key": "use_department_templates",
+									"value": "",
+									"description": "Use Department Templates(1 or 0)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editions&Modules configuration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        // Check if the response is an object",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"",
+									"        // Validate specific properties",
+									"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('use_department_templates').that.is.a('string');",
+									"",
+									"        // Validate editions object",
+									"        pm.expect(responseBody).to.have.property('editions').that.is.an('object');",
+									"        pm.expect(responseBody.editions).to.have.property('all').that.is.a('number');",
+									"        pm.expect(responseBody.editions).to.have.property('office').that.is.a('number');",
+									"        pm.expect(responseBody.editions).to.have.property('business').that.is.a('number');",
+									"        pm.expect(responseBody.editions).to.have.property('web').that.is.a('number');",
+									"        pm.expect(responseBody.editions).to.have.property('mobile').that.is.a('number');",
+									"",
+									"        // Validate modules object",
+									"        pm.expect(responseBody).to.have.property('modules').that.is.an('object');",
+									"        pm.expect(responseBody.modules).to.have.property('all').that.is.a('number');",
+									"        pm.expect(responseBody.modules).to.have.property('call popup').that.is.a('number');",
+									"        pm.expect(responseBody.modules).to.have.property('skype').that.is.a('number');",
+									"        pm.expect(responseBody.modules).to.have.property('crm').that.is.a('number');",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.editions_modules.configuration&server={{tenantID}}&id={{ExtensionIDs}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.ext.editions_modules.configuration"
+								},
+								{
+									"key": "server",
+									"value": "{{tenantID}}",
+									"description": "Tenant/Server ID (Required)"
+								},
+								{
+									"key": "id",
+									"value": "{{ExtensionIDs}}",
+									"description": "Extension ID (Required)"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
-			"description": "# Extensions\n\nSupported Methods:\n\n`list` - List Extensions\n\n`configuration` - Configuration of specific extension\n\n`add` - Add Extension\n\n`edit` - Edit Extension\n\n`delete` - Delete Extension\n\n`balance` - Credit/Debit Balance\n\n`billing` - Extension Billing (deprecated and will be soon replaced with call_rating)\n\n`billing_info` - Extension Billing Info (deprecated and will be soon replaced with call_rating_info)\n\n`call_rating` - Extension Call Rating\n\n`call_rating_info` - Extension Call Rating Info\n\n`slaves` - Returns all slaves extension for supplied master extension\n\n`billing_history` - Billing History (deprecated and will be soon replaced with call_rating_history)\n\n`call_rating_history` - Call Rating History\n\n`es` - Extension Enhanced Services\n\n`reset_inclusive_minutes` - Reset Inclusive Minutes\n\n`voicemail.delete` - Delete Extension Voicemails"
+			"description": "# Extensions\n\nSupported Methods:\n\n`list` - List Extensions\n\n`configuration` - Configuration of specific extension\n\n`add` - Add Extension\n\n`edit` - Edit Extension\n\n`delete` - Delete Extension\n\n`balance` - Credit/Debit Balance\n\n`billing` - Extension Billing (deprecated and will be soon replaced with call_rating)\n\n`billing_info` - Extension Billing Info (deprecated and will be soon replaced with call_rating_info)\n\n`call_rating` - Extension Call Rating\n\n`call_rating_info` - Extension Call Rating Info\n\n`slaves` - Returns all slaves extension for supplied master extension\n\n`billing_history` - Billing History (deprecated and will be soon replaced with call_rating_history)\n\n`call_rating_history` - Call Rating History\n\n`es` - Extension Enhanced Services\n\n`reset_inclusive_minutes` - Reset Inclusive Minutes\n\n`voicemail.delete` - Delete Extension Voicemails\n\n`additional_macs` - Additional MAC Addresses\n\n`editions_modules` - Editions & Modules"
 		},
 		{
 			"name": "Trunks",
@@ -17496,7 +17774,7 @@
 								{
 									"key": "dest_type",
 									"value": "{{DestType}}",
-									"description": "Destination Type for DID. (Required) (Regex: /^\\\\d{1}$/)\n0: Extension\n1: Forward DID to Extension (Multi User)\n2: Ring Group\n3: IVR\n4: Queues\n5: External Number\n6. IVR Tree\n"
+									"description": "Destination Type for DID. (Required) (Regex: /^\\\\d{1}$/)\n0: Extension\n1: Forward DID to Extension (Multi User)\n2: Ring Group\n3: IVR\n4: Queues\n5: External Number\n6: IVR tree\n7: Voicemail\n8: Remote Access\n9: Conferences\n10: Trunk\n11: Fax to E-mail\n12: Phone Callback\n13: Deny Access\n14: CRM Routing\n15: Agents\n16: ARI Application\n17: Parking Lot"
 								},
 								{
 									"key": "destination",
@@ -17725,7 +18003,7 @@
 								{
 									"key": "dest_type",
 									"value": "",
-									"description": "Destination Type for DID. (Regex: /^\\\\d{1}$/)\n0: Extension\n1: Forward DID to Extension (Multi User)\n2: Ring Group\n3: IVR\n4: Queues\n5: External Number\n",
+									"description": "Destination Type for DID. (Regex: /^\\\\d{1}$/)\n0: Extension\n1: Forward DID to Extension (Multi User)\n2: Ring Group\n3: IVR\n4: Queues\n5: External Number\n6: IVR tree\n7: Voicemail\n8: Remote Access\n9: Conferences\n10: Trunk\n11: Fax to E-mail\n12: Phone Callback\n13: Deny Access\n14: CRM Routing\n15: Agents\n16: ARI Application\n17: Parking Lot\n",
 									"disabled": true
 								},
 								{
@@ -17850,7 +18128,7 @@
 								},
 								{
 									"key": "preserve_callerid",
-									"value": null,
+									"value": "",
 									"description": "Preserve Orginal Caller ID. (Regex: /^(1|0)$/)",
 									"disabled": true
 								}
@@ -21173,7 +21451,7 @@
 					"response": []
 				}
 			],
-			"description": "# Enhanced Ring Groups\n\nSupported Methods\n\n`add` - Add/Creat a new ERG\n\n`edit` - Edit existing ERG\n\n`list` - List Enhanced Ring Groups\n\n`members` - Adding members to an Enhanced Ring Group\n\n`delete` - Delete ERG"
+			"description": "# Enhanced Ring Groups\n\nSupported Methods\n\n`add` - Add/Create a new ERG\n\n`edit` - Edit existing ERG\n\n`list` - List Enhanced Ring Groups\n\n`members` - Adding members to an Enhanced Ring Group\n\n`delete` - Delete ERG"
 		},
 		{
 			"name": "CDRs",
@@ -21670,7 +21948,7 @@
 					"response": []
 				}
 			],
-			"description": "# Archiving\n\nSupported Methods\n\n`list` Listing Archivings"
+			"description": "# Archiving\n\nSupported Methods\n\n`list` - Listing Archivings"
 		},
 		{
 			"name": "Routes",
@@ -22911,7 +23189,7 @@
 					"response": []
 				}
 			],
-			"description": "Supported Methods\n\n`configuration`\n\nTenant Package Configuration\n\n`list`\n\nList Tenant Packages\n\n`add`\n\nAdd new Tenant Package\n\n`edit`\n\nEdit existing Tenant Package\n\n`delete`\n\nDelete existing Tenant Package"
+			"description": "Supported Methods\n\n`configuration` - Tenant Package Configuration\n\n`list` - List Tenant Packages\n\n`add` - Add new Tenant Package\n\n`edit` - Edit existing Tenant Package\n\n`delete` - Delete existing Tenant Package"
 		},
 		{
 			"name": "Tenants",
@@ -23755,6 +24033,18 @@
 									"value": "",
 									"description": "Emergency Location Header. (Regex: /^[\\\\w\\\\-,]{1,100}$/)",
 									"disabled": true
+								},
+								{
+									"key": "sso_enforced_tenant",
+									"value": "",
+									"description": "Enable SSO on tenant. (Regex: /^(1|0)$/)",
+									"disabled": true
+								},
+								{
+									"key": "max_contacts",
+									"value": "",
+									"description": "Maximum Connected Devices. (Regex: /^\\\\d{1,2}$/)",
+									"disabled": true
 								}
 							]
 						}
@@ -24394,6 +24684,18 @@
 									"value": "",
 									"description": "Emergency Location Header. (Regex: /^[\\\\w\\\\-,]{1,100}$/)",
 									"disabled": true
+								},
+								{
+									"key": "sso_enforced_tenant",
+									"value": "",
+									"description": "Enable SSO on tenant. (Regex: /^(1|0)$/)",
+									"disabled": true
+								},
+								{
+									"key": "max_contacts",
+									"value": "",
+									"description": "Maximum Connected Devices. (Regex: /^\\\\d{1,2}$/)",
+									"disabled": true
 								}
 							]
 						}
@@ -24979,7 +25281,7 @@
 					"response": []
 				}
 			],
-			"description": "Supported Methods\n\n`configuration`\n\nTenant Configuration\n\n`list`\n\nList Tenants\n\n`add`\n\nAdd new Tenant\n\n`edit`\n\nEdit existing Tenant\n\n`delete`\n\nDelete existing Tenant\n\n`trunks.list`\n\nList Trunks & Tenants\n\n`trunks.set`\n\nSet Trunks & Tenants\n\n`clirouting.add`\n\nAdd CLI routing\n\n`clirouting.edit`\n\nEdit CLI routing\n\n`clirouting.list`\n\nList CLI routing\n\n`clirouting.delete`\n\nDelete CLI routing"
+			"description": "Supported Methods\n\n`configuration` - Tenant Configuration\n\n`list` - List Tenants\n\n`add` - Add new Tenant\n\n`edit` - Edit existing Tenant\n\n`delete` - Delete existing Tenant\n\n`trunks.list` - List Trunks & Tenants\n\n`trunks.set` - Set Trunks & Tenants\n\n`clirouting.add` - Add CLI routing\n\n`clirouting.edit` - Edit CLI routing\n\n`clirouting.list` - List CLI routing\n\n`clirouting.delete` - Delete CLI routing"
 		},
 		{
 			"name": "Servers",
@@ -25089,7 +25391,7 @@
 					"response": []
 				}
 			],
-			"description": "Supported Methods\n\n`configuration`\n\nServer Configuration"
+			"description": "Supported Methods\n\n`configuration` - Server Configuration"
 		},
 		{
 			"name": "Service Plans",
@@ -25312,7 +25614,7 @@
 					"response": []
 				}
 			],
-			"description": "Supported Methods\n\n`list`\n\nList Service Plans\n\n`rates`\n\nList Service Plan Rates"
+			"description": "Supported Methods\n\n`list` - List Service Plans\n\n`rates` - List Service Plan Rates"
 		},
 		{
 			"name": "Destinations",
@@ -25489,7 +25791,7 @@
 					"response": []
 				}
 			],
-			"description": "Supported Methods\n\n`list`\n\nList Destinations\n\n`groups`\n\nList Destinations Groups"
+			"description": "Supported Methods\n\n`list` - List Destinations\n\n`groups` - List Destinations Groups"
 		},
 		{
 			"name": "UADs",
@@ -25723,11 +26025,185 @@
 					"response": []
 				}
 			],
-			"description": "Supported Methods\n\n`list`\n\nList UADs\n\n`activate`\n\nActivate UAD\n\n`deactivate`\n\nDeactivate UAD"
+			"description": "Supported Methods\n\n`list` - List UADs\n\n`activate` - Activate UAD\n\n`deactivate` - Deactivate UAD"
 		},
 		{
 			"name": "Apps",
 			"item": [
+				{
+					"name": "Templates",
+					"item": [
+						{
+							"name": "Templates List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if there is an error field in the response",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"    // Validate the response structure and content",
+											"    pm.test('Response Validation', function () {",
+											"        // Check if the response is an array",
+											"        pm.expect(responseBody).to.be.an('array');",
+											"",
+											"        // Validate each object in the array",
+											"        responseBody.forEach(function(template) {",
+											"            pm.expect(template).to.be.an('object');",
+											"            pm.expect(template).to.have.property('department_id').that.is.a('number');",
+											"",
+											"            // Validate department_name can be null or a string",
+											"            pm.expect(template).to.have.property('department_name');",
+											"            if (template.department_name !== null) {",
+											"                pm.expect(template.department_name).to.be.a('string');",
+											"            }",
+											"",
+											"            pm.expect(template).to.have.property('editions').that.is.a('string');",
+											"            pm.expect(template).to.have.property('modules').that.is.a('string');",
+											"        });",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.apps.templates.list&server={{tenantID}}",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.apps.templates.list",
+											"description": "Templates list"
+										},
+										{
+											"key": "server",
+											"value": "{{tenantID}}",
+											"description": "Tenant/Server ID (Required)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Templates Set",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if there is an error field in the response",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"    // Validate the response structure and content",
+											"    pm.test('Response Validation', function () {",
+											"        // Check if the response is an object",
+											"        pm.expect(responseBody).to.be.an('object');",
+											"",
+											"        // Validate specific properties",
+											"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+											"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.apps.templates.set&server={{tenantID}}&department_id=&editions=&modules=",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.apps.templates.set",
+											"description": "Templates set"
+										},
+										{
+											"key": "server",
+											"value": "{{tenantID}}",
+											"description": "Tenant/Server ID (Required)"
+										},
+										{
+											"key": "department_id",
+											"value": "",
+											"description": "Department ID (Required)"
+										},
+										{
+											"key": "editions",
+											"value": "",
+											"description": "List of Editions separated with ,. The following values are accepted: all|none|agent|office|business|operator|supervisor|mobile|web"
+										},
+										{
+											"key": "modules",
+											"value": "",
+											"description": "List of Modules separated with ,. The following values are accepted: all|none|crm|call popup|skype|omni channel|customer survey"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Apps Templates"
+				},
 				{
 					"name": "Listing Apps",
 					"event": [
@@ -25815,7 +26291,7 @@
 					"response": []
 				}
 			],
-			"description": "Supported Methods\n\n`list`\n\nList Apps"
+			"description": "Supported Methods\n\n`list` - List Apps\n\nTemplates:\n\n- `set` - Set Templates for a specific department\n    \n- `list` - List Templates for all departments"
 		},
 		{
 			"name": "License",
@@ -26006,7 +26482,7 @@
 					"response": []
 				}
 			],
-			"description": "Supported Methods\n\n`refresh`\n\nRefresh license\n\n`last_refreshed`\n\nLast time license file was modified\n\n`info`\n\nLicense information"
+			"description": "Supported Methods\n\n`refresh` - Refresh license\n\n`last_refreshed` - Last time license file was modified\n\n`info` - License information"
 		},
 		{
 			"name": "Monitor",
@@ -26186,7 +26662,7 @@
 					"response": []
 				}
 			],
-			"description": "Supported Methods\n\n`list`\n\nList Monitor extensions\n\n`live_calls`\n\nList Live calls"
+			"description": "Supported Methods\n\n`list`\\- List Monitor extensions\n\n`live_calls` - List Live calls"
 		},
 		{
 			"name": "Departments",
@@ -26270,7 +26746,373 @@
 					"response": []
 				}
 			],
-			"description": "Supported Methods\n\n`list`\n\nList Destinations"
+			"description": "Supported Methods\n\n`list`\\- List Destinations"
+		},
+		{
+			"name": "Call Recording",
+			"item": [
+				{
+					"name": "Start Recording",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        // Check if the response is an object",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"",
+									"        // Validate specific properties",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('affected_calls').that.is.a('number');",
+									"",
+									"        // Check success message",
+									"        pm.test('Verify success message', function () {",
+									"            var expectedMessages = [",
+									"                'Call status updated successfully.',",
+									"                'No calls have been updated.'",
+									"            ];",
+									"            pm.expect(expectedMessages).to.include(responseBody.success);",
+									"        });",
+									"",
+									"        // Check affected_calls value",
+									"        pm.test('Verify affected_calls value', function () {",
+									"            pm.expect(responseBody.affected_calls).to.be.oneOf([0, 1]);",
+									"        });",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.recording.start&server={{Srv/Tenant-ID}}&ext={{extension}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.recording.start",
+									"description": "Start call recording for a specific extension."
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Server/Tenant ID. If running in Tenant Mode, make sure this is always greater than 1."
+								},
+								{
+									"key": "ext",
+									"value": "{{extension}}",
+									"description": "Extension Number."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Stop Recording",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        // Check if the response is an object",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"",
+									"        // Validate specific properties",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('affected_calls').that.is.a('number');",
+									"",
+									"        // Check success message",
+									"        pm.test('Verify success message', function () {",
+									"            var expectedMessages = [",
+									"                'Call status updated successfully.',",
+									"                'No calls have been updated.'",
+									"            ];",
+									"            pm.expect(expectedMessages).to.include(responseBody.success);",
+									"        });",
+									"",
+									"        // Check affected_calls value",
+									"        pm.test('Verify affected_calls value', function () {",
+									"            pm.expect(responseBody.affected_calls).to.be.oneOf([0, 1]);",
+									"        });",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.recording.stop&server={{Srv/Tenant-ID}}&ext={{extension}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.recording.stop",
+									"description": "Stop call recording for a specific extension."
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Server/Tenant ID. If running in Tenant Mode, make sure this is always greater than 1."
+								},
+								{
+									"key": "ext",
+									"value": "{{extension}}",
+									"description": "Extension Number."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pause Recording",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        // Check if the response is an object",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"",
+									"        // Validate specific properties",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('affected_calls').that.is.a('number');",
+									"",
+									"        // Check success message",
+									"        pm.test('Verify success message', function () {",
+									"            var expectedMessages = [",
+									"                'Call status updated successfully.',",
+									"                'No calls have been updated.'",
+									"            ];",
+									"            pm.expect(expectedMessages).to.include(responseBody.success);",
+									"        });",
+									"",
+									"        // Check affected_calls value",
+									"        pm.test('Verify affected_calls value', function () {",
+									"            pm.expect(responseBody.affected_calls).to.be.oneOf([0, 1]);",
+									"        });",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.recording.pause&server={{Srv/Tenant-ID}}&ext={{extension}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.recording.pause",
+									"description": "Pause call recording for a specific extension."
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Server/Tenant ID. If running in Tenant Mode, make sure this is always greater than 1."
+								},
+								{
+									"key": "ext",
+									"value": "{{extension}}",
+									"description": "Extension Number."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unpause Recording",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        // Check if the response is an object",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"",
+									"        // Validate specific properties",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('affected_calls').that.is.a('number');",
+									"",
+									"        // Check success message",
+									"        pm.test('Verify success message', function () {",
+									"            var expectedMessages = [",
+									"                'Call status updated successfully.',",
+									"                'No calls have been updated.'",
+									"            ];",
+									"            pm.expect(expectedMessages).to.include(responseBody.success);",
+									"        });",
+									"",
+									"        // Check affected_calls value",
+									"        pm.test('Verify affected_calls value', function () {",
+									"            pm.expect(responseBody.affected_calls).to.be.oneOf([0, 1]);",
+									"        });",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.recording.unpause&server={{Srv/Tenant-ID}}&ext={{extension}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.recording.unpause",
+									"description": "Start call recording for a specific extension."
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Server/Tenant ID. If running in Tenant Mode, make sure this is always greater than 1."
+								},
+								{
+									"key": "ext",
+									"value": "{{extension}}",
+									"description": "Extension Number."
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Supported Methods\n\n`start` - Start call recording for a specific extension\n\n`stop` - Stop call recording for a specific extension\n\n`pause` - Pause call recording for a specific extension\n\n`unpause` - Unpause call recording for a specific extension"
 		}
 	],
 	"event": [
