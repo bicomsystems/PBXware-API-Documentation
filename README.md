@@ -41,10 +41,17 @@ To get started with the PBXware API Collection, follow these steps:
 The requests are organized into the following folders with supported methods:
 
 - Dashboard:
-    - start - Start call recording for a specific extension
-    - stop - Stop call recording for a specific extension
-    - pause - Pause call recording for a specific extension
-    - unpause - Unpause call recording for a specific extension
+    - ext_online - Display number of Extensions Online
+    - services - Display PBXware services
+    - sip_registrations - Display information for SIP registration
+    - calls - Calls Overview
+    - glocom_editions - Display information on apps registered to PBXware and the editions
+    - glocom_users - Display the number of logged GloCOM users
+    - licensing - Display the percentage usage information of the PBXware license
+    - disk_usage - Display information on current PBXware hard disk usage
+    - cpu - Display information on CPU usage on the PBXware server
+    - memory - Display information on PBXware memory usage
+
 - Extensions:
     - list - List Extensions
     - configuration - Configuration of a specific extension
@@ -62,12 +69,16 @@ The requests are organized into the following folders with supported methods:
     - es - Extension Enhanced Services
     - reset_inclusive_minutes - Reset Inclusive Minutes
     - voicemail.delete - Delete Extension Voicemails
+    - additional_macs - Additional MAC Addresses
+    - editions_modules - Editions & Modules
+
 - Trunks:
     - list - List Trunks
     - configuration - Trunk Configuration
     - add - Add new Trunk
     - edit - Edit existing Trunk
     - providers - List Trunk Providers
+
 - SMS:
     - reports- SMS and Bulk SMS reports
     - trunks - SMS Trunks management
@@ -85,6 +96,7 @@ The requests are organized into the following folders with supported methods:
     - list - List SMS Trunks & Tenants
     - get - Get Tenant’s SMS Trunk
     - set - Set Tenant’s SMS Trunk
+
 - DIDs:
     - list - List DIDs
     - add - Add new DID
@@ -94,44 +106,54 @@ The requests are organized into the following folders with supported methods:
     - clirouting.edit - Edit CLI Routing
     - clirouting.list - List CLI Routing
     - clirouting.delete - Delete CLI Routing
+
 - DID Groups:
     - list - List DID Groups
     - add - Add new DID Group
     - edit - Edit existing DID Group
     - delete - Delete existing DID Group
+
 - IVRs:
     - list - List IVRs
     - add - Add new IVR
     - edit - Edit existing IVR
     - delete - Delete existing IVR
+
 - Ring Groups:
     - list - List Ring Groups
     - add - Add new Ring Group
     - edit - Edit existing Ring Group
     - delete - Delete existing Ring Group
     - configuration - Existing Ring Groupe configuration
+
 - Enhanced Ring Groups:
     - add - Add/Create a new ERG
     - edit - Edit existing ERG
     - list - List Enhanced Ring Groups
     - members - Adding members to an Enhanced Ring Group
     - delete - Delete ERG
+
 - CDRs:
     - download - Download CDRs
     - billamount - Returns the sum of billing amounts
+
 - Archiving:
     - list - Listing Archives
+
 - Routes:
     - list - List Routes
+
 - Operation Times (DID, IVR, Dial Group, Server, Routes, Qoueues, ERG):
     - list - Listing the state of Operation Times
     - set - Set the state of Operation Times
+ 
 - Tenant Packages:
     - configuration - Tenant Package Configuration
     - list - List Tenant Packages
     - add - Add new Tenant Package
     - edit - Edit existing Tenant Package
     - delete - Delete existing Tenant Package
+
 - Tenants:
     - configuration - Tenant Configuration
     - list - List Tenants
@@ -144,29 +166,41 @@ The requests are organized into the following folders with supported methods:
     - clirouting.edit - Edit CLI routing
     - clirouting.list - List CLI routing
     - clirouting.delete - Delete CLI routing
+
 - Servers:
     - configuration - Server Configuration
+
 - Service plans:
     - list - List Service Plans
     - rates - List Service Plan Rates
+
 - Destinations:
     - list - List Destinations
     - groups - List Destinations Groups
+
 - UADs:
     - list - List UADs
     - activate - Activate UAD
     - deactivate - Deactivate UAD
+
 - Apps:
     - list - List Apps
+    - Templates:
+          - set - Set Templates for a specific department
+          - list - List Templates for all departments
+
 - Licence:
     - refresh - Refresh license
     - last_refreshed - Last time license file was modified
     - info - License information
+
 - Monitor:
-        list- List Monitor extensions
+    - list - List Monitor extensions
     - live_calls - List Live calls
+
 - Departments:
     - list- List Destinations
+
 - Call recording:
     - start - Start call recording for a specific extension
     - stop - Stop call recording for a specific extension
