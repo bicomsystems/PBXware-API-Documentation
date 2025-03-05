@@ -2707,6 +2707,87 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Reset Inclusive Messages",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if there is an error field in the response",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"    // Validate the response structure and content",
+											"    pm.test('Response Validation', function () {",
+											"        pm.expect(responseBody).to.be.an('object');",
+											"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+											"        ",
+											"        // Use a regular expression to allow for any Extension ID",
+											"        var successRegex = /^Inclusive Messages for Extension ID '\\d+' have been reset successfully\\.$/;",
+											"        pm.expect(responseBody.success).to.match(successRegex);",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.reset_inclusive_messages&server={{Srv/Tenant-ID}}&id={{ExtensionIDs}}",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.ext.reset_inclusive_messages"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Server/Tenant ID (Required)"
+										},
+										{
+											"key": "id",
+											"value": "{{ExtensionIDs}}",
+											"description": "Extension ID (Required)"
+										},
+										{
+											"key": "ext",
+											"value": "{{extension}}",
+											"description": "Extension Number. Note: You cannot supply id and ext at the same time!",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"description": "Reset Inclusive Minutes"
@@ -13174,6 +13255,657 @@
 									"response": []
 								}
 							]
+						},
+						{
+							"name": "Set All ESs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if there is an error field in the response",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"    // Validate the response structure",
+											"    pm.test('Response Validation', function () {",
+											"        // Check if the response is an object",
+											"        pm.expect(responseBody).to.be.an('object');",
+											"",
+											"        // Validate the 'success' property",
+											"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+											"        pm.expect(responseBody.success).to.equal(\"Updated Enhanced Service states successfully.\");",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.es.states.set&server={{Srv/Tenant-ID}}&id={{ExtensionIDs}}&all=yes",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.ext.es.states.set",
+											"description": "Instead of getting or setting the state of each enhanced service individually using the methods described in section Extension Enhanced Services, it is possible to set the states of multiple or all enhanced services at once."
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Server/Tenant ID"
+										},
+										{
+											"key": "id",
+											"value": "{{ExtensionIDs}}",
+											"description": "Extension ID"
+										},
+										{
+											"key": "all",
+											"value": "yes",
+											"description": "All argument can be used to set the states of all enhanced services to the same value. Allowed values in this case are yes and no."
+										},
+										{
+											"key": "callerid",
+											"value": "",
+											"description": "Caller ID (yes, no).",
+											"disabled": true
+										},
+										{
+											"key": "callpickup",
+											"value": "",
+											"description": "Call Pickup (yes, no or pin)",
+											"disabled": true
+										},
+										{
+											"key": "lastcaller",
+											"value": "",
+											"description": "Last Caller (yes, no or pin)",
+											"disabled": true
+										},
+										{
+											"key": "extoperationtimes",
+											"value": "",
+											"description": "Extension Operation Times (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "callfilters",
+											"value": "",
+											"description": "Call Filters & Blocking (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "dnd",
+											"value": "",
+											"description": "Do Not Disturbe (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "callscreening",
+											"value": "",
+											"description": "Call Screening (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "callfwd",
+											"value": "",
+											"description": "Call Forwarding (yes, no or pin)",
+											"disabled": true
+										},
+										{
+											"key": "followme",
+											"value": "",
+											"description": "Follow me (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "grouphunt",
+											"value": "",
+											"description": "Group Hunt (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "mobilenumbers",
+											"value": "",
+											"description": "Mobile Numbers (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "sppage",
+											"value": "",
+											"description": "Speakerphone Page (yes, no or pin)",
+											"disabled": true
+										},
+										{
+											"key": "sppagegroups",
+											"value": "",
+											"description": "Speakerphone Page Groups (yes, no or pin)",
+											"disabled": true
+										},
+										{
+											"key": "blflist",
+											"value": "",
+											"description": "Directory / BLF list (yes, no or pin)",
+											"disabled": true
+										},
+										{
+											"key": "speeddial",
+											"value": "",
+											"description": "Speed Dial (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "instrecord",
+											"value": "",
+											"description": "Instant Recording (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "delrecordings",
+											"value": "",
+											"description": "Delete Recordings (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "listenrecordings",
+											"value": "",
+											"description": "Listen to Recordings (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "remoteaccess",
+											"value": "",
+											"description": "Remote Access (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "callmonitoring",
+											"value": "",
+											"description": "Call Monitoring (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "phonecallback",
+											"value": "",
+											"description": "Phone Callback (yes, no or pin)",
+											"disabled": true
+										},
+										{
+											"key": "operationtimes",
+											"value": "",
+											"description": "System Operation Times (yes, no or pin)",
+											"disabled": true
+										},
+										{
+											"key": "wakeupcall",
+											"value": "",
+											"description": "WakeUp Call (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "opwakeupcall",
+											"value": "",
+											"description": "Operator WakeUp Call (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "smsnotifications",
+											"value": "",
+											"description": "SMS Notifications (yes, no)",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All ESs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// List of all possible services",
+											"const allServices = [",
+											"    \"callpickup\", \"lastcaller\", \"extoperationtimes\", \"callfilters\", \"dnd\",",
+											"    \"callscreening\", \"callfwd\", \"followme\", \"grouphunt\", \"mobilenumbers\",",
+											"    \"sppage\", \"sppagegroups\", \"blflist\", \"speeddial\", \"instrecord\",",
+											"    \"delrecordings\", \"listenrecordings\", \"remoteaccess\", \"callmonitoring\",",
+											"    \"operationtimes\", \"wakeupcall\", \"opwakeupcall\", \"smsnotifications\",",
+											"    \"callerid\", \"phonecallback\"",
+											"];",
+											"",
+											"// Check if the response contains an error field",
+											"if ('error' in responseBody) {",
+											"    console.error('Test Failed: ' + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error); // Mark test as failed with error message",
+											"    });",
+											"} else {",
+											"    // Validate the response structure",
+											"    pm.test('Response Validation', function () {",
+											"        // Check if the response is an object",
+											"        pm.expect(responseBody).to.be.an('object');",
+											"",
+											"        // Check that the response contains only valid service keys",
+											"        Object.keys(responseBody).forEach(function (key) {",
+											"            pm.expect(allServices).to.include(key); // Validate service name",
+											"            pm.expect(responseBody[key]).to.be.oneOf(['yes', 'no', 'pin']); // Validate service state",
+											"        });",
+											"",
+											"        // Check that the number of returned services is <= allServices length",
+											"        pm.expect(Object.keys(responseBody).length).to.be.at.most(allServices.length);",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.es.states.get&server={{Srv/Tenant-ID}}&id={{ExtensionIDs}}&services=all",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.ext.es.states.get"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Server/Tenant ID"
+										},
+										{
+											"key": "id",
+											"value": "{{ExtensionIDs}}",
+											"description": "Extension ID"
+										},
+										{
+											"key": "services",
+											"value": "all",
+											"description": "Regex: /^(all)$|^(callfwd|callerid|followme|callfilters|dnd|callscreening|grouphunt|mobilenumbers|sppage|sppagegroups|blflist|speeddial|instrecord|callpickup|lastcaller|delrecordings|listenrecordings|remoteaccess|phonecallback|callmonitoring|extoperationtimes|operationtimes|wakeupcall|opwakeupcall|smsnotifications|,)+$/)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Set All OSC",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if there is an error field in the response",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"    // Validate the response structure",
+											"    pm.test('Response Validation', function () {",
+											"        // Check if the response is an object",
+											"        pm.expect(responseBody).to.be.an('object');",
+											"",
+											"        // Validate the 'success' property",
+											"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+											"        pm.expect(responseBody.success).to.equal(\"Updated Enhanced Service OSC states successfully.\");",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.es.states.set_osc&server={{Srv/Tenant-ID}}&id={{ExtensionIDs}}&all=all",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.ext.es.states.set_osc"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Server/Tenant ID"
+										},
+										{
+											"key": "id",
+											"value": "{{ExtensionIDs}}",
+											"description": "Extension ID"
+										},
+										{
+											"key": "all",
+											"value": "all",
+											"description": "All argument can be used to set the states of all enhanced services to the same value. Allowed values in this case are yes and no."
+										},
+										{
+											"key": "callerid",
+											"value": "no",
+											"description": "Caller ID (yes, no).",
+											"disabled": true
+										},
+										{
+											"key": "callpickup",
+											"value": "yes",
+											"description": "Call Pickup (yes, no )",
+											"disabled": true
+										},
+										{
+											"key": "lastcaller",
+											"value": "",
+											"description": "Last Caller (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "extoperationtimes",
+											"value": "",
+											"description": "Extension Operation Times (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "callfilters",
+											"value": "",
+											"description": "Call Filters & Blocking (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "dnd",
+											"value": "no",
+											"description": "Do Not Disturbe (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "callscreening",
+											"value": "",
+											"description": "Call Screening (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "callfwd",
+											"value": "no",
+											"description": "Call Forwarding (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "followme",
+											"value": "",
+											"description": "Follow me (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "grouphunt",
+											"value": "",
+											"description": "Group Hunt (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "mobilenumbers",
+											"value": "",
+											"description": "Mobile Numbers (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "sppage",
+											"value": "",
+											"description": "Speakerphone Page (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "sppagegroups",
+											"value": "",
+											"description": "Speakerphone Page Groups (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "blflist",
+											"value": "yes",
+											"description": "Directory / BLF list (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "speeddial",
+											"value": "",
+											"description": "Speed Dial (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "instrecord",
+											"value": "",
+											"description": "Instant Recording (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "delrecordings",
+											"value": "",
+											"description": "Delete Recordings (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "listenrecordings",
+											"value": "",
+											"description": "Listen to Recordings (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "remoteaccess",
+											"value": "",
+											"description": "Remote Access (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "callmonitoring",
+											"value": "",
+											"description": "Call Monitoring (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "phonecallback",
+											"value": "",
+											"description": "Phone Callback (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "operationtimes",
+											"value": "",
+											"description": "System Operation Times (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "wakeupcall",
+											"value": "",
+											"description": "WakeUp Call (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "opwakeupcall",
+											"value": "",
+											"description": "Operator WakeUp Call (yes, no)",
+											"disabled": true
+										},
+										{
+											"key": "smsnotifications",
+											"value": "",
+											"description": "SMS Notifications (yes, no)",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All OSC",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// List of all possible services",
+											"const allServices = [",
+											"    \"callpickup\", \"lastcaller\", \"extoperationtimes\", \"callfilters\", \"dnd\",",
+											"    \"callscreening\", \"callfwd\", \"followme\", \"grouphunt\", \"mobilenumbers\",",
+											"    \"sppage\", \"sppagegroups\", \"blflist\", \"speeddial\", \"instrecord\",",
+											"    \"delrecordings\", \"listenrecordings\", \"remoteaccess\", \"callmonitoring\",",
+											"    \"operationtimes\", \"wakeupcall\", \"opwakeupcall\", \"smsnotifications\",",
+											"    \"callerid\", \"phonecallback\"",
+											"];",
+											"",
+											"// Check if the response contains an error field",
+											"if ('error' in responseBody) {",
+											"    console.error('Test Failed: ' + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error); // Mark test as failed with error message",
+											"    });",
+											"} else {",
+											"    // Validate the response structure",
+											"    pm.test('Response Validation', function () {",
+											"        // Check if the response is an object",
+											"        pm.expect(responseBody).to.be.an('object');",
+											"",
+											"        // Check that the response contains only valid service keys",
+											"        Object.keys(responseBody).forEach(function (key) {",
+											"            pm.expect(allServices).to.include(key); // Validate service name",
+											"            pm.expect(responseBody[key]).to.be.oneOf(['yes', 'no']); // Validate service state",
+											"        });",
+											"",
+											"        // Check that the number of returned services is <= allServices length",
+											"        pm.expect(Object.keys(responseBody).length).to.be.at.most(allServices.length);",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.es.states.get_osc&server={{Srv/Tenant-ID}}&id={{ExtensionIDs}}&services=all",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.ext.es.states.get_osc"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Server/Tenant ID"
+										},
+										{
+											"key": "id",
+											"value": "{{ExtensionIDs}}",
+											"description": "Extension ID"
+										},
+										{
+											"key": "services",
+											"value": "all",
+											"description": "Regex: /^(all)$|^(callfwd|callerid|followme|callfilters|dnd|callscreening|grouphunt|mobilenumbers|sppage|sppagegroups|blflist|speeddial|instrecord|callpickup|lastcaller|delrecordings|listenrecordings|remoteaccess|phonecallback|callmonitoring|extoperationtimes|operationtimes|wakeupcall|opwakeupcall|smsnotifications|,)+$/)"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -14469,6 +15201,88 @@
 									"key": "id",
 									"value": "{{ExtensionIDs}}",
 									"description": "Extension ID (Required)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Extensions SMS Rating Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function() {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure for a single extension",
+									"    pm.test('Response Validation', function() {",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"",
+									"        // Retrieve the single extension key",
+									"        var extId = Object.keys(responseBody)[0];",
+									"        var extData = responseBody[extId];",
+									"",
+									"        pm.expect(extData).to.be.an('object');",
+									"        pm.expect(extData).to.have.property('inclusive_messages').that.is.a('string');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.sms_rating_info&server={{Srv/Tenant-ID}}&id={{ExtensionIDs}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.ext.sms_rating_info"
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Tenant/Server ID. "
+								},
+								{
+									"key": "id",
+									"value": "{{ExtensionIDs}}",
+									"description": "Extension ID. "
+								},
+								{
+									"key": "ext",
+									"value": "{{extension}}",
+									"description": "Extension number. Note: You cannot supply id and ext at the same time!",
+									"disabled": true
 								}
 							]
 						}
@@ -21794,6 +22608,83 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "CDRs MOS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('data').that.is.an('array');",
+									"",
+									"        responseBody.data.forEach(function(item) {",
+									"            pm.expect(item).to.be.an('object');",
+									"            pm.expect(item).to.have.property('channel').that.is.a('string');",
+									"            pm.expect(item).to.have.property('linkedid').that.is.a('string');",
+									"            pm.expect(item).to.have.property('uniqueid').that.is.a('string');",
+									"            pm.expect(item).to.have.property('maxmes').that.is.a('number');",
+									"            pm.expect(item).to.have.property('avgmes').that.is.a('number');",
+									"            pm.expect(item).to.have.property('minmes').that.is.a('number');",
+									"        });",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.cdr.mos&uniqueid={{CDRsID}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.cdr.mos",
+									"description": "Returns detailed MOS data"
+								},
+								{
+									"key": "uniqueid",
+									"value": "{{CDRsID}}",
+									"description": "Unique ID of a CDR (Required). (Regex: /^\\\\d+\\\\.\\\\d+$/)"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"description": "# CDRs\n\nSupported Methods:\n\n`download` \\- Download CDRs\n\n`billamount` \\- Returns sum of billing amounts"
@@ -25612,6 +26503,186 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "List Service Plan SMS Rates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure",
+									"    pm.test('Response Validation', function () {",
+									"        // Ensure the response is an object",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"        ",
+									"        // Iterate over each trunk in the response",
+									"        Object.keys(responseBody).forEach(function(trunkId) {",
+									"            var trunkData = responseBody[trunkId];",
+									"            pm.expect(trunkData).to.be.an('object');",
+									"            pm.expect(trunkData).to.have.property('trunk_name').that.is.a('string');",
+									"            pm.expect(trunkData).to.have.property('national_sms').that.is.a('number');",
+									"            pm.expect(trunkData).to.have.property('international_sms').that.is.a('number');",
+									"            pm.expect(trunkData).to.have.property('national_mms').that.is.a('number');",
+									"            pm.expect(trunkData).to.have.property('international_mms').that.is.a('number');",
+									"            pm.expect(trunkData).to.have.property('inclusive_messages').that.is.a('string');",
+									"        });",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.splan.sms_rates.list&id={{SP-ID}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.splan.sms_rates.list"
+								},
+								{
+									"key": "id",
+									"value": "{{SP-ID}}",
+									"description": "Service Plan ID for which rates are edited. (Required)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editing Service Plan SMS Rates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('id').that.is.a('number');",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.splan.sms_rates.edit&id={{SP-ID}}&trunk_id={{SMSTrunkIDs}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.splan.sms_rates.edit"
+								},
+								{
+									"key": "id",
+									"value": "{{SP-ID}}",
+									"description": "Service Plan ID for which rates are edited. (Required)"
+								},
+								{
+									"key": "trunk_id",
+									"value": "{{SMSTrunkIDs}}",
+									"description": "SMS Trunk ID for which rates are edited. (Required)"
+								},
+								{
+									"key": "national_sms",
+									"value": "",
+									"description": "Price for national SMS message.",
+									"disabled": true
+								},
+								{
+									"key": "international_sms",
+									"value": "",
+									"description": "Price for international SMS message.",
+									"disabled": true
+								},
+								{
+									"key": "national_mms",
+									"value": "",
+									"description": "Price for national MMS message.",
+									"disabled": true
+								},
+								{
+									"key": "international_mms",
+									"value": "",
+									"description": "Price for international MMS message.",
+									"disabled": true
+								},
+								{
+									"key": "inclusive_messages",
+									"value": "",
+									"description": "Set whether inclusive messages are enabled for national messages. (1=Yes/0=No/''=Not Set)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"description": "Supported Methods\n\n`list` - List Service Plans\n\n`rates` - List Service Plan Rates"
@@ -26660,6 +27731,81 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Live Trunks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        // Ensure the response is an object",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"",
+									"        // Iterate over each trunk in the response",
+									"        Object.keys(responseBody).forEach(function (trunkId) {",
+									"            var trunk = responseBody[trunkId];",
+									"",
+									"            // Validate that trunkId is numeric (as a string)",
+									"            pm.expect(trunkId).to.match(/^\\d+$/);",
+									"",
+									"            // Validate trunk object properties",
+									"            pm.expect(trunk).to.be.an('object');",
+									"            pm.expect(trunk).to.have.property('name').that.is.a('string');",
+									"            pm.expect(trunk).to.have.property('ip').that.is.a('string');",
+									"            pm.expect(trunk).to.have.property('status').that.is.a('string');",
+									"        });",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.monitor.trunks",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.monitor.trunks"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"description": "Supported Methods\n\n`list`\\- List Monitor extensions\n\n`live_calls` - List Live calls"
@@ -27113,6 +28259,447 @@
 				}
 			],
 			"description": "Supported Methods\n\n`start` - Start call recording for a specific extension\n\n`stop` - Stop call recording for a specific extension\n\n`pause` - Pause call recording for a specific extension\n\n`unpause` - Unpause call recording for a specific extension"
+		},
+		{
+			"name": "Transcription",
+			"item": [
+				{
+					"name": "Get Transcription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the transcription response structure and data types",
+									"    pm.test('Response Validation', function () {",
+									"        // Validate top-level response",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"        pm.expect(responseBody).to.have.property('text').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('vtt').that.is.an('object');",
+									"        ",
+									"        // Validate VTT object",
+									"        var vtt = responseBody.vtt;",
+									"        pm.expect(vtt).to.have.property('language').that.is.a('string');",
+									"        pm.expect(vtt).to.have.property('duration').that.is.a('number');",
+									"        pm.expect(vtt).to.have.property('words').that.is.an('array');",
+									"        pm.expect(vtt).to.have.property('segments').that.is.an('array');",
+									"        ",
+									"        // Validate each word object in the \"words\" array",
+									"        vtt.words.forEach(function(word) {",
+									"            pm.expect(word).to.be.an('object');",
+									"            pm.expect(word).to.have.property('word').that.is.a('string');",
+									"            pm.expect(word).to.have.property('start').that.is.a('number');",
+									"            pm.expect(word).to.have.property('end').that.is.a('number');",
+									"        });",
+									"        ",
+									"        // Validate each segment object in the \"segments\" array",
+									"        vtt.segments.forEach(function(segment) {",
+									"            pm.expect(segment).to.be.an('object');",
+									"            pm.expect(segment).to.have.property('id').that.is.a('number');",
+									"            pm.expect(segment).to.have.property('seek').that.is.a('number');",
+									"            pm.expect(segment).to.have.property('start').that.is.a('number');",
+									"            pm.expect(segment).to.have.property('end').that.is.a('number');",
+									"            pm.expect(segment).to.have.property('text').that.is.a('string');",
+									"        });",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.transcription.get&uniqueid={{UniqeCallID}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.transcription.get"
+								},
+								{
+									"key": "uniqueid",
+									"value": "{{UniqeCallID}}",
+									"description": "Unique ID for call. Always must be set. (Required) (Regex: /\\\\b\\\\d+\\\\.\\\\d+\\\\b/)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "# Transcription\n\nSupported Methods:\n\n`get` - Get information about specific transcription"
+		},
+		{
+			"name": "Paging Groups",
+			"item": [
+				{
+					"name": "Paging Groups List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate response structure",
+									"    pm.test('Response Structure Validation', function () {",
+									"        pm.expect(responseBody).to.be.an('object'); // Response should be an object",
+									"",
+									"        Object.keys(responseBody).forEach(function (key) {",
+									"            let pagingGroup = responseBody[key];",
+									"",
+									"            // Validate that each key is an ID (numeric as string)",
+									"            pm.expect(key).to.match(/^\\d+$/);",
+									"",
+									"            // Validate paging group object properties",
+									"            pm.expect(pagingGroup).to.have.property('name').that.is.a('string');",
+									"            pm.expect(pagingGroup).to.have.property('number').that.is.a('number');",
+									"            pm.expect(pagingGroup).to.have.property('quiet').that.is.oneOf([0, 1]);",
+									"            pm.expect(pagingGroup).to.have.property('destinations').that.is.an('array');",
+									"",
+									"            // Validate each destination inside 'destinations' array is a number",
+									"            pagingGroup.destinations.forEach(function (destination) {",
+									"                pm.expect(destination).to.be.a('number');",
+									"            });",
+									"        });",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.paging_group.list&server={{Srv/Tenant-ID}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.paging_group.list"
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Filter paging groups by tenant/server."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paging Groups Add",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        // Check that the id property exists and is a number",
+									"        pm.expect(responseBody).to.have.property('id').that.is.a('number');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.paging_group.add&server={{Srv/Tenant-ID}}&name={{PagingGrName}}&number={{PagingGrNo}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.paging_group.add"
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Tenant/Server ID (Required)."
+								},
+								{
+									"key": "name",
+									"value": "{{PagingGrName}}",
+									"description": "Paging Group Name (Required). (Regex: /^[[:alnum:][:punct:][:space:]]+$/)"
+								},
+								{
+									"key": "number",
+									"value": "{{PagingGrNo}}",
+									"description": "Paging Group Number (Required). (Regex: /^\\\\d{3}$/)"
+								},
+								{
+									"key": "quiet",
+									"value": "",
+									"description": "Quiet Mode (Yes=1, No=0)",
+									"disabled": true
+								},
+								{
+									"key": "destinations",
+									"value": "",
+									"description": "Extensions associated with the Paging Group (comma separated)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paging Groups Edit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"        // Check that the id property exists and is a number",
+									"        pm.expect(responseBody).to.have.property('id').that.is.a('number');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.paging_group.edit&server={{Srv/Tenant-ID}}&id={{PagingGrID}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.paging_group.edit"
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Tenant/Server ID. (Required)"
+								},
+								{
+									"key": "id",
+									"value": "{{PagingGrID}}",
+									"description": "Paging Group ID. (Required)"
+								},
+								{
+									"key": "name",
+									"value": "",
+									"description": "Paging Group Name (Required). (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+									"disabled": true
+								},
+								{
+									"key": "number",
+									"value": "",
+									"description": "Paging Group Number (Required). (Regex: /^\\\\d{3}$/)",
+									"disabled": true
+								},
+								{
+									"key": "quiet",
+									"value": "",
+									"description": "Quiet Mode (Yes=1, No=0)",
+									"disabled": true
+								},
+								{
+									"key": "destinations",
+									"value": "",
+									"description": "Extensions associated with the Paging Group (comma separated)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paging Groups Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure and content",
+									"    pm.test('Response Validation', function () {",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.paging_group.delete&server={{Srv/Tenant-ID}}&id={{PagingGrID}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.paging_group.delete"
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Tenant/Server ID. (Required)"
+								},
+								{
+									"key": "id",
+									"value": "{{PagingGrID}}",
+									"description": "Paging Group ID. (Required)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Supported Methods:\n\n`list` - List Paging Groups\n\n`add` - Add Paging Group\n\n`edit` - Edit Paging Group\n\n`delete` - Delete Paging Group"
 		}
 	],
 	"event": [
