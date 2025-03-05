@@ -63,11 +63,14 @@ The requests are organized into the following folders with supported methods:
     - billing_info - Extension Billing Info (deprecated and will be soon replaced with call_rating_info)
     - call_rating - Extension Call Rating
     - call_rating_info - Extension Call Rating Info
+    - sms_rating_info - Extension SMS Rating Info
     - slaves - Returns all slaves extension for supplied master extension
     - billing_history - Billing History (deprecated and will be soon replaced with call_rating_history)
     - call_rating_history - Call Rating History
     - es - Extension Enhanced Services
+    - es.states - Extension Enhanced Services States
     - reset_inclusive_minutes - Reset Inclusive Minutes
+    - reset_inclusive_messages - Reset Inclusive Messages
     - voicemail.delete - Delete Extension Voicemails
     - additional_macs - Additional MAC Addresses
     - editions_modules - Editions & Modules
@@ -77,6 +80,7 @@ The requests are organized into the following folders with supported methods:
     - configuration - Trunk Configuration
     - add - Add new Trunk
     - edit - Edit existing Trunk
+    - delete - Delete existing Trunk
     - providers - List Trunk Providers
 
 - SMS:
@@ -136,6 +140,10 @@ The requests are organized into the following folders with supported methods:
 - CDRs:
     - download - Download CDRs
     - billamount - Returns the sum of billing amounts
+    - mos - Returns detailed MOS data
+ 
+- Transcription:
+    - get - Get information about specific transcription
 
 - Archiving:
     - list - Listing Archives
@@ -173,6 +181,8 @@ The requests are organized into the following folders with supported methods:
 - Service plans:
     - list - List Service Plans
     - rates - List Service Plan Rates
+    - sms_rates.list - List Service Plan SMS Rates
+    - sms_rates.edit - Edit Service Plan SMS Rates
 
 - Destinations:
     - list - List Destinations
@@ -197,6 +207,7 @@ The requests are organized into the following folders with supported methods:
 - Monitor:
     - list - List Monitor extensions
     - live_calls - List Live calls
+    - trunks - List trunks infromation
 
 - Departments:
     - list- List Destinations
@@ -206,6 +217,13 @@ The requests are organized into the following folders with supported methods:
     - stop - Stop call recording for a specific extension
     - pause - Pause call recording for a specific extension
     - unpause - Unpause call recording for a specific extension
+
+- Paging Groups:
+    - list - List Paging Groups
+    - add - Add Paging Group
+    - edit - Edit Paging Group
+    - delete - Delete Paging Group
+
 
 Each folder includes an overview window in Postman that details the methods supported for the specific feature and describes each request. Some folders may also contain additional subfolders for more straightforward navigation. For example, the SMS folder is divided into multiple subfolders, where we have the Adding SMS Trunks subfolder, which represents an Add method. This folder also contains subfolders for each SP. The same goes for the Editing SMS trunks.
 
