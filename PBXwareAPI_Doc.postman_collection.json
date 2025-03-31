@@ -972,13 +972,19 @@
 										{
 											"key": "billing",
 											"value": "",
-											"description": "Call Rating (Yes=1, No=0) (deprecated and will be soon replaced with call_rating)",
+											"description": "Billing (Yes=1, No=0) (deprecated and will be soon replaced with call_rating)",
 											"disabled": true
 										},
 										{
 											"key": "call_rating",
 											"value": "",
 											"description": "Call Rating (Yes=1, No=0)",
+											"disabled": true
+										},
+										{
+											"key": "sms_rating",
+											"value": "",
+											"description": "SMS Rating (Yes=1, No=0)",
 											"disabled": true
 										},
 										{
@@ -1026,13 +1032,13 @@
 										{
 											"key": "incoming_dialoptions",
 											"value": "",
-											"description": "(Regex: /^[0tTr]+$/)",
+											"description": "Incoming Dial Options. (Regex: /^[0tTr]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "outgoing_dialoptions",
 											"value": "",
-											"description": "(Regex: /^[tTr]+$/)",
+											"description": "Outgoing Dial Options. (Regex: /^[tTr]+$/)",
 											"disabled": true
 										},
 										{
@@ -1081,6 +1087,12 @@
 											"key": "macaddress",
 											"value": "",
 											"description": "User Agent device MAC address. (Regex: /^[0-9a-fA-F]{12}$/)",
+											"disabled": true
+										},
+										{
+											"key": "sn",
+											"value": "",
+											"description": "User Agent device Serial Number. (Regex: /^[0-9a-zA-Z]{1,50}$/).",
 											"disabled": true
 										},
 										{
@@ -1198,6 +1210,12 @@
 											"disabled": true
 										},
 										{
+											"key": "rating_info_osc",
+											"value": "",
+											"description": "Show Call Rating Info in OSC. (Yes=1, No=0).",
+											"disabled": true
+										},
+										{
 											"key": "notification_email",
 											"value": "",
 											"description": "(Regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]+$/)",
@@ -1218,19 +1236,19 @@
 										{
 											"key": "webrtc",
 											"value": "",
-											"description": "(Regex: /^(1|0|2)$/)",
+											"description": "WebRTC Enabled. (Regex: /^(1|0|2)$/)",
 											"disabled": true
 										},
 										{
 											"key": "defaultip",
 											"value": "",
-											"description": "(Regex: /^\\\\d{1,3}.\\\\d{1,3}.\\\\d{1,3}.\\\\d{1,3}$/)",
+											"description": "Default IP. (Regex: /^\\\\d{1,3}.\\\\d{1,3}.\\\\d{1,3}.\\\\d{1,3}$/)",
 											"disabled": true
 										},
 										{
 											"key": "max_contacts",
 											"value": "",
-											"description": "(Regex: /^\\\\d{1,2}$/)",
+											"description": "Max Contacts. (Regex: /^\\\\d{1,2}$/)",
 											"disabled": true
 										},
 										{
@@ -1260,13 +1278,13 @@
 										{
 											"key": "ringtoneforlocalcalls",
 											"value": "",
-											"description": "(Regex: /^[a-zA-Z0-9._-]+$/)",
+											"description": "Ringtone for Local calls. (Regex: /^[a-zA-Z0-9._-]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "ringtonefortransferredcalls",
 											"value": "",
-											"description": "(Regex: /^[a-zA-Z0-9._-]+$/)",
+											"description": "Ringtone for Transferred calls. (Regex: /^[a-zA-Z0-9._-]+$/)",
 											"disabled": true
 										},
 										{
@@ -1314,67 +1332,61 @@
 										{
 											"key": "pai_header",
 											"value": "",
-											"description": "(Regex: /^\\\\w{1,64}$/)",
+											"description": "Send PAI header. (Regex: /^\\\\w{1,64}$/)",
 											"disabled": true
 										},
 										{
 											"key": "callgroup",
 											"value": "",
-											"description": "(Regex: /^([0-9]|[1-5][0-9]|6[0-3])(,([0-9]|[1-5][0-9]|6[0-3]))*$/)",
+											"description": "Call Group. (Regex: /^([0-9]|[1-5][0-9]|6[0-3])(,([0-9]|[1-5][0-9]|6[0-3]))*$/)",
 											"disabled": true
 										},
 										{
 											"key": "pickupgroup",
 											"value": "",
-											"description": "(Regex: /^([0-9]|[1-5][0-9]|6[0-3])(,([0-9]|[1-5][0-9]|6[0-3]))*$/)",
+											"description": "Pickup Group. (Regex: /^([0-9]|[1-5][0-9]|6[0-3])(,([0-9]|[1-5][0-9]|6[0-3]))*$/)",
 											"disabled": true
 										},
 										{
 											"key": "primary_trunk",
 											"value": "",
-											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+											"description": "Primary Trunk. (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "secondary_trunk",
 											"value": "",
-											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+											"description": "Secondary Trunk. (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "tertiary_trunk",
 											"value": "",
-											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+											"description": "Tertiary Trunk. (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "primary_emerg_trunk",
 											"value": "",
-											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+											"description": "Primary Emergency Trunk. (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "secondary_emerg_trunk",
 											"value": "",
-											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+											"description": "Secondary Emergency Trunk. (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "tertiary_emerg_trunk",
 											"value": "",
-											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
-											"disabled": true
-										},
-										{
-											"key": "override_lcr",
-											"value": "",
-											"description": "Override LCR (Yes/No/NotSet). (Regex: /^(1|0|2)$/).",
+											"description": "Tertiary Emergency Trunk. (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "busylevel",
 											"value": "",
-											"description": "(Regex: /^\\\\d{1,2}$/)",
+											"description": "Busy level. (Regex: /^\\\\d{1,2}$/)",
 											"disabled": true
 										},
 										{
@@ -1404,7 +1416,7 @@
 										{
 											"key": "vmailpager",
 											"value": "",
-											"description": "(Regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]+$/)",
+											"description": "Pager e-mail. (Regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]+$/)",
 											"disabled": true
 										},
 										{
@@ -1416,7 +1428,7 @@
 										{
 											"key": "vmailskippin",
 											"value": "",
-											"description": "(Yes=1, No=0, Not Set=2)",
+											"description": "Skip PIN Prompt. (Yes=1, No=0, Not Set=2)",
 											"disabled": true
 										},
 										{
@@ -1506,7 +1518,7 @@
 										{
 											"key": "areacode",
 											"value": "",
-											"description": "(Regex: /^\\\\d{1,3}$/)",
+											"description": "Area Code. (Regex: /^\\\\d{1,3}$/)",
 											"disabled": true
 										},
 										{
@@ -1552,9 +1564,39 @@
 											"disabled": true
 										},
 										{
+											"key": "disable_fax_for_app",
+											"value": "",
+											"description": "Disable FAX for gloCOM (Yes=1, No=0, NotSet = 2)",
+											"disabled": true
+										},
+										{
+											"key": "disable_my_dialer_for_app",
+											"value": "",
+											"description": "Disable Personal Dialer for gloCOM (Yes=1, No =0, NotSet = 2)",
+											"disabled": true
+										},
+										{
 											"key": "app_default_client_phone",
 											"value": "",
 											"description": "Default Client Phone. (Regex: ^(|softphone|deskphone)$/)",
+											"disabled": true
+										},
+										{
+											"key": "app_hide_meeting_icon",
+											"value": "",
+											"description": "Hide App Meeting Icon (Yes=1, No=0)",
+											"disabled": true
+										},
+										{
+											"key": "max_connected_apps",
+											"value": "",
+											"description": "Max Connected Apps. (Regex: /^\\\\d{1,2}$/)",
+											"disabled": true
+										},
+										{
+											"key": "ms_teams_presence_sync",
+											"value": "",
+											"description": "Enable MS Teams Presence Sync. (Regex: /^(1|0|2)$/)",
 											"disabled": true
 										},
 										{
@@ -1570,21 +1612,9 @@
 											"disabled": true
 										},
 										{
-											"key": "rating_info_osc",
+											"key": "override_lcr",
 											"value": "",
-											"description": "Show Call Rating Info in OSC. (Yes=1, No=0).",
-											"disabled": true
-										},
-										{
-											"key": "disable_fax_for_app",
-											"value": "",
-											"description": "Disable FAX for gloCOM (Yes=1, No=0, NotSet = 2)",
-											"disabled": true
-										},
-										{
-											"key": "disable_my_dialer_for_app",
-											"value": "",
-											"description": "Disable Personal Dialer for gloCOM (Yes=1, No =0, NotSet = 2)",
+											"description": "Override LCR (Yes/No/NotSet). (Regex: /^(1|0|2)$/).",
 											"disabled": true
 										}
 									]
@@ -1831,6 +1861,12 @@
 											"disabled": true
 										},
 										{
+											"key": "sms_rating",
+											"value": "",
+											"description": "SMS Rating (Yes=1, No=0)",
+											"disabled": true
+										},
+										{
 											"key": "creditlimit",
 											"value": "",
 											"description": "Credit limit (number, 12 digits max, required if Billing/Call_Rating=1)",
@@ -1875,13 +1911,13 @@
 										{
 											"key": "incoming_dialoptions",
 											"value": "",
-											"description": "(Regex: /^[0tTr]+$/)",
+											"description": "Incoming Dial Options. (Regex: /^[0tTr]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "outgoing_dialoptions",
 											"value": "",
-											"description": "(Regex: /^[tTr]+$/)",
+											"description": "Outgoing Dial Options. (Regex: /^[tTr]+$/)",
 											"disabled": true
 										},
 										{
@@ -1930,6 +1966,12 @@
 											"key": "macaddress",
 											"value": "",
 											"description": "User Agent device MAC address. (Regex: /^[0-9a-fA-F]{12}$/)",
+											"disabled": true
+										},
+										{
+											"key": "sn",
+											"value": "",
+											"description": "User Agent device Serial Number. (Regex: /^[0-9a-zA-Z]{1,50}$/).",
 											"disabled": true
 										},
 										{
@@ -2047,6 +2089,12 @@
 											"disabled": true
 										},
 										{
+											"key": "rating_info_osc",
+											"value": "",
+											"description": "Show Call Rating Info in OSC. (Yes=1, No=0).",
+											"disabled": true
+										},
+										{
 											"key": "notification_email",
 											"value": "",
 											"description": "(Regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]+$/)",
@@ -2067,19 +2115,19 @@
 										{
 											"key": "webrtc",
 											"value": "",
-											"description": "(Regex: /^(1|0|2)$/)",
+											"description": "WebRTC Enabled. (Regex: /^(1|0|2)$/)",
 											"disabled": true
 										},
 										{
 											"key": "defaultip",
 											"value": "",
-											"description": "(Regex: /^\\\\d{1,3}.\\\\d{1,3}.\\\\d{1,3}.\\\\d{1,3}$/)",
+											"description": "Default IP. (Regex: /^\\\\d{1,3}.\\\\d{1,3}.\\\\d{1,3}.\\\\d{1,3}$/)",
 											"disabled": true
 										},
 										{
 											"key": "max_contacts",
 											"value": "",
-											"description": "(Regex: /^\\\\d{1,2}$/)",
+											"description": "Max Contacts. (Regex: /^\\\\d{1,2}$/)",
 											"disabled": true
 										},
 										{
@@ -2109,13 +2157,13 @@
 										{
 											"key": "ringtoneforlocalcalls",
 											"value": "",
-											"description": "(Regex: /^[a-zA-Z0-9._-]+$/)",
+											"description": "Ringtone for Local calls. (Regex: /^[a-zA-Z0-9._-]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "ringtonefortransferredcalls",
 											"value": "",
-											"description": "(Regex: /^[a-zA-Z0-9._-]+$/)",
+											"description": "Ringtone for Transferred calls. (Regex: /^[a-zA-Z0-9._-]+$/)",
 											"disabled": true
 										},
 										{
@@ -2163,67 +2211,61 @@
 										{
 											"key": "pai_header",
 											"value": "",
-											"description": "(Regex: /^\\\\w{1,64}$/)",
+											"description": "Send PAI header. (Regex: /^\\\\w{1,64}$/)",
 											"disabled": true
 										},
 										{
 											"key": "callgroup",
 											"value": "",
-											"description": "(Regex: /^([0-9]|[1-5][0-9]|6[0-3])(,([0-9]|[1-5][0-9]|6[0-3]))*$/)",
+											"description": "Call Group. (Regex: /^([0-9]|[1-5][0-9]|6[0-3])(,([0-9]|[1-5][0-9]|6[0-3]))*$/)",
 											"disabled": true
 										},
 										{
 											"key": "pickupgroup",
 											"value": "",
-											"description": "(Regex: /^([0-9]|[1-5][0-9]|6[0-3])(,([0-9]|[1-5][0-9]|6[0-3]))*$/)",
+											"description": "Pickup Group. (Regex: /^([0-9]|[1-5][0-9]|6[0-3])(,([0-9]|[1-5][0-9]|6[0-3]))*$/)",
 											"disabled": true
 										},
 										{
 											"key": "primary_trunk",
 											"value": "",
-											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+											"description": "Primary Trunk. (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "secondary_trunk",
 											"value": "",
-											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+											"description": "Secondary Trunk. (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "tertiary_trunk",
 											"value": "",
-											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+											"description": "Tertiary Trunk. (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "primary_emerg_trunk",
 											"value": "",
-											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+											"description": "Primary Emergency Trunk. (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "secondary_emerg_trunk",
 											"value": "",
-											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
+											"description": "Secondary Emergency Trunk. (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "tertiary_emerg_trunk",
 											"value": "",
-											"description": "(Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
-											"disabled": true
-										},
-										{
-											"key": "override_lcr",
-											"value": "",
-											"description": "Override LCR (Yes/No/NotSet). (Regex: /^(1|0|2)$/).",
+											"description": "Tertiary Emergency Trunk. (Regex: /^[[:alnum:][:punct:][:space:]]+$/)",
 											"disabled": true
 										},
 										{
 											"key": "busylevel",
 											"value": "",
-											"description": "(Regex: /^\\\\d{1,2}$/)",
+											"description": "Busy level. (Regex: /^\\\\d{1,2}$/)",
 											"disabled": true
 										},
 										{
@@ -2253,7 +2295,7 @@
 										{
 											"key": "vmailpager",
 											"value": "",
-											"description": "(Regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]+$/)",
+											"description": "Pager e-mail. (Regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]+$/)",
 											"disabled": true
 										},
 										{
@@ -2355,7 +2397,7 @@
 										{
 											"key": "areacode",
 											"value": "",
-											"description": "(Regex: /^\\\\d{1,3}$/)",
+											"description": "Area Code. (Regex: /^\\\\d{1,3}$/)",
 											"disabled": true
 										},
 										{
@@ -2401,9 +2443,39 @@
 											"disabled": true
 										},
 										{
+											"key": "disable_fax_for_app",
+											"value": "",
+											"description": "Disable FAX for gloCOM (Yes=1, No=0, NotSet = 2)",
+											"disabled": true
+										},
+										{
+											"key": "disable_my_dialer_for_app",
+											"value": "",
+											"description": "Disable Personal Dialer for gloCOM (Yes=1, No =0, NotSet = 2)",
+											"disabled": true
+										},
+										{
 											"key": "app_default_client_phone",
 											"value": "",
 											"description": "Default Client Phone. (Regex: /^(|softphone|deskphone)$/)",
+											"disabled": true
+										},
+										{
+											"key": "app_hide_meeting_icon",
+											"value": "",
+											"description": "Hide App Meeting Icon (Yes=1, No=0)",
+											"disabled": true
+										},
+										{
+											"key": "max_connected_apps",
+											"value": "",
+											"description": "Max Connected Apps. (Regex: /^\\\\d{1,2}$/)",
+											"disabled": true
+										},
+										{
+											"key": "ms_teams_presence_sync",
+											"value": "",
+											"description": "Enable MS Teams Presence Sync. (Regex: /^(1|0|2)$/)",
 											"disabled": true
 										},
 										{
@@ -2419,21 +2491,9 @@
 											"disabled": true
 										},
 										{
-											"key": "rating_info_osc",
+											"key": "override_lcr",
 											"value": "",
-											"description": "Show Call Rating Info in OSC. (Yes=1, No=0).",
-											"disabled": true
-										},
-										{
-											"key": "disable_fax_for_app",
-											"value": "",
-											"description": "Disable FAX for gloCOM (Yes=1, No=0, NotSet = 2)",
-											"disabled": true
-										},
-										{
-											"key": "disable_my_dialer_for_app",
-											"value": "",
-											"description": "Disable Personal Dialer for gloCOM (Yes=1, No =0, NotSet = 2)",
+											"description": "Override LCR (Yes/No/NotSet). (Regex: /^(1|0|2)$/).",
 											"disabled": true
 										}
 									]
@@ -2627,7 +2687,7 @@
 					"description": "Credit/Debit Balance"
 				},
 				{
-					"name": "Reset Inclusive Minutes",
+					"name": "Reset Inclusive Minutes/Messages",
 					"item": [
 						{
 							"name": "Reset Inclusive Minutes",
@@ -2790,7 +2850,7 @@
 							"response": []
 						}
 					],
-					"description": "Reset Inclusive Minutes"
+					"description": "Reset Inclusive Minutes\n\nReset Inclusive Messages"
 				},
 				{
 					"name": "Delete Voicemail",
@@ -3652,7 +3712,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.es.callerid.get_osc&server={{Srv/Tenant-ID}}&id={{ExtensionIDs}}",
+											"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.es.callfilters.get_osc&server={{Srv/Tenant-ID}}&id={{ExtensionIDs}}",
 											"protocol": "http",
 											"host": [
 												"{{IP}}"
@@ -3667,7 +3727,7 @@
 												},
 												{
 													"key": "action",
-													"value": "pbxware.ext.es.callerid.get_osc"
+													"value": "pbxware.ext.es.callfilters.get_osc"
 												},
 												{
 													"key": "server",
@@ -14491,6 +14551,88 @@
 					"response": []
 				},
 				{
+					"name": "Extensions SMS Rating Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function() {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the response structure for a single extension",
+									"    pm.test('Response Validation', function() {",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"",
+									"        // Retrieve the single extension key",
+									"        var extId = Object.keys(responseBody)[0];",
+									"        var extData = responseBody[extId];",
+									"",
+									"        pm.expect(extData).to.be.an('object');",
+									"        pm.expect(extData).to.have.property('inclusive_messages').that.is.a('string');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.sms_rating_info&server={{Srv/Tenant-ID}}&id={{ExtensionIDs}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.ext.sms_rating_info"
+								},
+								{
+									"key": "server",
+									"value": "{{Srv/Tenant-ID}}",
+									"description": "Tenant/Server ID. "
+								},
+								{
+									"key": "id",
+									"value": "{{ExtensionIDs}}",
+									"description": "Extension ID. "
+								},
+								{
+									"key": "ext",
+									"value": "{{extension}}",
+									"description": "Extension number. Note: You cannot supply id and ext at the same time!",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Slaves",
 					"event": [
 						{
@@ -14972,7 +15114,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.additional_macs&server={{tenantID}}&id={{ExtensionIDs}}&values&devices&locations&device_addresses",
+							"raw": "https://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.additional_macs&server={{tenantID}}&id={{ExtensionIDs}}&values=&devices=&locations=&device_addresses=",
 							"protocol": "https",
 							"host": [
 								"{{IP}}"
@@ -15206,91 +15348,9 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Extensions SMS Rating Info",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Check for 200 OK response",
-									"pm.test('Status code is 200 OK', function() {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"// Parse the response JSON",
-									"var responseBody = pm.response.json();",
-									"",
-									"// Check if there is an error field in the response",
-									"if ('error' in responseBody) {",
-									"    console.error(\"Test Failed: \" + responseBody.error);",
-									"    pm.test('API Response Error', function() {",
-									"        pm.expect.fail(responseBody.error);",
-									"    });",
-									"} else {",
-									"    // Validate the response structure for a single extension",
-									"    pm.test('Response Validation', function() {",
-									"        pm.expect(responseBody).to.be.an('object');",
-									"",
-									"        // Retrieve the single extension key",
-									"        var extId = Object.keys(responseBody)[0];",
-									"        var extData = responseBody[extId];",
-									"",
-									"        pm.expect(extData).to.be.an('object');",
-									"        pm.expect(extData).to.have.property('inclusive_messages').that.is.a('string');",
-									"    });",
-									"}"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.ext.sms_rating_info&server={{Srv/Tenant-ID}}&id={{ExtensionIDs}}",
-							"protocol": "http",
-							"host": [
-								"{{IP}}"
-							],
-							"path": [
-								"index.php"
-							],
-							"query": [
-								{
-									"key": "apikey",
-									"value": "{{API_Key}}"
-								},
-								{
-									"key": "action",
-									"value": "pbxware.ext.sms_rating_info"
-								},
-								{
-									"key": "server",
-									"value": "{{Srv/Tenant-ID}}",
-									"description": "Tenant/Server ID. "
-								},
-								{
-									"key": "id",
-									"value": "{{ExtensionIDs}}",
-									"description": "Extension ID. "
-								},
-								{
-									"key": "ext",
-									"value": "{{extension}}",
-									"description": "Extension number. Note: You cannot supply id and ext at the same time!",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
 				}
 			],
-			"description": "# Extensions\n\nSupported Methods:\n\n`list` - List Extensions\n\n`configuration` - Configuration of specific extension\n\n`add` - Add Extension\n\n`edit` - Edit Extension\n\n`delete` - Delete Extension\n\n`balance` - Credit/Debit Balance\n\n`billing` - Extension Billing (deprecated and will be soon replaced with call_rating)\n\n`billing_info` - Extension Billing Info (deprecated and will be soon replaced with call_rating_info)\n\n`call_rating` - Extension Call Rating\n\n`call_rating_info` - Extension Call Rating Info\n\n`slaves` - Returns all slaves extension for supplied master extension\n\n`billing_history` - Billing History (deprecated and will be soon replaced with call_rating_history)\n\n`call_rating_history` - Call Rating History\n\n`es` - Extension Enhanced Services\n\n`reset_inclusive_minutes` - Reset Inclusive Minutes\n\n`voicemail.delete` - Delete Extension Voicemails\n\n`additional_macs` - Additional MAC Addresses\n\n`editions_modules` - Editions & Modules"
+			"description": "# Extensions\n\nSupported Methods:\n\n`list` - List Extensions\n\n`configuration` - Configuration of specific extension\n\n`add` - Add Extension\n\n`edit` - Edit Extension\n\n`delete` - Delete Extension\n\n`balance` - Credit/Debit Balance\n\n`billing` - Extension Billing (deprecated and will be soon replaced with call_rating)\n\n`billing_info` - Extension Billing Info (deprecated and will be soon replaced with call_rating_info)\n\n`call_rating` - Extension Call Rating\n\n`call_rating_info` - Extension Call Rating Info\n\n`sms_rating_info` - Extension SMS Rating Info\n\n`slaves` - Returns all slaves extension for supplied master extension\n\n`billing_history` - Billing History (deprecated and will be soon replaced with call_rating_history)\n\n`call_rating_history` - Call Rating History\n\n`es` - Extension Enhanced Services\n\n`es.states` - Extension Enhanced Services States\n\n`reset_inclusive_minutes` - Reset Inclusive Minutes\n\n`reset_inclusive_messages` - Reset Inclusive Messages\n\n`voicemail.delete` - Delete Extension Voicemails\n\n`additional_macs` - Additional MAC Addresses\n\n`editions_modules` - Editions & Modules"
 		},
 		{
 			"name": "Trunks",
@@ -15346,7 +15406,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.trunk.add&server=1&name={{TrunkName}}&provider_id={{ProviderID}}&type={{TrunkType}}&dtmfmode={{TrunkDTMFmode}}&status={{TrunkStatus}}&country={{Country}}&national={{NationalCode}}&international={{InternationalCode}}&emerg_trunk={{EmergTrunk}}&host={{TrunkHost}}&username={{TrunkUserName}}&insecure={{TrunkInsecure}}&looserouting={{TrunkLooseRouting}}&incominglimit={{TrunkIncomingLimit}}&outgoinglimit={{TrunkOutgoingLimit}}&busylevel={{TrunkBusyLevel}}&codecs={{TrunkCodecs}}&codecs_ptime={{TrunkCodecsPrimeTime}}",
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.trunk.add&server=1&name={{TrunkName}}&provider_id={{ProviderID}}&type={{TrunkType}}&dtmfmode={{TrunkDTMFmode}}&status={{TrunkStatus}}&country={{Country}}&national={{NationalCode}}&international={{InternationalCode}}&host={{TrunkHost}}&username={{TrunkUserName}}&insecure={{TrunkInsecure}}&looserouting={{TrunkLooseRouting}}&incominglimit={{TrunkIncomingLimit}}&outgoinglimit={{TrunkOutgoingLimit}}&codecs={{TrunkCodecs}}&codecs_ptime={{TrunkCodecsPrimeTime}}",
 							"protocol": "http",
 							"host": [
 								"{{IP}}"
@@ -15411,7 +15471,8 @@
 								{
 									"key": "emerg_trunk",
 									"value": "{{EmergTrunk}}",
-									"description": "Emergency trunk (Required). (Regex: /^(yes|no|1|0)$/)"
+									"description": "Emergency trunk (Required for CC). (Regex: /^(yes|no|1|0)$/)",
+									"disabled": true
 								},
 								{
 									"key": "host",
@@ -15466,11 +15527,6 @@
 									"key": "outgoinglimit",
 									"value": "{{TrunkOutgoingLimit}}",
 									"description": "Outgoing limit (Required). (Regex: /^\\\\d{1,10}$/)"
-								},
-								{
-									"key": "busylevel",
-									"value": "{{TrunkBusyLevel}}",
-									"description": "Busy level (Required). (Regex: /^\\\\d{1,10}$/)"
 								},
 								{
 									"key": "codecs",
@@ -15669,6 +15725,12 @@
 									"disabled": true
 								},
 								{
+									"key": "emerg_location_header",
+									"value": "",
+									"description": "Emergency Location Header. (Regex: /^[\\\\w\\\\-,]{1,100}$/)",
+									"disabled": true
+								},
+								{
 									"key": "allow_es_callerid",
 									"value": "",
 									"description": "Allow enhanced services callerid.  (Regex: /^(yes|no|1|0)$/)",
@@ -15702,12 +15764,6 @@
 									"key": "prefix_emerg",
 									"value": "",
 									"description": "Set Prefix for Emergency Calls. Regex: /^(yes|no)$/",
-									"disabled": true
-								},
-								{
-									"key": "emerg_location_header",
-									"value": null,
-									"description": "Emergency Location Header. (Regex: /^[\\\\w\\\\-,]{1,100}$/)",
 									"disabled": true
 								}
 							]
@@ -15891,12 +15947,6 @@
 									"key": "outgoinglimit",
 									"value": "",
 									"description": "Outgoing limit. (Regex: /^\\\\d{1,10}$/)",
-									"disabled": true
-								},
-								{
-									"key": "busylevel",
-									"value": "",
-									"description": "Busy level. (Regex: /^\\\\d{1,10}$/)",
 									"disabled": true
 								},
 								{
@@ -16098,6 +16148,12 @@
 									"disabled": true
 								},
 								{
+									"key": "emerg_location_header",
+									"value": "",
+									"description": "Emergency Location Header. (Regex: /^[\\\\w\\\\-,]{1,100}$/)",
+									"disabled": true
+								},
+								{
 									"key": "allow_es_callerid",
 									"value": "",
 									"description": "Allow enhanced services callerid. (Regex: /^(yes|no|1|0)$/)",
@@ -16131,12 +16187,6 @@
 									"key": "prefix_emerg",
 									"value": "",
 									"description": "Set Prefix for Emergency Calls. Regex: /^(yes|no)$/",
-									"disabled": true
-								},
-								{
-									"key": "emerg_location_header",
-									"value": null,
-									"description": "Emergency Location Header. (Regex: /^[\\\\w\\\\-,]{1,100}$/)",
 									"disabled": true
 								}
 							]
@@ -16498,7 +16548,8 @@
 								},
 								{
 									"key": "id",
-									"value": "{{TrunkIDs}}"
+									"value": "{{TrunkIDs}}",
+									"description": "ID of a trunk (Required). (Regex: /^[a-zA-Z0-9_-]+$/)"
 								}
 							]
 						}
@@ -16506,7 +16557,7 @@
 					"response": []
 				}
 			],
-			"description": "# Trunks\n\nSupported Methods:\n\n`list` - List Trunks\n\n`configuration` - Trunk Configuration\n\n`add` - Add new Trunk\n\n`edit` - Edit existing Trunk\n\n`providers` - List Trunk Providers"
+			"description": "# Trunks\n\nSupported Methods:\n\n`list` - List Trunks\n\n`add` - Add new Trunk\n\n`edit` - Edit existing Trunk\n\n`delete` - Delete existing Trunk\n\n`configuration` - Trunk Configuration\n\n`providers` - List Trunk Providers"
 		},
 		{
 			"name": "SMS",
@@ -16562,7 +16613,7 @@
 												"method": "GET",
 												"header": [],
 												"url": {
-													"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.sms.trunks.add&enabled={{SMSTrunkEnabled}}&name={{SMSTrunkName}}&provider={{SMSTrunkProvider}}&api_key={{TelnyxAPI}}&public_key={{TelnyxPublicKey}}&messaging_profile_id={{TelnyxProfileID}}",
+													"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.sms.trunks.add&enabled={{SMSTrunkEnabled}}&name={{SMSTrunkName}}&provider=telnyx&api_key={{TelnyxAPI}}&public_key={{TelnyxPublicKey}}&messaging_profile_id={{TelnyxProfileID}}",
 													"protocol": "http",
 													"host": [
 														"{{IP}}"
@@ -16592,8 +16643,14 @@
 														},
 														{
 															"key": "provider",
-															"value": "{{SMSTrunkProvider}}",
+															"value": "telnyx",
 															"description": "SMS Trunk Provider (telnyx, bandwidth, twilio, vi, ozsms) (Required)"
+														},
+														{
+															"key": "national_prefix",
+															"value": "",
+															"description": "SMS Trunk national prefix (without + prefix)",
+															"disabled": true
 														},
 														{
 															"key": "description",
@@ -16669,7 +16726,7 @@
 												"method": "GET",
 												"header": [],
 												"url": {
-													"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.sms.trunks.add&enabled={{SMSTrunkEnabled}}&name={{SMSTrunkName}}&provider={{SMSTrunkProvider}}&username={{BandwithUserName}}&password={{BandwithPassword}}&user_id={{BandwithUserID}}&app_id={{BandwithAppID}}",
+													"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.sms.trunks.add&enabled={{SMSTrunkEnabled}}&name={{SMSTrunkName}}&provider=bandwidth&username={{BandwithUserName}}&password={{BandwithPassword}}&user_id={{BandwithUserID}}&app_id={{BandwithAppID}}",
 													"protocol": "http",
 													"host": [
 														"{{IP}}"
@@ -16698,8 +16755,14 @@
 														},
 														{
 															"key": "provider",
-															"value": "{{SMSTrunkProvider}}",
+															"value": "bandwidth",
 															"description": "SMS Trunk Provider (telnyx, bandwidth, twilio, vi, ozsms) (Required)"
+														},
+														{
+															"key": "national_prefix",
+															"value": "",
+															"description": "SMS Trunk national prefix (without + prefix)",
+															"disabled": true
 														},
 														{
 															"key": "description",
@@ -16780,7 +16843,7 @@
 												"method": "GET",
 												"header": [],
 												"url": {
-													"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.sms.trunks.add&enabled={{SMSTrunkEnabled}}&name={{SMSTrunkName}}&provider={{SMSTrunkProvider}}&account_sid={{TwilioAccSID}}&auth_token={{TwilioAuthToken}}",
+													"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.sms.trunks.add&enabled={{SMSTrunkEnabled}}&name={{SMSTrunkName}}&provider=twilio&account_sid={{TwilioAccSID}}&auth_token={{TwilioAuthToken}}",
 													"protocol": "http",
 													"host": [
 														"{{IP}}"
@@ -16809,12 +16872,18 @@
 														},
 														{
 															"key": "provider",
-															"value": "{{SMSTrunkProvider}}",
+															"value": "twilio",
 															"description": "SMS Trunk Provider (telnyx, bandwidth, twilio, vi, ozsms) (Required)"
 														},
 														{
+															"key": "national_prefix",
+															"value": "",
+															"description": "SMS Trunk national prefix (without + prefix)",
+															"disabled": true
+														},
+														{
 															"key": "description",
-															"value": null,
+															"value": "",
 															"description": "SMS Trunk Description",
 															"disabled": true
 														},
@@ -16881,7 +16950,7 @@
 												"method": "GET",
 												"header": [],
 												"url": {
-													"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.sms.trunks.add&enabled={{SMSTrunkEnabled}}&name={{SMSTrunkName}}&provider={{SMSTrunkProvider}}&secret={{VoipSecret}}&login={{VoipLogin}}",
+													"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.sms.trunks.add&enabled={{SMSTrunkEnabled}}&name={{SMSTrunkName}}&provider=vi&secret={{VoipSecret}}&login={{VoipLogin}}",
 													"protocol": "http",
 													"host": [
 														"{{IP}}"
@@ -16910,12 +16979,18 @@
 														},
 														{
 															"key": "provider",
-															"value": "{{SMSTrunkProvider}}",
+															"value": "vi",
 															"description": "SMS Trunk Provider (telnyx, bandwidth, twilio, vi, ozsms) (Required)"
 														},
 														{
+															"key": "national_prefix",
+															"value": "",
+															"description": "SMS Trunk national prefix (without + prefix)",
+															"disabled": true
+														},
+														{
 															"key": "description",
-															"value": null,
+															"value": "",
 															"description": "SMS Trunk Description",
 															"disabled": true
 														},
@@ -16982,7 +17057,7 @@
 												"method": "GET",
 												"header": [],
 												"url": {
-													"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.sms.trunks.add&enabled={{SMSTrunkEnabled}}&name={{SMSTrunkName}}&provider={{SMSTrunkProvider}}&api_key={{OzAPI}}&username={{OzUserName}}",
+													"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.sms.trunks.add&enabled={{SMSTrunkEnabled}}&name={{SMSTrunkName}}&provider=ozsms&api_key={{OzAPI}}&username={{OzUserName}}",
 													"protocol": "http",
 													"host": [
 														"{{IP}}"
@@ -17011,8 +17086,14 @@
 														},
 														{
 															"key": "provider",
-															"value": "{{SMSTrunkProvider}}",
+															"value": "ozsms",
 															"description": "SMS Trunk Provider (telnyx, bandwidth, twilio, vi, ozsms) (Required)"
+														},
+														{
+															"key": "national_prefix",
+															"value": "",
+															"description": "SMS Trunk national prefix (without + prefix)",
+															"disabled": true
 														},
 														{
 															"key": "description",
@@ -17126,6 +17207,12 @@
 															"key": "provider",
 															"value": "",
 															"description": "SMS Trunk Provider (telnyx, bandwidth, twilio, vi, ozsms) (Required)",
+															"disabled": true
+														},
+														{
+															"key": "national_prefix",
+															"value": "",
+															"description": "SMS Trunk national prefix (without + prefix)",
 															"disabled": true
 														},
 														{
@@ -17243,6 +17330,12 @@
 															"key": "provider",
 															"value": "",
 															"description": "SMS Trunk Provider (telnyx, bandwidth, twilio, vi, ozsms) (Required)",
+															"disabled": true
+														},
+														{
+															"key": "national_prefix",
+															"value": "",
+															"description": "SMS Trunk national prefix (without + prefix)",
 															"disabled": true
 														},
 														{
@@ -17369,6 +17462,12 @@
 															"disabled": true
 														},
 														{
+															"key": "national_prefix",
+															"value": "",
+															"description": "SMS Trunk national prefix (without + prefix)",
+															"disabled": true
+														},
+														{
 															"key": "description",
 															"value": "",
 															"description": "SMS Trunk Description",
@@ -17477,6 +17576,12 @@
 															"key": "provider",
 															"value": "",
 															"description": "SMS Trunk Provider (telnyx, bandwidth, twilio, vi, ozsms) (Required)",
+															"disabled": true
+														},
+														{
+															"key": "national_prefix",
+															"value": "",
+															"description": "SMS Trunk national prefix (without + prefix)",
 															"disabled": true
 														},
 														{
@@ -17591,6 +17696,12 @@
 															"disabled": true
 														},
 														{
+															"key": "national_prefix",
+															"value": "",
+															"description": "SMS Trunk national prefix (without + prefix)",
+															"disabled": true
+														},
+														{
 															"key": "description",
 															"value": "",
 															"description": "SMS Trunk Description",
@@ -17655,11 +17766,13 @@
 											"                pm.expect(trunkData).to.be.an('object');",
 											"                pm.expect(trunkData).to.have.property('name').that.is.a('string');",
 											"                pm.expect(trunkData).to.have.property('provider').that.is.a('string');",
-											"                ",
-											"                // Print the result for each SMS trunk",
-											"                console.log('Trunk ID:', trunkID);",
-											"                console.log('SMS Trunk Name:', trunkData.name);",
-											"                console.log('SMS Provider:', trunkData.provider);",
+											"                pm.expect(trunkData).to.have.property('from').that.is.a('string');",
+											"                pm.expect(trunkData).to.have.property('to').that.is.a('string');",
+											"                pm.expect(trunkData).to.have.property('direction').that.is.a('string');",
+											"                pm.expect(trunkData).to.have.property('date/time').that.is.a('string');",
+											"                pm.expect(trunkData).to.have.property('status').that.is.a('string');",
+											"                pm.expect(trunkData).to.have.property('error').that.is.a('string');",
+											"                pm.expect(trunkData).to.have.property('type').that.is.a('string');",
 											"                ",
 											"                // Push the SMS trunk ID to the array",
 											"                smsTrunkIDs.push(trunkID);",
@@ -17673,7 +17786,8 @@
 											"}",
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -17732,6 +17846,7 @@
 											"        pm.expect(responseBody).to.have.property('enabled').that.is.a('number');",
 											"        pm.expect(responseBody).to.have.property('name').that.is.a('string');",
 											"        pm.expect(responseBody).to.have.property('provider').that.is.a('string');",
+											"        pm.expect(responseBody).to.have.property('national_prefix').that.is.a('string');",
 											"        pm.expect(responseBody).to.have.property('description').that.is.a('string');",
 											"",
 											"        // Commented out validation for provider-specific fields",
@@ -17764,7 +17879,8 @@
 											"}",
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -18144,13 +18260,15 @@
 									"                pm.expect(smsReport).to.have.property('status').that.is.a('string');",
 									"                pm.expect(smsReport).to.have.property('error').that.is.a('string');",
 									"                pm.expect(smsReport).to.have.property('type').that.is.a('string');",
+									"                pm.expect(smsReport).to.have.property('rating').that.satisfies(function(value) { return value === null || typeof value === 'string'; });",
 									"            });",
 									"        }",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -18410,6 +18528,7 @@
 									"                    pm.expect(didData).to.have.property('type').that.is.a('string');",
 									"                    pm.expect(didData).to.have.property('ext').that.is.a('string');",
 									"                    pm.expect(didData).to.have.property('status').that.is.oneOf(['enabled', 'disabled']);",
+									"                    pm.expect(didData).to.have.property('name').that.is.a('string');",
 									"                    pm.expect(didData).to.have.property('sms_enabled').that.is.oneOf([null,'1', '0']);",
 									"",
 									"                    // Validate e164 field",
@@ -18448,7 +18567,8 @@
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -18712,6 +18832,18 @@
 									"value": "",
 									"description": "Preserve Orginal Caller ID. (Regex: /^(1|0)$/)",
 									"disabled": true
+								},
+								{
+									"key": "notify",
+									"value": "",
+									"description": "Notify on Not Answer. (Regex: /^(1|0)$/)",
+									"disabled": true
+								},
+								{
+									"key": "prioritize_clirouting",
+									"value": "",
+									"description": "Prioritize CLI Routing over Operation Times. (Regex: /^(1|0)$/)",
+									"disabled": true
 								}
 							]
 						}
@@ -18945,6 +19077,18 @@
 									"value": "",
 									"description": "Preserve Orginal Caller ID. (Regex: /^(1|0)$/)",
 									"disabled": true
+								},
+								{
+									"key": "notify",
+									"value": "",
+									"description": "Notify on Not Answer. (Regex: /^(1|0)$/)",
+									"disabled": true
+								},
+								{
+									"key": "prioritize_clirouting",
+									"value": "",
+									"description": "Prioritize CLI Routing over Operation Times. (Regex: /^(1|0)$/)",
+									"disabled": true
 								}
 							]
 						}
@@ -19099,7 +19243,7 @@
 								{
 									"key": "dest_type",
 									"value": "{{DestType}}",
-									"description": "Destination type (Required)\n0: Extension\n1: Multi User\n2: Ring Group\n3: IVR\n4: Queues\n5: Voicemail\n6: Remote Access\n7: Conferences\n8: Trunk\n9: Fax to E-mail\n10: Deny Access (No value)\n11: CRM Routing\n"
+									"description": "Destination type (Required)\n0: Extension\n1: Multi User\n2: Ring Group\n3: IVR\n4: Queues\n5: Voicemail\n6: Remote Access\n7: Conferences\n8: Trunk\n9: Fax to E-mail\n10: Deny Access (No value)\n11: CRM Routing"
 								},
 								{
 									"key": "destination",
@@ -19196,7 +19340,7 @@
 								{
 									"key": "dest_type",
 									"value": "{{DestType}}",
-									"description": "Destination type\n0: Extension\n1: Multi User\n2: Ring Group\n3: IVR\n4: Queues\n5: Voicemail\n6: Remote Access\n7: Conferences\n8: Trunk\n9: Fax to E-mail\n10: Deny Access (No value)\n11: CRM Routing\n",
+									"description": "Destination type\n0: Extension\n1: Multi User\n2: Ring Group\n3: IVR\n4: Queues\n5: Voicemail\n6: Remote Access\n7: Conferences\n8: Trunk\n9: Fax to E-mail\n10: Deny Access (No value)\n11: CRM Routing",
 									"disabled": true
 								},
 								{
@@ -19435,11 +19579,11 @@
 									"                    pm.expect(groupData).to.have.property('tenant').that.is.a('string');",
 									"",
 									"                    // Print the result for each DID group",
-									"                    console.log('Group ID:', groupID);",
+									"                    /*console.log('Group ID:', groupID);",
 									"                    console.log('Group Name:', groupData.group_name);",
 									"                    console.log('Max DID:', groupData.max_did);",
 									"                    console.log('Min DID:', groupData.min_did);",
-									"                    console.log('Tenant:', groupData.tenant);",
+									"                    console.log('Tenant:', groupData.tenant);*/",
 									"                });",
 									"            }",
 									"",
@@ -19450,7 +19594,8 @@
 									"    }",
 									"}"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -19792,14 +19937,14 @@
 									"            pm.expect(ivrData).to.have.property('operator').that.is.oneOf([null, 'string']);",
 									"            ",
 									"            // Print the result for each IVR",
-									"            console.log('IVR ID:', ivrID);",
+									"            /*console.log('IVR ID:', ivrID);",
 									"            console.log('IVR Name:', ivrData.name);",
 									"            console.log('IVR Type:', ivrData.type);",
 									"            console.log('IVR Extension:', ivrData.ext);",
 									"            console.log('IVR Keymap Type:', ivrData.keymap.type);",
 									"            console.log('IVR Keymap Value:', ivrData.keymap.value);",
 									"            console.log('IVR Status:', ivrData.status);",
-									"            console.log('IVR Operator:', ivrData.operator);",
+									"            console.log('IVR Operator:', ivrData.operator);*/",
 									"            ",
 									"            // Push the IVR ID to the IVR IDs array",
 									"            ivrIDs.push(ivrID);",
@@ -19811,7 +19956,8 @@
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -20043,12 +20189,13 @@
 								{
 									"key": "keymap[0][type]",
 									"value": "{{Key0Type}}",
-									"description": "An array of IVR keymaps (At least one keymap is required)\nThis argument is to be sent as keymap[key][field]=value\nSupported keys:\n   0-9\n   \\*\nSupported fields:\n   type: Destination Type\n   destination: Destination (can be any valid extension)\nSupported Destination Types:\n   aa: IVR\n   qu: Queue\n   cf: Conference\n   ex: Extension\n   vm: Voicemail\n   rg: Dial Groups and ERGs\n   aatree: IVR tree\nExample:  keymap[\\*][type]=aa&keymap[\\*][destination]=103\n",
+									"description": "Array of IVR keymaps (At least one keymap is required)\n    This argument is to be sent as keymap[key][field]=value\n\n    Supported keys:\n        0-9\n        \\*\n    Supported fields:\n        type: Destination Type\n        destination: Destination\n\n    Supported Destination Types:\n        aa: IVR\n        qu: Queue\n        rg: Dial Groups and Enhanced Ring Groups\n        cf: Conference\n        ex: Extension\n        vm: Voicemail\n        cr: CRM Routing\n        aatree: IVR tree\n        dy: Directory\n        ra: Remote Access\n        fx: Fax to E-mail\n        en: Call External Number\n        ari: ARI Application\n",
 									"disabled": true
 								},
 								{
 									"key": "keymap[0][destination]",
 									"value": "{{Key0Dest}}",
+									"description": "Valid Destination values:\n\n    When dest_type is set to CRM Routing, destination should be a valid CRM Routing Rule id.\n    When dest_type is set to Directory, destination should not be set.\n    When dest_type is set to Remote Access, valid values for destination are agentlogin, destinations and voicemail.\n    When dest_type is set to Call External Number, destination should be an external number.\n    When dest_type is set to ARI Application, destination should be a valid ARI Application id.\n    For all other destination types, destination should be a valid extension.\n\nExample:\n    keymap[\\*][type]=aa&keymap[\\*][destination]=103\n",
 									"disabled": true
 								},
 								{
@@ -20361,12 +20508,13 @@
 								{
 									"key": "keymap[0][type]",
 									"value": "",
-									"description": "Array of IVR keymaps. This argument is to be sent as keymap[key][field]=value\nSupported keys: \"0-9\" and  \"\\*\"\nSupported fields:\n   type: Destination Type\n   destination: Destination (can be any valid extension)\nSupported Destination Types:\n   aa: IVR\n   qu: Queue\n   cf: Conference\n   ex: Extension\n   vm: Voicemail\n   rg: Dial Groups and ERGs",
+									"description": "Array of IVR keymaps (At least one keymap is required)\n    This argument is to be sent as keymap[key][field]=value\n    Supported keys:\n        0-9\n        \\*\n    Supported fields:\n        type: Destination Type\n        destination: Destination\n    Supported Destination Types:\n        aa: IVR\n        qu: Queue\n        rg: Dial Groups and Enhanced Ring Groups\n        cf: Conference\n        ex: Extension\n        vm: Voicemail\n        cr: CRM Routing\n        aatree: IVR tree\n        dy: Directory\n        ra: Remote Access\n        fx: Fax to E-mail\n        en: Call External Number\n        ari: ARI Application\n",
 									"disabled": true
 								},
 								{
 									"key": "keymap[0][destination]",
 									"value": "",
+									"description": "Valid Destination values:\n    When dest_type is set to CRM Routing, destination should be a valid CRM Routing Rule id.\n    When dest_type is set to Directory, destination should not be set.\n    When dest_type is set to Remote Access, valid values for destination are agentlogin, destinations and voicemail.\n    When dest_type is set to Call External Number, destination should be an external number.\n    When dest_type is set to ARI Application, destination should be a valid ARI Application id.\n    For all other destination types, destination should be a valid extension.\nExample:\n    keymap[\\*][type]=aa&keymap[\\*][destination]=103",
 									"disabled": true
 								},
 								{
@@ -20607,12 +20755,12 @@
 									"                pm.expect(ringGroupData).to.have.property('last_dest_vm').that.is.oneOf(['yes', 'no']);",
 									"                ",
 									"                // Print the result for each Ring Group",
-									"                console.log('Ring Group ID:', ringGroupID);",
+									"                /*console.log('Ring Group ID:', ringGroupID);",
 									"                console.log('Ring Group Name:', ringGroupData.name);",
 									"                console.log('Ring Group Extension:', ringGroupData.ext);",
 									"                console.log('Ring Group Destinations:', ringGroupData.destinations);",
 									"                console.log('Ring Group Last Destination:', ringGroupData.last_dest);",
-									"                console.log('Ring Group Last Destination is Voicemail:', ringGroupData.last_dest_vm);",
+									"                console.log('Ring Group Last Destination is Voicemail:', ringGroupData.last_dest_vm);*/",
 									"                ",
 									"                // Push the Ring Group ID to the array",
 									"                rgIDs.push(ringGroupID);",
@@ -20626,7 +20774,8 @@
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -20689,13 +20838,14 @@
 									"        pm.expect(responseBody).to.have.property('id').that.is.a('number');",
 									"",
 									"        // Print the success message and ID",
-									"        console.log('Success:', responseBody.success);",
-									"        console.log('Ring Group ID:', responseBody.id);",
+									"        /*console.log('Success:', responseBody.success);",
+									"        console.log('Ring Group ID:', responseBody.id);*/",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -20930,13 +21080,14 @@
 									"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
 									"",
 									"        // Print the success message and ID",
-									"        console.log('Success:', responseBody.success);",
-									"        console.log('Ring Group ID:', responseBody.id);",
+									"        //console.log('Success:', responseBody.success);",
+									"        //console.log('Ring Group ID:', responseBody.id);",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -21288,12 +21439,13 @@
 									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
 									"",
 									"        // Print the success message",
-									"        console.log('Success:', responseBody.success);",
+									"        //console.log('Success:', responseBody.success);",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -21562,7 +21714,7 @@
 								{
 									"key": "ring_strategy",
 									"value": "ringall",
-									"description": "Set the way calls are transferred to ERG members answering the calls. (Regex: /^(ringall|linear|leastrecent|fewestcalls|random|rrmemory|rrordered|wrandom)$/)",
+									"description": "Set the way calls are transferred to ERG members answering the calls. Available values\n\n        ringall\n        linear\n        leastrecent\n        fewestcalls\n        random\n        rrmemory\n        rrordered\n        wrandom\n",
 									"disabled": true
 								},
 								{
@@ -21900,7 +22052,7 @@
 								{
 									"key": "ring_strategy",
 									"value": "linear",
-									"description": "Set the way calls are transferred to ERG members answering the calls. (Regex: /^(ringall|linear|leastrecent|fewestcalls|random|rrmemory|rrordered|wrandom)$/)",
+									"description": "Set the way calls are transferred to ERG members answering the calls. Available values\n\n        ringall\n        linear\n        leastrecent\n        fewestcalls\n        random\n        rrmemory\n        rrordered\n        wrandom\n",
 									"disabled": true
 								},
 								{
@@ -22056,11 +22208,11 @@
 									"                    pm.expect(ergData).to.have.property('members').that.is.an('array');",
 									"",
 									"                    // Print the result for each ERG",
-									"                    console.log('ERG ID:', ergID);",
+									"                    /*console.log('ERG ID:', ergID);",
 									"                    console.log('ERG Name:', ergData.name);",
 									"                    console.log('ERG Number:', ergData.number);",
 									"                    console.log('ERG Strategy:', ergData.strategy);",
-									"                    console.log('ERG Members:', ergData.members);",
+									"                    console.log('ERG Members:', ergData.members);*/",
 									"                });",
 									"            }",
 									"        });",
@@ -22073,7 +22225,8 @@
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -22135,13 +22288,14 @@
 									"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
 									"",
 									"        // Print the success message and ID",
-									"        console.log('Success:', responseBody.success);",
-									"        console.log('ERG ID:', responseBody.id);",
+									"        /*console.log('Success:', responseBody.success);",
+									"        console.log('ERG ID:', responseBody.id);*/",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -22278,7 +22432,7 @@
 							"script": {
 								"exec": [
 									"// Check for 200 OK response",
-									"pm.test('Status code is 200 OK', function () {",
+									"pm.test('Status code is 200 OK', function() {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
@@ -22288,71 +22442,119 @@
 									"// Check if there is an error field in the response",
 									"if ('error' in responseBody) {",
 									"    console.error(\"Test Failed: \" + responseBody.error);",
-									"    pm.test('API Response Error', function () {",
+									"    pm.test('API Response Error', function() {",
 									"        pm.expect.fail(responseBody.error);",
 									"    });",
 									"} else {",
 									"    // Validate the response structure",
-									"    pm.test('Response Validation', function () {",
+									"    pm.test('Response Validation', function() {",
 									"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
 									"        pm.expect(responseBody).to.have.property('next_page').that.is.a('boolean');",
 									"        pm.expect(responseBody).to.have.property('limit').that.is.a('number');",
 									"        pm.expect(responseBody).to.have.property('records').that.is.a('number');",
-									"        pm.expect(responseBody).to.have.property('header');",
+									"        pm.expect(responseBody).to.have.property('header').that.is.an('array');",
 									"        pm.expect(responseBody).to.have.property('csv').that.is.an('array');",
 									"",
-									"        // Check if header is null",
+									"        // Define expected header arrays for each case:",
+									"        var expectedHeaderNoTenantWithMOS = [",
+									"            \"From\",",
+									"            \"To\",",
+									"            \"Date/Time\",",
+									"            \"Total Duration\",",
+									"            \"Rating Duration\",",
+									"            \"Rating Cost\",",
+									"            \"Status\",",
+									"            \"Unique ID\",",
+									"            \"Recording Path\",",
+									"            \"Recording Available\",",
+									"            \"Location Type\",",
+									"            \"MOS\"",
+									"        ];",
+									"        var expectedHeaderNoTenantWithoutMOS = [",
+									"            \"From\",",
+									"            \"To\",",
+									"            \"Date/Time\",",
+									"            \"Total Duration\",",
+									"            \"Rating Duration\",",
+									"            \"Rating Cost\",",
+									"            \"Status\",",
+									"            \"Unique ID\",",
+									"            \"Recording Path\",",
+									"            \"Recording Available\",",
+									"            \"Location Type\"",
+									"        ];",
+									"        var expectedHeaderWithTenantWithMOS = [",
+									"            \"Tenant\",",
+									"            \"From\",",
+									"            \"To\",",
+									"            \"Date/Time\",",
+									"            \"Total Duration\",",
+									"            \"Rating Duration\",",
+									"            \"Rating Cost\",",
+									"            \"Status\",",
+									"            \"Unique ID\",",
+									"            \"Recording Path\",",
+									"            \"Recording Available\",",
+									"            \"Location Type\",",
+									"            \"MOS\"",
+									"        ];",
+									"        var expectedHeaderWithTenantWithoutMOS = [",
+									"            \"Tenant\",",
+									"            \"From\",",
+									"            \"To\",",
+									"            \"Date/Time\",",
+									"            \"Total Duration\",",
+									"            \"Rating Duration\",",
+									"            \"Rating Cost\",",
+									"            \"Status\",",
+									"            \"Unique ID\",",
+									"            \"Recording Path\",",
+									"            \"Recording Available\",",
+									"            \"Location Type\"",
+									"        ];",
+									"",
+									"        // If header is null, handle it:",
 									"        if (responseBody.header === null) {",
 									"            console.log('No Data available for given date/time!');",
-									"            pm.test('No Data available for given date/time!', function () {",
-									"                pm.expect(false).to.be.true; // Mark the test as Pass with a custom message",
+									"            pm.test('No Data available for given date/time!', function() {",
+									"                pm.expect(true).to.be.true; // Pass the test with a custom message",
 									"            });",
 									"        } else {",
-									"            // Header is an array, validate it",
-									"            var expectedHeader = [",
-									"                \"Tenant\",",
-									"                \"From\",",
-									"                \"To\",",
-									"                \"Date/Time\",",
-									"                \"Total Duration\",",
-									"                \"Rating Duration\",",
-									"                \"Rating Cost\",",
-									"                \"Status\",",
-									"                \"ID\",",
-									"                \"Recording Path\",",
-									"                \"Recording Available\",",
-									"                \"Location Type\"",
-									"            ];",
+									"            // Trim all header elements to remove unwanted whitespace",
+									"            var header = responseBody.header.map(function(item) {",
+									"                return item.trim();",
+									"            });",
+									"            console.log(\"Response Header:\", header);",
 									"",
-									"            pm.expect(responseBody.header).to.deep.equal(expectedHeader);",
+									"            // Determine expected header based on presence of \"Tenant\" and length",
+									"            var expectedHeader;",
+									"            if (header[0] === \"Tenant\") {",
+									"                // With Tenant - possible lengths: 13 (with MOS) or 12 (without MOS)",
+									"                if (header.length === 13) {",
+									"                    expectedHeader = expectedHeaderWithTenantWithMOS;",
+									"                } else if (header.length === 12) {",
+									"                    expectedHeader = expectedHeaderWithTenantWithoutMOS;",
+									"                }",
+									"            } else {",
+									"                // Without Tenant - possible lengths: 12 (with MOS) or 11 (without MOS)",
+									"                if (header.length === 12) {",
+									"                    expectedHeader = expectedHeaderNoTenantWithMOS;",
+									"                } else if (header.length === 11) {",
+									"                    expectedHeader = expectedHeaderNoTenantWithoutMOS;",
+									"                }",
+									"            }",
 									"",
-									"            /*",
-									"            // Print the success message",
-									"            console.log('Success:', responseBody.success);",
-									"            console.log('Next Page:', responseBody.next_page);",
-									"            console.log('Limit:', responseBody.limit);",
-									"            console.log('Records:', responseBody.records);",
+									"            // Check that the determined expected header exists",
+									"            pm.expect(expectedHeader, \"Header length did not match any expected format\").to.be.an('array');",
 									"",
-									"            // Loop through records",
-									"            for (var record of responseBody.csv) {",
-									"                console.log('Record:', record);",
-									"                console.log('Tenant:', record[0]);",
-									"                console.log('From:', record[1]);",
-									"                console.log('To:', record[2]);",
-									"                console.log('Date/Time:', record[3]);",
-									"                console.log('Total Duration:', record[4]);",
-									"                console.log('Rating Duration:', record[5]);",
-									"                console.log('Rating Cost:', record[6]);",
-									"                console.log('Status:', record[7]);",
-									"                console.log('ID:', record[8]);",
-									"                console.log('Recording Path:', record[9]);",
-									"            }*/",
+									"            // Compare the actual header to the expected header",
+									"            pm.expect(header).to.deep.equal(expectedHeader);",
 									"        }",
 									"    });",
-									"}",
-									""
+									"}"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -22360,7 +22562,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.cdr.download&start=Sep-27-2022&end=Sep-27-2025",
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.cdr.download&start=Mar-03-2022&end=Mar-03-2025",
 							"protocol": "http",
 							"host": [
 								"{{IP}}"
@@ -22380,7 +22582,7 @@
 								},
 								{
 									"key": "start",
-									"value": "Sep-27-2022",
+									"value": "Mar-03-2022",
 									"description": "Start Date (Required). Format is: mmm-dd-YYYY (eg: Feb-01-2009)"
 								},
 								{
@@ -22391,7 +22593,7 @@
 								},
 								{
 									"key": "end",
-									"value": "Sep-27-2025",
+									"value": "Mar-03-2025",
 									"description": "End Date (Required). Format is: mmm-dd-YYYY (eg: Feb-28-2009)"
 								},
 								{
@@ -22492,12 +22694,13 @@
 									"        pm.expect(responseBody).to.have.property('billamount').that.is.a('string');",
 									"",
 									"        // Print the bill amount",
-									"        console.log('Bill Amount:', responseBody.billamount);",
+									"        //console.log('Bill Amount:', responseBody.billamount);",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -22687,7 +22890,105 @@
 					"response": []
 				}
 			],
-			"description": "# CDRs\n\nSupported Methods:\n\n`download` \\- Download CDRs\n\n`billamount` \\- Returns sum of billing amounts"
+			"description": "# CDRs\n\nSupported Methods:\n\n`download` - Download CDRs\n\n`billamount` - Returns sum of billing amounts\n\n`mos` - Returns detailed MOS data"
+		},
+		{
+			"name": "Transcription",
+			"item": [
+				{
+					"name": "Get Transcription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check for 200 OK response",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Parse the response JSON",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if there is an error field in the response",
+									"if ('error' in responseBody) {",
+									"    console.error(\"Test Failed: \" + responseBody.error);",
+									"    pm.test('API Response Error', function () {",
+									"        pm.expect.fail(responseBody.error);",
+									"    });",
+									"} else {",
+									"    // Validate the transcription response structure and data types",
+									"    pm.test('Response Validation', function () {",
+									"        // Validate top-level response",
+									"        pm.expect(responseBody).to.be.an('object');",
+									"        pm.expect(responseBody).to.have.property('text').that.is.a('string');",
+									"        pm.expect(responseBody).to.have.property('vtt').that.is.an('object');",
+									"        ",
+									"        // Validate VTT object",
+									"        var vtt = responseBody.vtt;",
+									"        pm.expect(vtt).to.have.property('language').that.is.a('string');",
+									"        pm.expect(vtt).to.have.property('duration').that.is.a('number');",
+									"        pm.expect(vtt).to.have.property('words').that.is.an('array');",
+									"        pm.expect(vtt).to.have.property('segments').that.is.an('array');",
+									"        ",
+									"        // Validate each word object in the \"words\" array",
+									"        vtt.words.forEach(function(word) {",
+									"            pm.expect(word).to.be.an('object');",
+									"            pm.expect(word).to.have.property('word').that.is.a('string');",
+									"            pm.expect(word).to.have.property('start').that.is.a('number');",
+									"            pm.expect(word).to.have.property('end').that.is.a('number');",
+									"        });",
+									"        ",
+									"        // Validate each segment object in the \"segments\" array",
+									"        vtt.segments.forEach(function(segment) {",
+									"            pm.expect(segment).to.be.an('object');",
+									"            pm.expect(segment).to.have.property('id').that.is.a('number');",
+									"            pm.expect(segment).to.have.property('seek').that.is.a('number');",
+									"            pm.expect(segment).to.have.property('start').that.is.a('number');",
+									"            pm.expect(segment).to.have.property('end').that.is.a('number');",
+									"            pm.expect(segment).to.have.property('text').that.is.a('string');",
+									"        });",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.transcription.get&uniqueid={{UniqeCallID}}",
+							"protocol": "http",
+							"host": [
+								"{{IP}}"
+							],
+							"path": [
+								"index.php"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "{{API_Key}}"
+								},
+								{
+									"key": "action",
+									"value": "pbxware.transcription.get"
+								},
+								{
+									"key": "uniqueid",
+									"value": "{{UniqeCallID}}",
+									"description": "Unique ID for call. Always must be set. (Required) (Regex: /\\\\b\\\\d+\\\\.\\\\d+\\\\b/)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "# Transcription\n\nSupported Methods:\n\n`get` - Get information about specific transcription"
 		},
 		{
 			"name": "Archiving",
@@ -22880,16 +23181,17 @@
 									"                pm.expect(routeData).to.have.lengthOf(2);",
 									"",
 									"                // Print the result for each route",
-									"                console.log('Route ID:', routeID);",
+									"                /*console.log('Route ID:', routeID);",
 									"                console.log('Route Code:', routeData[0]);",
-									"                console.log('Route Name:', routeData[1]);",
+									"                console.log('Route Name:', routeData[1]);*/",
 									"            });",
 									"        }",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -22954,7 +23256,7 @@
 											"    if (Array.isArray(responseBody) && responseBody.length === 0) {",
 											"        // Handle the case where the response is an empty array",
 											"        pm.test('Empty Response', function () {",
-											"            pm.expect.fail('There is no Operation times defined for given parameters!');",
+											"            pm.expect.fail('There is no Operation times defined for given DID!');",
 											"        });",
 											"    } else {",
 											"        // Validate the response structure",
@@ -23009,7 +23311,8 @@
 											"}",
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -23122,122 +23425,116 @@
 										},
 										{
 											"key": "status",
-											"value": "",
+											"value": "on",
 											"description": "Status of the Operation Times. (Regex: /^(on|off|inherit)$/))",
 											"disabled": true
 										},
 										{
 											"key": "greeting",
-											"value": "",
+											"value": "greeting-default-attendant",
 											"description": "Greeting sound file. (Regex: /^greeting\\\\-([\\\\w\\\\-]+)$/)",
 											"disabled": true
 										},
 										{
 											"key": "default_dest_ext",
-											"value": "",
+											"value": "455",
 											"description": "Default extension to which all calls will be redirected. ((Regex: /^\\\\d+$/))",
 											"disabled": true
 										},
 										{
 											"key": "default_dest_is_vm",
-											"value": "",
+											"value": "yes",
 											"description": "Default extension is Voicemail or not. (Regex: /^(yes|no)$/)",
 											"disabled": true
 										},
 										{
 											"key": "closed_dates_desc[]",
-											"value": "",
+											"value": "Closed",
 											"description": "Ordered descriptions of the closed dates settings",
 											"disabled": true
 										},
 										{
 											"key": "closed_dates_dest[]",
-											"value": "",
+											"value": "454",
 											"description": "Ordered extensions of the closed dates settings",
 											"disabled": true
 										},
 										{
 											"key": "closed_dates_date_from[]",
-											"value": "",
+											"value": "2025-05-01",
 											"description": "Ordered From dates of the closed dates settings. When setting up Closed Dates it is important that dates follow the yyyy-mm-dd format. For example: 2023-02-20",
 											"disabled": true
 										},
 										{
 											"key": "closed_dates_date_to[]",
-											"value": "",
+											"value": "2025-05-01",
 											"description": "Ordered To dates. When setting up Closed Dates it is important that dates follow the yyyy-mm-dd format. For example: 2023-02-20",
 											"disabled": true
 										},
 										{
 											"key": "closed_dates_time_from[]",
-											"value": "",
+											"value": "00:00",
 											"description": "Ordered From time.",
 											"disabled": true
 										},
 										{
 											"key": "closed_dates_time_to[]",
-											"value": "",
+											"value": "23:59",
 											"description": "Ordered To time",
 											"disabled": true
 										},
 										{
 											"key": "custom_destinations_dest[]",
-											"value": "",
+											"value": "453",
 											"description": "Ordered destinations of the custom destinations settings",
 											"disabled": true
 										},
 										{
 											"key": "custom_destinations_is_open[]",
-											"value": "",
+											"value": "yes",
 											"description": "Ordered opened status of the custom destinations settings",
 											"disabled": true
 										},
 										{
 											"key": "custom_destinations_days[]",
-											"value": "",
+											"value": "6,7",
 											"description": "Ordered days in the week of the custom destinations settings",
 											"disabled": true
 										},
 										{
 											"key": "custom_destinations_time_from[]",
-											"value": "",
+											"value": "08:00",
 											"description": "Ordered time from of the custom destinations settings",
 											"disabled": true
 										},
 										{
 											"key": "custom_destinations_time_to[]",
-											"value": "",
+											"value": "17:00",
 											"description": "Ordered time to of the custom destinations settings",
 											"disabled": true
 										},
 										{
 											"key": "open_days_desc[]",
-											"value": "",
+											"value": "Otvoreno",
 											"description": "Ordered description of the open days settings",
 											"disabled": true
 										},
 										{
 											"key": "open_days[]",
-											"value": "",
+											"value": "1,2,3,4,5",
 											"description": "Ordered days in the week of the open days settings",
 											"disabled": true
 										},
 										{
 											"key": "open_days_time_from[]",
-											"value": "",
+											"value": "08:00",
 											"description": "Ordered time from of the open days settings",
 											"disabled": true
 										},
 										{
 											"key": "open_days_time_to[]",
-											"value": "",
+											"value": "17:00",
 											"description": "Ordered time to of the open days settings",
-											"disabled": true
-										},
-										{
-											"key": "pin",
-											"value": "",
-											"description": "PIN number used for Routes Operation Times only",
 											"disabled": true
 										}
 									]
@@ -23276,7 +23573,7 @@
 											"    if (Array.isArray(responseBody) && responseBody.length === 0) {",
 											"        // Handle the case where the response is an empty array",
 											"        pm.test('Empty Response', function () {",
-											"            pm.expect.fail('There is no Operation times defined for given parameters!');",
+											"            pm.expect.fail('There is no Operation times defined for given IVR!');",
 											"        });",
 											"    } else {",
 											"        // Validate the response structure",
@@ -23331,7 +23628,8 @@
 											"}",
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -23376,6 +23674,191 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Set Operation Times",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if there is an error field in the response",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"    // Check for the success message",
+											"    pm.test('Edited Operation Times successfuly!', function () {",
+											"        pm.expect(responseBody).to.be.an('object');",
+											"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.ivr.set&server={{Srv/Tenant-ID}}&id={{IVR-ID}}",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.otimes.ivr.set"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Tenant ID on MT systems"
+										},
+										{
+											"key": "id",
+											"value": "{{IVR-ID}}",
+											"description": "IVR IDs"
+										},
+										{
+											"key": "status",
+											"value": "on",
+											"description": "Status of the Operation Times. (Regex: /^(on|off|inherit)$/))",
+											"disabled": true
+										},
+										{
+											"key": "greeting",
+											"value": "greeting-default-attendant",
+											"description": "Greeting sound file. (Regex: /^greeting\\\\-([\\\\w\\\\-]+)$/)",
+											"disabled": true
+										},
+										{
+											"key": "default_dest_ext",
+											"value": "992",
+											"description": "Default extension to which all calls will be redirected. ((Regex: /^\\\\d+$/))",
+											"disabled": true
+										},
+										{
+											"key": "default_dest_is_vm",
+											"value": "yes",
+											"description": "Default extension is Voicemail or not. (Regex: /^(yes|no)$/)",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_desc[]",
+											"value": "123123",
+											"description": "Ordered descriptions of the closed dates settings",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_dest[]",
+											"value": "994",
+											"description": "Ordered extensions of the closed dates settings",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_date_from[]",
+											"value": "2025-05-01",
+											"description": "Ordered From dates of the closed dates settings. When setting up Closed Dates it is important that dates follow the yyyy-mm-dd format. For example: 2023-02-20",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_date_to[]",
+											"value": "2025-05-01",
+											"description": "Ordered To dates. When setting up Closed Dates it is important that dates follow the yyyy-mm-dd format. For example: 2023-02-20",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_time_from[]",
+											"value": "00:00",
+											"description": "Ordered From time.",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_time_to[]",
+											"value": "23:59",
+											"description": "Ordered To time",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_dest[]",
+											"value": "995",
+											"description": "Ordered destinations of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_is_open[]",
+											"value": "no",
+											"description": "Ordered opened status of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_days[]",
+											"value": "6,7",
+											"description": "Ordered days in the week of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_time_from[]",
+											"value": "00:00",
+											"description": "Ordered time from of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_time_to[]",
+											"value": "23:59",
+											"description": "Ordered time to of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_desc[]",
+											"value": "Otvoreno",
+											"description": "Ordered description of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days[]",
+											"value": "1,2,3,4,5",
+											"description": "Ordered days in the week of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_time_from[]",
+											"value": "08:00",
+											"description": "Ordered time from of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_time_to[]",
+											"value": "17:00",
+											"description": "Ordered time to of the open days settings",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -23384,11 +23867,94 @@
 					"item": [
 						{
 							"name": "Listing Operation Times",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if the response contains an \"error\" field",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"   // Check if the response body is an empty array",
+											"    if (Array.isArray(responseBody) && responseBody.length === 0) {",
+											"        // Handle the case where the response is an empty array",
+											"        pm.test('Empty Response', function () {",
+											"            pm.expect.fail('There is no Operation times defined for given Dial Groupe!');",
+											"        });",
+											"    } else {",
+											"        // Validate the response structure",
+											"        pm.test('Response Validation', function () {",
+											"            pm.expect(responseBody).to.be.an('object');",
+											"",
+											"            // Iterate through the keys (IDs) in the response",
+											"            for (var id in responseBody) {",
+											"                var operationTimes = responseBody[id];",
+											"",
+											"                // Validate specific properties for each operation time",
+											"                pm.expect(operationTimes).to.have.property('status').that.is.oneOf(['on', 'off', 'inherit']);",
+											"                pm.expect(operationTimes).to.have.property('greeting').that.is.a('string');",
+											"                pm.expect(operationTimes).to.have.property('default_dest_ext').that.is.a('string');",
+											"                pm.expect(operationTimes).to.have.property('default_dest_is_vm').that.is.oneOf(['yes', 'no']);",
+											"",
+											"                // Validate the closed dates for each operation time",
+											"                pm.expect(operationTimes).to.have.property('closed_dates').that.is.an('array');",
+											"                operationTimes.closed_dates.forEach(function (closedDate) {",
+											"                    pm.expect(closedDate).to.be.an('object');",
+											"                    pm.expect(closedDate).to.have.property('description').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('destination').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('date_from').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('date_to').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"",
+											"                // Validate the custom destinations for each operation time",
+											"                pm.expect(operationTimes).to.have.property('custom_destinations').that.is.an('array');",
+											"                operationTimes.custom_destinations.forEach(function (customDest) {",
+											"                    pm.expect(customDest).to.be.an('object');",
+											"                    pm.expect(customDest).to.have.property('destination').that.is.a('string');",
+											"                    pm.expect(customDest).to.have.property('is_open_range').that.is.oneOf(['yes', 'no']);",
+											"                    pm.expect(customDest).to.have.property('days').that.is.a('string');",
+											"                    pm.expect(customDest).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(customDest).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"",
+											"                // Validate the open days for each operation time",
+											"                pm.expect(operationTimes).to.have.property('open_days').that.is.an('array');",
+											"                operationTimes.open_days.forEach(function (openDay) {",
+											"                    pm.expect(openDay).to.be.an('object');",
+											"                    pm.expect(openDay).to.have.property('description').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('days').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"            }",
+											"        });",
+											"    }",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.dial_group.list",
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.dial_group.list&server={{Srv/Tenant-ID}}&id={{DialGroupID}}",
 									"protocol": "http",
 									"host": [
 										"{{IP}}"
@@ -23404,6 +23970,207 @@
 										{
 											"key": "action",
 											"value": "pbxware.otimes.dial_group.list"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Request the Operation Times state by destination server ID (used with MT systems in combination with other fields)"
+										},
+										{
+											"key": "id",
+											"value": "{{DialGroupID}}",
+											"description": "Request the Operation Times state by destination ID (most of destionation supports this)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Set Operation Times",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if there is an error field in the response",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"    // Check for the success message",
+											"    pm.test('Edited Operation Times successfuly!', function () {",
+											"        pm.expect(responseBody).to.be.an('object');",
+											"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.dial_group.set&server={{Srv/Tenant-ID}}&id={{DialGroupID}}",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.otimes.dial_group.set"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Tenant ID on MT systems"
+										},
+										{
+											"key": "id",
+											"value": "{{DialGroupID}}",
+											"description": "Dial Group ID"
+										},
+										{
+											"key": "status",
+											"value": "off",
+											"description": "Status of the Operation Times. (Regex: /^(on|off|inherit)$/))",
+											"disabled": true
+										},
+										{
+											"key": "greeting",
+											"value": "greeting-default-attendant",
+											"description": "Greeting sound file. (Regex: /^greeting\\\\-([\\\\w\\\\-]+)$/)",
+											"disabled": true
+										},
+										{
+											"key": "default_dest_ext",
+											"value": "455",
+											"description": "Default extension to which all calls will be redirected. ((Regex: /^\\\\d+$/))",
+											"disabled": true
+										},
+										{
+											"key": "default_dest_is_vm",
+											"value": "no",
+											"description": "Default extension is Voicemail or not. (Regex: /^(yes|no)$/)",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_desc[]",
+											"value": "Description",
+											"description": "Ordered descriptions of the closed dates settings",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_dest[]",
+											"value": "453",
+											"description": "Ordered extensions of the closed dates settings",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_date_from[]",
+											"value": "2025-05-01",
+											"description": "Ordered From dates of the closed dates settings. When setting up Closed Dates it is important that dates follow the yyyy-mm-dd format. For example: 2023-02-20",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_date_to[]",
+											"value": "2025-05-01",
+											"description": "Ordered To dates. When setting up Closed Dates it is important that dates follow the yyyy-mm-dd format. For example: 2023-02-20",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_time_from[]",
+											"value": "00:00",
+											"description": "Ordered From time.",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_time_to[]",
+											"value": "23:59",
+											"description": "Ordered To time",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_dest[]",
+											"value": "455",
+											"description": "Ordered destinations of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_is_open[]",
+											"value": "yes",
+											"description": "Ordered opened status of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_days[]",
+											"value": "5,6,7",
+											"description": "Ordered days in the week of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_time_from[]",
+											"value": "00:00",
+											"description": "Ordered time from of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_time_to[]",
+											"value": "23:59",
+											"description": "Ordered time to of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_desc[]",
+											"value": "Otvoreno",
+											"description": "Ordered description of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days[]",
+											"value": "1,2,3,4",
+											"description": "Ordered days in the week of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_time_from[]",
+											"value": "00:00",
+											"description": "Ordered time from of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_time_to[]",
+											"value": "23:59",
+											"description": "Ordered time to of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "pin",
+											"value": "",
+											"description": "PIN number used for Routes Operation Times only",
+											"disabled": true
 										}
 									]
 								}
@@ -23417,11 +24184,94 @@
 					"item": [
 						{
 							"name": "Listing Operation Times",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if the response contains an \"error\" field",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"   // Check if the response body is an empty array",
+											"    if (Array.isArray(responseBody) && responseBody.length === 0) {",
+											"        // Handle the case where the response is an empty array",
+											"        pm.test('Empty Response', function () {",
+											"            pm.expect.fail('There is no Operation times defined for given Server!');",
+											"        });",
+											"    } else {",
+											"        // Validate the response structure",
+											"        pm.test('Response Validation', function () {",
+											"            pm.expect(responseBody).to.be.an('object');",
+											"",
+											"            // Iterate through the keys (IDs) in the response",
+											"            for (var id in responseBody) {",
+											"                var operationTimes = responseBody[id];",
+											"",
+											"                // Validate specific properties for each operation time",
+											"                pm.expect(operationTimes).to.have.property('status').that.is.oneOf(['on', 'off', 'inherit']);",
+											"                pm.expect(operationTimes).to.have.property('greeting').that.is.a('string');",
+											"                pm.expect(operationTimes).to.have.property('default_dest_ext').that.is.a('string');",
+											"                pm.expect(operationTimes).to.have.property('default_dest_is_vm').that.is.oneOf(['yes', 'no']);",
+											"",
+											"                // Validate the closed dates for each operation time",
+											"                pm.expect(operationTimes).to.have.property('closed_dates').that.is.an('array');",
+											"                operationTimes.closed_dates.forEach(function (closedDate) {",
+											"                    pm.expect(closedDate).to.be.an('object');",
+											"                    pm.expect(closedDate).to.have.property('description').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('destination').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('date_from').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('date_to').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"",
+											"                // Validate the custom destinations for each operation time",
+											"                pm.expect(operationTimes).to.have.property('custom_destinations').that.is.an('array');",
+											"                operationTimes.custom_destinations.forEach(function (customDest) {",
+											"                    pm.expect(customDest).to.be.an('object');",
+											"                    pm.expect(customDest).to.have.property('destination').that.is.a('string');",
+											"                    pm.expect(customDest).to.have.property('is_open_range').that.is.oneOf(['yes', 'no']);",
+											"                    pm.expect(customDest).to.have.property('days').that.is.a('string');",
+											"                    pm.expect(customDest).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(customDest).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"",
+											"                // Validate the open days for each operation time",
+											"                pm.expect(operationTimes).to.have.property('open_days').that.is.an('array');",
+											"                operationTimes.open_days.forEach(function (openDay) {",
+											"                    pm.expect(openDay).to.be.an('object');",
+											"                    pm.expect(openDay).to.have.property('description').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('days').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"            }",
+											"        });",
+											"    }",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.servers.list",
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.servers.list&server={{Srv/Tenant-ID}}",
 									"protocol": "http",
 									"host": [
 										"{{IP}}"
@@ -23437,6 +24287,191 @@
 										{
 											"key": "action",
 											"value": "pbxware.otimes.servers.list"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Request the Operation Times state by destination server ID (used with MT systems in combination with other fields)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Set Operation Times",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if there is an error field in the response",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"    // Check for the success message",
+											"    pm.test('Edited Operation Times successfuly!', function () {",
+											"        pm.expect(responseBody).to.be.an('object');",
+											"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.servers.set&server={{Srv/Tenant-ID}}",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.otimes.servers.set"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Tenant ID on MT systems"
+										},
+										{
+											"key": "status",
+											"value": "off",
+											"description": "Status of the Operation Times. (Regex: /^(on|off|inherit)$/))",
+											"disabled": true
+										},
+										{
+											"key": "greeting",
+											"value": "greeting-default-attendant",
+											"description": "Greeting sound file. (Regex: /^greeting\\\\-([\\\\w\\\\-]+)$/)",
+											"disabled": true
+										},
+										{
+											"key": "default_dest_ext",
+											"value": "951",
+											"description": "Default extension to which all calls will be redirected. ((Regex: /^\\\\d+$/))",
+											"disabled": true
+										},
+										{
+											"key": "default_dest_is_vm",
+											"value": "yes",
+											"description": "Default extension is Voicemail or not. (Regex: /^(yes|no)$/)",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_desc[]",
+											"value": "ClosedDescription",
+											"description": "Ordered descriptions of the closed dates settings",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_dest[]",
+											"value": "952",
+											"description": "Ordered extensions of the closed dates settings",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_date_from[]",
+											"value": "2025-05-01",
+											"description": "Ordered From dates of the closed dates settings. When setting up Closed Dates it is important that dates follow the yyyy-mm-dd format. For example: 2023-02-20",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_date_to[]",
+											"value": "2025-05-01",
+											"description": "Ordered To dates. When setting up Closed Dates it is important that dates follow the yyyy-mm-dd format. For example: 2023-02-20",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_time_from[]",
+											"value": "00:00",
+											"description": "Ordered From time.",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_time_to[]",
+											"value": "23:59",
+											"description": "Ordered To time",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_dest[]",
+											"value": "955",
+											"description": "Ordered destinations of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_is_open[]",
+											"value": "no",
+											"description": "Ordered opened status of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_days[]",
+											"value": "5,6,7",
+											"description": "Ordered days in the week of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_time_from[]",
+											"value": "00:00",
+											"description": "Ordered time from of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_time_to[]",
+											"value": "23:59",
+											"description": "Ordered time to of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_desc[]",
+											"value": "OpenDescription",
+											"description": "Ordered description of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days[]",
+											"value": "1,2,3,4",
+											"description": "Ordered days in the week of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_time_from[]",
+											"value": "08:00",
+											"description": "Ordered time from of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_time_to[]",
+											"value": "17:59",
+											"description": "Ordered time to of the open days settings",
+											"disabled": true
 										}
 									]
 								}
@@ -23450,11 +24485,71 @@
 					"item": [
 						{
 							"name": "Listing Operation Times",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if the response contains an \"error\" field",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"   // Check if the response body is an empty array",
+											"    if (Array.isArray(responseBody) && responseBody.length === 0) {",
+											"        // Handle the case where the response is an empty array",
+											"        pm.test('Empty Response', function () {",
+											"            pm.expect.fail('There is no Operation times defined for given Route!');",
+											"        });",
+											"    } else {",
+											"        // Validate the response structure",
+											"        pm.test('Response Validation', function () {",
+											"            pm.expect(responseBody).to.be.an('object');",
+											"",
+											"            // Iterate through the keys (IDs) in the response",
+											"            for (var id in responseBody) {",
+											"                var operationTimes = responseBody[id];",
+											"",
+											"                // Validate specific properties for each operation time",
+											"                pm.expect(operationTimes).to.have.property('status').that.is.oneOf(['on', 'off', 'inherit']);",
+											"                pm.expect(operationTimes).to.have.property('greeting').that.is.a('string');",
+											"                pm.expect(operationTimes).to.have.property('pin').that.is.a('string');",
+											"               ",
+											"                // Validate the open days for each operation time",
+											"                pm.expect(operationTimes).to.have.property('open_days').that.is.an('array');",
+											"                operationTimes.open_days.forEach(function (openDay) {",
+											"                    pm.expect(openDay).to.be.an('object');",
+											"                    pm.expect(openDay).to.have.property('description').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('days').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"            }",
+											"        });",
+											"    }",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.routes.list",
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.routes.list&server={{Srv/Tenant-ID}}&id={{RouteID}}",
 									"protocol": "http",
 									"host": [
 										"{{IP}}"
@@ -23470,6 +24565,129 @@
 										{
 											"key": "action",
 											"value": "pbxware.otimes.routes.list"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Request the Operation Times state by destination server ID (used with MT systems in combination with other fields)"
+										},
+										{
+											"key": "id",
+											"value": "{{RouteID}}",
+											"description": "Request the Operation Times state by destination ID (most of destionation supports this)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Set Operation Times",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if there is an error field in the response",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"    // Check for the success message",
+											"    pm.test('Edited Operation Times successfuly!', function () {",
+											"        pm.expect(responseBody).to.be.an('object');",
+											"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.routes.set&server={{Srv/Tenant-ID}}&id={{RouteID}}",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.otimes.routes.set"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Request the Operation Times state by destination server ID (used with MT systems in combination with other fields)"
+										},
+										{
+											"key": "id",
+											"value": "{{RouteID}}",
+											"description": "Request the Operation Times state by Route ID (most of destionation supports this)"
+										},
+										{
+											"key": "status",
+											"value": "off",
+											"description": "Status of the Operation Times. (Regex: /^(on|off|inherit)$/))",
+											"disabled": true
+										},
+										{
+											"key": "greeting",
+											"value": "greeting-default-attendant",
+											"description": "Greeting sound file. (Regex: /^greeting\\\\-([\\\\w\\\\-]+)$/)",
+											"disabled": true
+										},
+										{
+											"key": "open_days_desc[]",
+											"value": "OpenDescription",
+											"description": "Ordered description of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days[]",
+											"value": "1,2,3,4,5",
+											"description": "Ordered days in the week of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_time_from[]",
+											"value": "08:00",
+											"description": "Ordered time from of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_time_to[]",
+											"value": "18:00",
+											"description": "Ordered time to of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "pin",
+											"value": "",
+											"description": "PIN number used for Routes Operation Times only",
+											"disabled": true
 										}
 									]
 								}
@@ -23483,11 +24701,94 @@
 					"item": [
 						{
 							"name": "Listing Operation Times",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if the response contains an \"error\" field",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"   // Check if the response body is an empty array",
+											"    if (Array.isArray(responseBody) && responseBody.length === 0) {",
+											"        // Handle the case where the response is an empty array",
+											"        pm.test('Empty Response', function () {",
+											"            pm.expect.fail('There is no Operation times defined for given Queue!');",
+											"        });",
+											"    } else {",
+											"        // Validate the response structure",
+											"        pm.test('Response Validation', function () {",
+											"            pm.expect(responseBody).to.be.an('object');",
+											"",
+											"            // Iterate through the keys (IDs) in the response",
+											"            for (var id in responseBody) {",
+											"                var operationTimes = responseBody[id];",
+											"",
+											"                // Validate specific properties for each operation time",
+											"                pm.expect(operationTimes).to.have.property('status').that.is.oneOf(['on', 'off', 'inherit']);",
+											"                pm.expect(operationTimes).to.have.property('greeting').that.is.a('string');",
+											"                pm.expect(operationTimes).to.have.property('default_dest_ext').that.is.a('string');",
+											"                pm.expect(operationTimes).to.have.property('default_dest_is_vm').that.is.oneOf(['yes', 'no']);",
+											"",
+											"                // Validate the closed dates for each operation time",
+											"                pm.expect(operationTimes).to.have.property('closed_dates').that.is.an('array');",
+											"                operationTimes.closed_dates.forEach(function (closedDate) {",
+											"                    pm.expect(closedDate).to.be.an('object');",
+											"                    pm.expect(closedDate).to.have.property('description').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('destination').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('date_from').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('date_to').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"",
+											"                // Validate the custom destinations for each operation time",
+											"                pm.expect(operationTimes).to.have.property('custom_destinations').that.is.an('array');",
+											"                operationTimes.custom_destinations.forEach(function (customDest) {",
+											"                    pm.expect(customDest).to.be.an('object');",
+											"                    pm.expect(customDest).to.have.property('destination').that.is.a('string');",
+											"                    pm.expect(customDest).to.have.property('is_open_range').that.is.oneOf(['yes', 'no']);",
+											"                    pm.expect(customDest).to.have.property('days').that.is.a('string');",
+											"                    pm.expect(customDest).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(customDest).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"",
+											"                // Validate the open days for each operation time",
+											"                pm.expect(operationTimes).to.have.property('open_days').that.is.an('array');",
+											"                operationTimes.open_days.forEach(function (openDay) {",
+											"                    pm.expect(openDay).to.be.an('object');",
+											"                    pm.expect(openDay).to.have.property('description').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('days').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"            }",
+											"        });",
+											"    }",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.queues.list",
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.queues.list&server={{Srv/Tenant-ID}}&id={{QueueID}}",
 									"protocol": "http",
 									"host": [
 										"{{IP}}"
@@ -23503,6 +24804,201 @@
 										{
 											"key": "action",
 											"value": "pbxware.otimes.queues.list"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Request the Operation Times state by destination server ID (used with MT systems in combination with other fields)"
+										},
+										{
+											"key": "id",
+											"value": "{{QueueID}}",
+											"description": "Request the Operation Times state by Queue ID."
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Set Operation Times",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if there is an error field in the response",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"    // Check for the success message",
+											"    pm.test('Edited Operation Times successfuly!', function () {",
+											"        pm.expect(responseBody).to.be.an('object');",
+											"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.queues.set&server={{Srv/Tenant-ID}}&id={{QueueID}}",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.otimes.queues.set"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Request the Operation Times state by destination server ID (used with MT systems in combination with other fields)"
+										},
+										{
+											"key": "id",
+											"value": "{{QueueID}}",
+											"description": "Request the Operation Times state by Queue ID."
+										},
+										{
+											"key": "status",
+											"value": "inherit",
+											"description": "Status of the Operation Times. (Regex: /^(on|off|inherit)$/))",
+											"disabled": true
+										},
+										{
+											"key": "greeting",
+											"value": "greeting-default-attendant",
+											"description": "Greeting sound file. (Regex: /^greeting\\\\-([\\\\w\\\\-]+)$/)",
+											"disabled": true
+										},
+										{
+											"key": "default_dest_ext",
+											"value": "4005",
+											"description": "Default extension to which all calls will be redirected. ((Regex: /^\\\\d+$/))",
+											"disabled": true
+										},
+										{
+											"key": "default_dest_is_vm",
+											"value": "yes",
+											"description": "Default extension is Voicemail or not. (Regex: /^(yes|no)$/)",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_desc[]",
+											"value": "ClosedDescription",
+											"description": "Ordered descriptions of the closed dates settings",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_dest[]",
+											"value": "4003",
+											"description": "Ordered extensions of the closed dates settings",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_date_from[]",
+											"value": "2025-05-01",
+											"description": "Ordered From dates of the closed dates settings. When setting up Closed Dates it is important that dates follow the yyyy-mm-dd format. For example: 2023-02-20",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_date_to[]",
+											"value": "2025-05-01",
+											"description": "Ordered To dates. When setting up Closed Dates it is important that dates follow the yyyy-mm-dd format. For example: 2023-02-20",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_time_from[]",
+											"value": "00:00",
+											"description": "Ordered From time.",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_time_to[]",
+											"value": "23:59",
+											"description": "Ordered To time",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_dest[]",
+											"value": "4002",
+											"description": "Ordered destinations of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_is_open[]",
+											"value": "yes",
+											"description": "Ordered opened status of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_days[]",
+											"value": "6,7",
+											"description": "Ordered days in the week of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_time_from[]",
+											"value": "00:00",
+											"description": "Ordered time from of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_time_to[]",
+											"value": "23:59",
+											"description": "Ordered time to of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_desc[]",
+											"value": "OpenDescription",
+											"description": "Ordered description of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days[]",
+											"value": "1,2,3,4,5,6",
+											"description": "Ordered days in the week of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_time_from[]",
+											"value": "08:00",
+											"description": "Ordered time from of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_time_to[]",
+											"value": "18:00",
+											"description": "Ordered time to of the open days settings",
+											"disabled": true
 										}
 									]
 								}
@@ -23516,11 +25012,94 @@
 					"item": [
 						{
 							"name": "Listing Operation Times",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if the response contains an \"error\" field",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"   // Check if the response body is an empty array",
+											"    if (Array.isArray(responseBody) && responseBody.length === 0) {",
+											"        // Handle the case where the response is an empty array",
+											"        pm.test('Empty Response', function () {",
+											"            pm.expect.fail('There is no Operation times defined for given ERG!');",
+											"        });",
+											"    } else {",
+											"        // Validate the response structure",
+											"        pm.test('Response Validation', function () {",
+											"            pm.expect(responseBody).to.be.an('object');",
+											"",
+											"            // Iterate through the keys (IDs) in the response",
+											"            for (var id in responseBody) {",
+											"                var operationTimes = responseBody[id];",
+											"",
+											"                // Validate specific properties for each operation time",
+											"                pm.expect(operationTimes).to.have.property('status').that.is.oneOf(['on', 'off', 'inherit']);",
+											"                pm.expect(operationTimes).to.have.property('greeting').that.is.a('string');",
+											"                pm.expect(operationTimes).to.have.property('default_dest_ext').that.is.a('string');",
+											"                pm.expect(operationTimes).to.have.property('default_dest_is_vm').that.is.oneOf(['yes', 'no']);",
+											"",
+											"                // Validate the closed dates for each operation time",
+											"                pm.expect(operationTimes).to.have.property('closed_dates').that.is.an('array');",
+											"                operationTimes.closed_dates.forEach(function (closedDate) {",
+											"                    pm.expect(closedDate).to.be.an('object');",
+											"                    pm.expect(closedDate).to.have.property('description').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('destination').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('date_from').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('date_to').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(closedDate).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"",
+											"                // Validate the custom destinations for each operation time",
+											"                pm.expect(operationTimes).to.have.property('custom_destinations').that.is.an('array');",
+											"                operationTimes.custom_destinations.forEach(function (customDest) {",
+											"                    pm.expect(customDest).to.be.an('object');",
+											"                    pm.expect(customDest).to.have.property('destination').that.is.a('string');",
+											"                    pm.expect(customDest).to.have.property('is_open_range').that.is.oneOf(['yes', 'no']);",
+											"                    pm.expect(customDest).to.have.property('days').that.is.a('string');",
+											"                    pm.expect(customDest).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(customDest).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"",
+											"                // Validate the open days for each operation time",
+											"                pm.expect(operationTimes).to.have.property('open_days').that.is.an('array');",
+											"                operationTimes.open_days.forEach(function (openDay) {",
+											"                    pm.expect(openDay).to.be.an('object');",
+											"                    pm.expect(openDay).to.have.property('description').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('days').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('time_from').that.is.a('string');",
+											"                    pm.expect(openDay).to.have.property('time_to').that.is.a('string');",
+											"                });",
+											"            }",
+											"        });",
+											"    }",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.erg.list&id",
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.erg.list&server={{Srv/Tenant-ID}}&id={{ERGsID}}",
 									"protocol": "http",
 									"host": [
 										"{{IP}}"
@@ -23538,8 +25117,199 @@
 											"value": "pbxware.otimes.erg.list"
 										},
 										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Request the Operation Times state by destination server ID (used with MT systems in combination with other fields)"
+										},
+										{
 											"key": "id",
-											"value": null
+											"value": "{{ERGsID}}",
+											"description": "Request the Operation Times state by ERGr ID."
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Set Operation Times",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Check for 200 OK response",
+											"pm.test('Status code is 200 OK', function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Parse the response JSON",
+											"var responseBody = pm.response.json();",
+											"",
+											"// Check if there is an error field in the response",
+											"if ('error' in responseBody) {",
+											"    console.error(\"Test Failed: \" + responseBody.error);",
+											"    pm.test('API Response Error', function () {",
+											"        pm.expect.fail(responseBody.error);",
+											"    });",
+											"} else {",
+											"    // Check for the success message",
+											"    pm.test('Edited Operation Times successfuly!', function () {",
+											"        pm.expect(responseBody).to.be.an('object');",
+											"        pm.expect(responseBody).to.have.property('success').that.is.a('string');",
+											"    });",
+											"}",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.otimes.erg.set&server={{Srv/Tenant-ID}}&id={{ERGsID}}",
+									"protocol": "http",
+									"host": [
+										"{{IP}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "{{API_Key}}"
+										},
+										{
+											"key": "action",
+											"value": "pbxware.otimes.erg.set"
+										},
+										{
+											"key": "server",
+											"value": "{{Srv/Tenant-ID}}",
+											"description": "Tenant ID on MT systems"
+										},
+										{
+											"key": "id",
+											"value": "{{ERGsID}}",
+											"description": "DID ID to edit."
+										},
+										{
+											"key": "status",
+											"value": "off",
+											"description": "Status of the Operation Times. (Regex: /^(on|off|inherit)$/))",
+											"disabled": true
+										},
+										{
+											"key": "greeting",
+											"value": "greeting-default-attendant",
+											"description": "Greeting sound file. (Regex: /^greeting\\\\-([\\\\w\\\\-]+)$/)",
+											"disabled": true
+										},
+										{
+											"key": "default_dest_ext",
+											"value": "991",
+											"description": "Default extension to which all calls will be redirected. ((Regex: /^\\\\d+$/))",
+											"disabled": true
+										},
+										{
+											"key": "default_dest_is_vm",
+											"value": "yes",
+											"description": "Default extension is Voicemail or not. (Regex: /^(yes|no)$/)",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_desc[]",
+											"value": "ClosedDescription",
+											"description": "Ordered descriptions of the closed dates settings",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_dest[]",
+											"value": "992",
+											"description": "Ordered extensions of the closed dates settings",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_date_from[]",
+											"value": "2025-05-01",
+											"description": "Ordered From dates of the closed dates settings. When setting up Closed Dates it is important that dates follow the yyyy-mm-dd format. For example: 2023-02-20",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_date_to[]",
+											"value": "2025-05-01",
+											"description": "Ordered To dates. When setting up Closed Dates it is important that dates follow the yyyy-mm-dd format. For example: 2023-02-20",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_time_from[]",
+											"value": "00:00",
+											"description": "Ordered From time.",
+											"disabled": true
+										},
+										{
+											"key": "closed_dates_time_to[]",
+											"value": "23:59",
+											"description": "Ordered To time",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_dest[]",
+											"value": "993",
+											"description": "Ordered destinations of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_is_open[]",
+											"value": "yes",
+											"description": "Ordered opened status of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_days[]",
+											"value": "6,7",
+											"description": "Ordered days in the week of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_time_from[]",
+											"value": "00:00",
+											"description": "Ordered time from of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "custom_destinations_time_to[]",
+											"value": "23:59",
+											"description": "Ordered time to of the custom destinations settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_desc[]",
+											"value": "OpenDescription",
+											"description": "Ordered description of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days[]",
+											"value": "1,2,3,4,5",
+											"description": "Ordered days in the week of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_time_from[]",
+											"value": "08:00",
+											"description": "Ordered time from of the open days settings",
+											"disabled": true
+										},
+										{
+											"key": "open_days_time_to[]",
+											"value": "18:00",
+											"description": "Ordered time to of the open days settings",
+											"disabled": true
 										}
 									]
 								}
@@ -23737,13 +25507,14 @@
 									"        pm.expect(responseBody).to.have.property('id').that.is.a('number');",
 									"",
 									"        // Print the success message and ID",
-									"        console.log('Success:', responseBody.success);",
-									"        console.log('Package ID:', responseBody.id);",
+									"        //console.log('Success:', responseBody.success);",
+									"        //console.log('Package ID:', responseBody.id);",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -23873,13 +25644,14 @@
 									"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
 									"",
 									"        // Print the success message and ID",
-									"        console.log('Success:', responseBody.success);",
-									"        console.log('Package ID:', responseBody.id);",
+									"        //console.log('Success:', responseBody.success);",
+									"        //console.log('Package ID:', responseBody.id);",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -24033,13 +25805,14 @@
 									"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
 									"",
 									"        // Print the success message and ID",
-									"        console.log('Success:', responseBody.success);",
-									"        console.log('Package ID:', responseBody.id);",
+									"        //console.log('Success:', responseBody.success);",
+									"        //console.log('Package ID:', responseBody.id);",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -24160,6 +25933,8 @@
 									"        pm.expect(responseBody).to.have.property('hdlogoutinactive').to.be.oneOf(['string', null]);",
 									"        pm.expect(responseBody).to.have.property('custompresencetime').to.be.oneOf(['string', null]);",
 									"        pm.expect(responseBody).to.have.property('dialed_num_minimum_length').to.be.oneOf(['string', null]);",
+									"        pm.expect(responseBody).to.have.property('emerg_location_header').to.be.oneOf(['string', null]);",
+									"        pm.expect(responseBody).to.have.property('max_contacts').to.be.oneOf(['string', null]);",
 									"        pm.expect(responseBody).to.have.property('announcetrunks').that.is.a('string');",
 									"        pm.expect(responseBody).to.have.property('recordglobal').to.be.oneOf(['string', null]);",
 									"        pm.expect(responseBody).to.have.property('recordsilent').to.be.oneOf(['string', null]);",
@@ -24343,13 +26118,14 @@
 									"        pm.expect(responseBody).to.have.property('id').that.is.a('number');",
 									"",
 									"        // Print the success message and ID",
-									"        console.log('Success:', responseBody.success);",
-									"        console.log('Package ID:', responseBody.id);",
+									"        //console.log('Success:', responseBody.success);",
+									"        //console.log('Package ID:', responseBody.id);",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -24914,9 +26690,21 @@
 									"disabled": true
 								},
 								{
+									"key": "ldap_tls",
+									"value": "",
+									"description": "Enable TLS. (Yes=1, No=0) (Regex: /^(1|0)$/)",
+									"disabled": true
+								},
+								{
 									"key": "ldap_password",
 									"value": "",
 									"description": "LDAP password. (Regex: /^.+$/)",
+									"disabled": true
+								},
+								{
+									"key": "ldap_search_type",
+									"value": "",
+									"description": "Contact Search Type. (Regex: /starts_with|contains/)",
 									"disabled": true
 								},
 								{
@@ -24971,13 +26759,14 @@
 									"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
 									"",
 									"        // Print the success message and ID",
-									"        console.log('Success:', responseBody.success);",
-									"        console.log('Package ID:', responseBody.id);",
+									"        //console.log('Success:', responseBody.success);",
+									"        //console.log('Package ID:', responseBody.id);",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -25565,9 +27354,21 @@
 									"disabled": true
 								},
 								{
+									"key": "ldap_tls",
+									"value": "",
+									"description": "Enable TLS. (Yes=1, No=0) (Regex: /^(1|0)$/)",
+									"disabled": true
+								},
+								{
 									"key": "ldap_password",
 									"value": "",
 									"description": "LDAP password. (Regex: /^.+$/)",
+									"disabled": true
+								},
+								{
+									"key": "ldap_search_type",
+									"value": "",
+									"description": "Contact Search Type. (Regex: /starts_with|contains/)",
 									"disabled": true
 								},
 								{
@@ -25911,7 +27712,7 @@
 								{
 									"key": "dest_type",
 									"value": "{{DestType}}",
-									"description": "Destination type (Required)\n0: Extension\n1: Multi User\n2: Ring Group\n3: IVR\n4: Queues\n5: Voicemail\n6: Remote Access\n7: Conferences\n8: Trunk\n9: Fax to E-mail\n10: Deny Access (No value)\n11: CRM Routing\n"
+									"description": "Destination type (Required)\n0: Extension\n1: Multi User\n2: Ring Group\n3: IVR\n4: Queues\n5: Voicemail\n6: Remote Access\n7: Conferences\n8: Trunk\n9: Fax to E-mail\n10: Deny Access (No value)\n11: CRM Routing"
 								},
 								{
 									"key": "destination",
@@ -26003,7 +27804,7 @@
 								{
 									"key": "dest_type",
 									"value": "{{DestType}}",
-									"description": "Destination type\n0: Extension\n1: Multi User\n2: Ring Group\n3: IVR\n4: Queues\n5: Voicemail\n6: Remote Access\n7: Conferences\n8: Trunk\n9: Fax to E-mail\n10: Deny Access (No value)\n11: CRM Routing\n",
+									"description": "Destination type\n0: Extension\n1: Multi User\n2: Ring Group\n3: IVR\n4: Queues\n5: Voicemail\n6: Remote Access\n7: Conferences\n8: Trunk\n9: Fax to E-mail\n10: Deny Access (No value)\n11: CRM Routing",
 									"disabled": true
 								},
 								{
@@ -26335,6 +28136,8 @@
 									"                        pm.expect(servicePlan).to.have.property('grace_period').that.is.a('string');",
 									"                        pm.expect(servicePlan).to.have.property('billing').that.is.a('string');",
 									"                        pm.expect(servicePlan).to.have.property('call_rating').that.is.a('string');",
+									"                        pm.expect(servicePlan).to.have.property('total_inclusive_messages').that.is.a('string');",
+									"                        pm.expect(servicePlan).to.have.property('include_mms_inclusive_messages').that.is.a('string');",
 									"                    });",
 									"                }",
 									"            }",
@@ -26343,7 +28146,8 @@
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -26685,7 +28489,7 @@
 					"response": []
 				}
 			],
-			"description": "Supported Methods\n\n`list` - List Service Plans\n\n`rates` - List Service Plan Rates"
+			"description": "Supported Methods\n\n`list` - List Service Plans\n\n`rates` - List Service Plan Rates\n\n`sms_rates.list` - List Service Plan SMS Rates\n\n`sms_rates.edit` - Edit Service Plan SMS Rates"
 		},
 		{
 			"name": "Destinations",
@@ -26974,13 +28778,14 @@
 									"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
 									"",
 									"        // Print the success message and ID",
-									"        console.log('Success:', responseBody.success);",
-									"        console.log('UAD ID:', responseBody.id);",
+									"        //console.log('Success:', responseBody.success);",
+									"        //console.log('UAD ID:', responseBody.id);",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -27049,13 +28854,14 @@
 									"        pm.expect(responseBody).to.have.property('id').that.is.a('string');",
 									"",
 									"        // Print the success message and ID",
-									"        console.log('Success:', responseBody.success);",
-									"        console.log('UAD ID:', responseBody.id);",
+									"        //console.log('Success:', responseBody.success);",
+									"        //console.log('UAD ID:', responseBody.id);",
 									"    });",
 									"}",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -27317,16 +29123,17 @@
 									"                    pm.expect(edition.extensions).to.have.lengthOf(edition.in_use);",
 									"",
 									"                    // Print edition/module details",
-									"                    console.log(editionName + ' Total:', edition.total);",
+									"                    /*console.log(editionName + ' Total:', edition.total);",
 									"                    console.log(editionName + ' In Use:', edition.in_use);",
-									"                    console.log(editionName + ' Extensions:', edition.extensions);",
+									"                    console.log(editionName + ' Extensions:', edition.extensions);*/",
 									"                });",
 									"            }",
 									"        }",
 									"    });",
 									"}"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -27808,7 +29615,7 @@
 					"response": []
 				}
 			],
-			"description": "Supported Methods\n\n`list`\\- List Monitor extensions\n\n`live_calls` - List Live calls"
+			"description": "Supported Methods\n\n`list`\\- List Monitor extensions\n\n`live_calls` - List Live calls\n\n`trunks` - List trunks infromation"
 		},
 		{
 			"name": "Departments",
@@ -28259,104 +30066,6 @@
 				}
 			],
 			"description": "Supported Methods\n\n`start` - Start call recording for a specific extension\n\n`stop` - Stop call recording for a specific extension\n\n`pause` - Pause call recording for a specific extension\n\n`unpause` - Unpause call recording for a specific extension"
-		},
-		{
-			"name": "Transcription",
-			"item": [
-				{
-					"name": "Get Transcription",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Check for 200 OK response",
-									"pm.test('Status code is 200 OK', function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"// Parse the response JSON",
-									"var responseBody = pm.response.json();",
-									"",
-									"// Check if there is an error field in the response",
-									"if ('error' in responseBody) {",
-									"    console.error(\"Test Failed: \" + responseBody.error);",
-									"    pm.test('API Response Error', function () {",
-									"        pm.expect.fail(responseBody.error);",
-									"    });",
-									"} else {",
-									"    // Validate the transcription response structure and data types",
-									"    pm.test('Response Validation', function () {",
-									"        // Validate top-level response",
-									"        pm.expect(responseBody).to.be.an('object');",
-									"        pm.expect(responseBody).to.have.property('text').that.is.a('string');",
-									"        pm.expect(responseBody).to.have.property('vtt').that.is.an('object');",
-									"        ",
-									"        // Validate VTT object",
-									"        var vtt = responseBody.vtt;",
-									"        pm.expect(vtt).to.have.property('language').that.is.a('string');",
-									"        pm.expect(vtt).to.have.property('duration').that.is.a('number');",
-									"        pm.expect(vtt).to.have.property('words').that.is.an('array');",
-									"        pm.expect(vtt).to.have.property('segments').that.is.an('array');",
-									"        ",
-									"        // Validate each word object in the \"words\" array",
-									"        vtt.words.forEach(function(word) {",
-									"            pm.expect(word).to.be.an('object');",
-									"            pm.expect(word).to.have.property('word').that.is.a('string');",
-									"            pm.expect(word).to.have.property('start').that.is.a('number');",
-									"            pm.expect(word).to.have.property('end').that.is.a('number');",
-									"        });",
-									"        ",
-									"        // Validate each segment object in the \"segments\" array",
-									"        vtt.segments.forEach(function(segment) {",
-									"            pm.expect(segment).to.be.an('object');",
-									"            pm.expect(segment).to.have.property('id').that.is.a('number');",
-									"            pm.expect(segment).to.have.property('seek').that.is.a('number');",
-									"            pm.expect(segment).to.have.property('start').that.is.a('number');",
-									"            pm.expect(segment).to.have.property('end').that.is.a('number');",
-									"            pm.expect(segment).to.have.property('text').that.is.a('string');",
-									"        });",
-									"    });",
-									"}"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{IP}}/index.php?apikey={{API_Key}}&action=pbxware.transcription.get&uniqueid={{UniqeCallID}}",
-							"protocol": "http",
-							"host": [
-								"{{IP}}"
-							],
-							"path": [
-								"index.php"
-							],
-							"query": [
-								{
-									"key": "apikey",
-									"value": "{{API_Key}}"
-								},
-								{
-									"key": "action",
-									"value": "pbxware.transcription.get"
-								},
-								{
-									"key": "uniqueid",
-									"value": "{{UniqeCallID}}",
-									"description": "Unique ID for call. Always must be set. (Required) (Regex: /\\\\b\\\\d+\\\\.\\\\d+\\\\b/)"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"description": "# Transcription\n\nSupported Methods:\n\n`get` - Get information about specific transcription"
 		},
 		{
 			"name": "Paging Groups",
